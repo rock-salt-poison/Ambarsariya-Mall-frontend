@@ -61,13 +61,17 @@ function Esale() {
                         <Box className="col">
                             <Box className="sub_col">
                                 <Box className="life">
-                                    <Box component="img" alt="img" src={life_img} className='img' />
+                                    <Link to='./life'>
+                                        <Box component="img" alt="img" src={life_img} className='img' />
+                                    </Link>
                                     <Box component="img" alt="img" src={relationship_img} className='img' />
                                     <Box component="img" alt="img" src={location_img} className='img' />
                                 </Box>
                             </Box>
                             <Box className="sub_col">
-                                <Box component="img" src={gif_1} className='shopping_gif' alt='shopping' />
+                                <Link to='../shops'>
+                                    <Box component="img" src={gif_1} className='shopping_gif' alt='shopping' />
+                                </Link>
                             </Box>
                         </Box>
                     </Box>

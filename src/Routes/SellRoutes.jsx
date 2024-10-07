@@ -24,6 +24,7 @@ import Budget from '../Pages/Sell/Budget';
 import Esale_emotional from '../Pages/Sell/Esale_emotional';
 import Esale_personal from '../Pages/Sell/Esale_personal';
 import Esale_professional from '../Pages/Sell/Esale_professional';
+import Life from '../Pages/Sell/Life';
 
 function SellRoutes() {
   const ConditionalRoute = () => {
@@ -63,6 +64,7 @@ function SellRoutes() {
       <Route path="esale/professional" element={<Esale_professional />} /> 
       <Route path="shops" element={<ShopSearchPage />} />
       <Route path=":owner/:action/budget" element={<Budget />} />
+      <Route path="esale/life" element={<Life />} />
     </Routes>
   );
 }

@@ -1,4 +1,4 @@
-import {Route, Routes} from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Serve from '../Pages/Serve';
 import Emotional from '../Pages/Serve/Emotional';
 import Campaign from '../Pages/Serve/Campaign';
@@ -30,43 +30,66 @@ import General_ledger from '../Pages/Serve/General_ledger';
 import Accounts_payable from '../Pages/Serve/Accounts_payable';
 import Accounts_receivable from '../Pages/Serve/Accounts_receivable';
 import Budgeting_and_forecasting from '../Pages/Serve/Budgeting_and_forecasting';
+import MerchantCampaign from '../Pages/Serve/MerchantCampaign';
+import { useEffect, useState } from 'react';
 
 
 export default function ServeRoutes() {
-  return (
-           <Routes>
-              <Route path="/" element= {<Serve/>} />
-              <Route path="/emotional" element={<Emotional/>} />
-              <Route path="/unexpected" element={<Unexpected/>} />
-              <Route path="/emotional/campaign" element={<Campaign/>} />
-              <Route path="/emotional/campaign/job" element={<Job/>} />
-              <Route path="/emotional/campaign/community" element={<Community/>} />
-              <Route path="/emotional/campaign/community/discussion" element={<Discussion/>} />              
-              <Route path="/emotional/campaign/community/votes" element={<Votes/>} />              
-              <Route path="/emotional/eshop" element={<Eshop/>} />              
-              <Route path="/emotional/eshop/financial-management" element={<Financial_management/>} />              
-              <Route path="/emotional/eshop/financial-management/general-ledger" element={<General_ledger/>} />              
-              <Route path="/emotional/eshop/financial-management/accounts-payable" element={<Accounts_payable/>} />              
-              <Route path="/emotional/eshop/financial-management/accounts-receivable" element={<Accounts_receivable/>} />              
-              <Route path="/emotional/eshop/financial-management/budgeting-and-forecasting" element={<Budgeting_and_forecasting/>} />              
-              <Route path="/emotional/eshop/hr-management" element={<HR_management/>} />              
-              <Route path="/emotional/eshop/suppliers-for-shop" element={<Suppliers_for_shop/>} />
-              <Route path="/emotional/eshop/suppliers-for-shop2" element={<Suppliers_for_shop2/>} />
-              <Route path="/emotional/eshop/suppliers-for-shop3" element={<Suppliers_for_shop3/>} />
-              <Route path="/emotional/eshop/supply-chain-sale-order" element={<Supply_chain_sale_order/>} />
-              <Route path="/emotional/eshop/supply-chain" element={<Supply_chain_management/>} />
-              <Route path="/emotional/eshop/forecast" element={<Forecast/>} />
-              <Route path="/emotional/eshop/stock-management" element={<Stock_management/>} />
-              <Route path="/emotional/eshop/stock-level" element={<Stock_level/>} />
-              <Route path="/emotional/eshop/stock-reports" element={<Stock_reports/>} />
-              <Route path="/emotional/analytics" element={<Analytics/>} />
-              <Route path="/emotional/crm" element={<CRM/>} />
-              <Route path="/unexpected/lead_generation" element={<LeadGeneration/>} />
-              <Route path="/unexpected/capture" element={<Capture/>} />
-              <Route path="/unexpected/suggestions" element={<Suggestions/>} />
-              <Route path="/unexpected/confirmation" element={<Confirmation/>} />
-              <Route path="/emotional/campaign/job/jobs-offered" element={<Jobs_offered/>} />
-           </Routes>
-        );
+
+   const [checkUser, setCheckUser] = useState(localStorage.getItem('access_token'));
+
+   // Effect to listen to storage changes
+   useEffect(() => {
+      // Define the function that updates state when localStorage changes
+      const handleStorageChange = (e) => {
+         if (e.key === 'access_token') {
+            setCheckUser(e.newValue);
+         }
+      };
+
+      // Listen to the storage event
+      window.addEventListener('storage', handleStorageChange);
+
+      // Clean up the event listener when the component unmounts
+      return () => {
+         window.removeEventListener('storage', handleStorageChange);
+      };
+   }, []);
+
+   return (
+      <Routes>
+         <Route path="/" element={<Serve />} />
+         <Route path="/emotional" element={<Emotional />} />
+         <Route path="/unexpected" element={<Unexpected />} />
+         <Route path="/emotional/campaign" element={checkUser === 'merchant' ? <MerchantCampaign /> : <Campaign />} />
+         <Route path="/emotional/campaign/job" element={<Job />} />
+         <Route path="/emotional/campaign/community" element={<Community />} />
+         <Route path="/emotional/campaign/community/discussion" element={<Discussion />} />
+         <Route path="/emotional/campaign/community/votes" element={<Votes />} />
+         <Route path="/emotional/eshop" element={<Eshop />} />
+         <Route path="/emotional/eshop/financial-management" element={<Financial_management />} />
+         <Route path="/emotional/eshop/financial-management/general-ledger" element={<General_ledger />} />
+         <Route path="/emotional/eshop/financial-management/accounts-payable" element={<Accounts_payable />} />
+         <Route path="/emotional/eshop/financial-management/accounts-receivable" element={<Accounts_receivable />} />
+         <Route path="/emotional/eshop/financial-management/budgeting-and-forecasting" element={<Budgeting_and_forecasting />} />
+         <Route path="/emotional/eshop/hr-management" element={<HR_management />} />
+         <Route path="/emotional/eshop/suppliers-for-shop" element={<Suppliers_for_shop />} />
+         <Route path="/emotional/eshop/suppliers-for-shop2" element={<Suppliers_for_shop2 />} />
+         <Route path="/emotional/eshop/suppliers-for-shop3" element={<Suppliers_for_shop3 />} />
+         <Route path="/emotional/eshop/supply-chain-sale-order" element={<Supply_chain_sale_order />} />
+         <Route path="/emotional/eshop/supply-chain" element={<Supply_chain_management />} />
+         <Route path="/emotional/eshop/forecast" element={<Forecast />} />
+         <Route path="/emotional/eshop/stock-management" element={<Stock_management />} />
+         <Route path="/emotional/eshop/stock-level" element={<Stock_level />} />
+         <Route path="/emotional/eshop/stock-reports" element={<Stock_reports />} />
+         <Route path="/emotional/analytics" element={<Analytics />} />
+         <Route path="/emotional/crm" element={<CRM />} />
+         <Route path="/unexpected/lead_generation" element={<LeadGeneration />} />
+         <Route path="/unexpected/capture" element={<Capture />} />
+         <Route path="/unexpected/suggestions" element={<Suggestions />} />
+         <Route path="/unexpected/confirmation" element={<Confirmation />} />
+         <Route path="/emotional/campaign/job/jobs-offered" element={<Jobs_offered />} />
+      </Routes>
+   );
 }
 

@@ -24,7 +24,7 @@ function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formD
                     const name = field.name;
                     const placeholder = field.placeholder ? field.placeholder : field.label;
                     return (
-                        <Box key={field.id}>
+                        <React.Fragment key={field.id}>
                             {/* Render the main field's input only if it doesn't have inner fields */}
                             {!field.innerField && field.type !== 'quantity' && field.type !== 'daterange' && field.type !== 'button' && (
                                 <React.Fragment>
@@ -137,7 +137,7 @@ function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formD
                                     <input type="button" onClick={field.handleButtonClick} value={field.value} className='fieldButton'/>
                                 </Box>
                             )}
-                        </Box>
+                        </React.Fragment>
                     );
                 })}
 

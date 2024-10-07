@@ -45,12 +45,14 @@ $esaleEmotionalBgImg :'../Utils/images/Sell/esale/emotional/emotional_bg_img.web
 $esalePersonalBgImg :'../Utils/images/Sell/esale/personal/personal_bg_img.webp';
 $esaleProfessionalBgImg :'../Utils/images/Sell/esale/professional/professional_bg_img.webp';
 $icon_6 : '../Utils/images/Serve/emotional/campaign/community/icon_6.webp';
+$lifeBgImg : '../Utils/images/Sell/esale/life/life_bg_img.webp';
 
 //Serve
 $serveBgImg : '../Utils/images/Serve/serve_bg.webp';
 $emotionalBgImg : '../Utils/images/Serve/emotional/emotional_bg.webp';
 $emotionalFrame : '../Utils/images/Serve/emotional/frame.webp';
 $campaignBgImg : '../Utils/images/Serve/emotional/campaign/campaign_bg_img.webp';
+$merchantCampaignBgImg : '../Utils/images/Serve/emotional/merchant_campaign/campaign_bg_img.webp';
 $jobBgImg : '../Utils/images/Serve/emotional/campaign/job/jobs_bg.webp';
 $communityBgImg : '../Utils/images/Serve/emotional/campaign/community/community_bg_img.webp';
 $discussionBgImg : '../Utils/images/Serve/emotional/campaign/community/create_community/start_community_bg_img.webp';
@@ -158,6 +160,7 @@ $font-digital : '../Utils/fonts/digital-7.ttf';
     --pink1: #E0B5A8;
     --pink2: #ffe8d8;
     --yellow : #{$yellow};
+    --lightYellow :#{$light-yellow};
     --light-yellow : #{$dark-yellow2};
     --brown : #{$brown};
     --brown-2 : #{$brown-2};

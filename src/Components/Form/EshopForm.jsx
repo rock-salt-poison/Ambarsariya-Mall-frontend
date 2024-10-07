@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 
 const EshopForm = () => {
   const initialFormData = {
-    title: 'Mr.',
     business_name: '',
     date_of_establishment: '',
     usp_values: '',
@@ -16,6 +15,7 @@ const EshopForm = () => {
     parking_availability: '',
     category: '',
     products: '',
+    advt_video:'', 
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -24,8 +24,29 @@ const EshopForm = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    const fieldValue = type === 'file' ? files[0] : value;
+    const { name, type, files, value } = e.target;
+    let fieldValue = type === 'file' ? files[0] : value;
+    
+    // Handle file validation and store the file in formData
+    if (type === 'file') {
+      const file = files[0];
+      
+      // Check file type based on the field name
+      if (name === 'usp_values' && file.type !== 'application/pdf') {
+        console.log('Please upload a PDF file');
+        return;
+      }
+      if (name === 'products' && file.type !== 'text/csv') {
+        console.log('Please upload a CSV file');
+        return;
+      }
+      if (name === 'advt_video' && file.type !== 'video/mp4') {
+        console.log('Please upload an MP4 video file');
+        return;
+      }
+      
+      fieldValue = file;
+    }
 
     setFormData({
       ...formData,
@@ -81,13 +102,13 @@ const EshopForm = () => {
     e.preventDefault();
     if (validate()) {
       console.log('Form Data:', formData);
-      navigate('../AmbarsariyaMall/login')
+      setTimeout(()=>{
+        navigate('../login');
+      },1000)
     }
   };
 
   const categoryOptions = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
-  const daily_walkin_options = ['Low', 'Medium', 'High', 'Dense'];
-  const parking_availability_options = ['Morning', 'Afternoon', 'Evening'];
 
   const getSliderMarks = (name) => {
     switch (name) {
@@ -118,6 +139,17 @@ const EshopForm = () => {
 
   const renderFormField = (label, name, type, options = [], placeholder = '', additionalProps = {}) => {
     let additionalClass = '';
+    let accept = ''; // Initialize accept based on field
+    
+    // Define accept types based on field name
+    if (name === 'usp_values') {
+      accept = 'application/pdf';
+    } else if (name === 'products') {
+      accept = '.csv';
+    } else if (name === 'advt_video') {
+      accept = 'video/mp4';
+    }
+
     if (name === 'parking_availability') {
       additionalClass = 'parking-availability-slider';
     } else if (name === 'cost_sensitivity') {
@@ -127,29 +159,31 @@ const EshopForm = () => {
     }
 
     return (
-    <FormField
-      label={label}
-      name={name}
-      type={type}
-      value={formData[name]}
-      onChange={handleChange}
-      onSliderChange={handleSliderChange}
-      error={!!errors[name]}
-      errorMessage={errorMessages[name]}
-      options={options}
-      placeholder={placeholder}
-      getSliderMarks={getSliderMarks}
-      className={additionalClass}
-      {...additionalProps}
-    />
-  )};
+      <FormField
+        label={label}
+        name={name}
+        type={type}
+        value={formData[name]}
+        onChange={handleChange}
+        onSliderChange={handleSliderChange}
+        error={!!errors[name]}
+        errorMessage={errorMessages[name]}
+        options={options}
+        placeholder={placeholder}
+        getSliderMarks={getSliderMarks}
+        className={additionalClass}
+        accept={accept} // Pass the accept attribute
+        {...additionalProps}
+      />
+    );
+  };
 
   return (
     <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
       <Box className="form-group">
         {renderFormField('Name of the business :', 'business_name', 'text')}
         {renderFormField('Date of establishment :', 'date_of_establishment', 'date')}
-        {renderFormField('USP Values :', 'usp_values', 'file')}
+        {renderFormField('USP Values (PDF) :', 'usp_values', 'file')}
         {renderFormField('Product Sample :', 'product_samples', 'url')}
         {renderFormField('Similar Options :', 'similar_options', 'select', categoryOptions, 'Select')}
         {renderFormField('Cost sensitivity :', 'cost_sensitivity', 'range')}
@@ -165,7 +199,8 @@ const EshopForm = () => {
         </Box>
 
         {renderFormField('Category :', 'category', 'select', categoryOptions, 'Select')}
-        {renderFormField('Products :', 'products', 'file')}
+        {renderFormField('Products (CSV) :', 'products', 'file')}
+        {renderFormField('Advertisement Video :', 'advt_video', 'file')}
       </Box>
       <Box className="submit_button_container">
         <Button type="submit" variant="contained" className="submit_button">

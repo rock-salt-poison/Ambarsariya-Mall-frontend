@@ -15,12 +15,24 @@ function InvoiceDetail_PopupContent() {
     const initialData = {
         selected_daterange:'',
         selected_po:'',
-        invoice_amount:'',
+        invoice:'',
+        total_amount:'',
         due_date:'',
+        description_of_goods:'',
+        item_name:'',
+        cost_of_item:'',
+        cost_of_items:'',
+        no_of_items:'',
+        purchase_no:'',
+        procurement_no:'',
     };
 
     const [formData, setFormData] = useState(initialData);
     const [errors, setErrors] = useState({});
+
+    const handleButtonClick = () =>{
+        console.log('clicked')
+    }
 
     const formFields = [
         {
@@ -38,19 +50,76 @@ function InvoiceDetail_PopupContent() {
         },
         {
             id: 3,
-            label: 'Invoice Amount',
-            name: 'invoice_amount',
-            type: 'text',
-            behavior:'numeric',
-            readOnly:true
+            label: 'Invoice',
+            name: 'invoice',
+            type: 'button',
+            value:'Download PDF',
+            handleButtonClick:handleButtonClick
         },
         {
             id: 4,
+            label: 'Total Amount',
+            name: 'total_amount',
+            type: 'text',
+            behavior:'numeric',
+
+        },
+        {
+            id: 5,
             label: 'Due date',
             name: 'due_date',
             type: 'date',
         },
+        {
+            id: 6,
+            label: 'Description of goods',
+            name: 'description_of_goods',
+            type: 'text',
+        },
+        {
+            id: 7,
+            label: 'Item Name',
+            name: 'item_name',
+            type: 'text',
+        },
+        {
+            id: 8,
+            label: 'Cost of item',
+            name: 'cost_of_item',
+            type: 'text',
+            behavior:'numeric',
+        },
+        {
+            id: 9,
+            label: 'Cost of items',
+            name: 'cost_of_items',
+            type: 'text',
+            behavior:'numeric',
+        },
+        {
+            id: 10,
+            label: 'No. of items',
+            name: 'no_of_items',
+            type: 'text',
+            behavior:'numeric',
+        },
+        {
+            id: 11,
+            label: 'Purchase No.',
+            name: 'purchase_no',
+            type: 'text',
+            behavior: 'numeric',
+        },
+        {
+            id: 12,
+            label: 'Procurement Order No.',
+            name: 'procurement_no',
+            type: 'text',
+            behavior: 'numeric',
+        },        
     ];
+
+    
 
     const handleChange = (event) => {
         const { name, value } = event.target;

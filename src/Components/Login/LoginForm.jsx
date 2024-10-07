@@ -87,8 +87,21 @@ const LoginForm = ({redirectTo}) => {
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
     if (validate()) {
+      if(formData.username==='member'){
+        localStorage.setItem('access_token', 'member');
+        navigate(`../${redirectTo}`);
+      }else if(formData.username==='merchant'){
+        localStorage.setItem('access_token', 'merchant');
+        navigate(`../${redirectTo}`);
+      }else{
+        alert('Enter username either member or merchant');
+        setFormData({
+          username:'',
+          password:'',
+        })
+        setStep(0);
+      }
       console.log('Form Data:', formData);
-      navigate(`../${redirectTo}`);
     }
   };
 

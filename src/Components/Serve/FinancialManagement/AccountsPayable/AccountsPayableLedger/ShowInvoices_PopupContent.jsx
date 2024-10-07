@@ -14,15 +14,18 @@ function ShowInvoices_PopupContent() {
 
     const initialData = {
         selected_daterange:'',
-        selected_po:'',
-        invoice:'',
+        selected_vendor:'',
+        selected_invoices:'',
+        download_invoice:'',
+        seller_contact:'',
+        buyer_contact:'',
+        subtotal:'',
         total_amount:'',
+        paid_amount:'',
+        balance:'',
         due_date:'',
-        description_of_goods:'',
-        item_name:'',
-        cost_of_item:'',
-        purchase_no:'',
-        procurement_no:'',
+        tax:'',
+        credit_limit:'',
     };
 
     const [formData, setFormData] = useState(initialData);
@@ -35,72 +38,92 @@ function ShowInvoices_PopupContent() {
     const formFields = [
         {
             id: 1,
+            label: 'Select Vendor(s)',
+            name: 'selected_vendor',
+            type: 'select-check',
+            options: ['Vendor 1', 'Vendor 2', 'Vendor 3', 'Vendor 4', 'Vendor 5', 'Vendor 6', 'Vendor 7']
+        },
+        {
+            id: 2,
             label: 'Select Date',
             name: 'selected_daterange',
             type: 'daterange',
         },
         {
-            id: 2,
-            label: 'Select P.O(s)',
-            name: 'selected_po',
-            type: 'select',
-            options: ['Purchase Order 1', 'Purchase Order 2', 'Purchase Order 3', 'Purchase Order 4', 'Purchase Order 5']
+            id:3,
+            label: 'Select Invoice No(s)',
+            name: 'selected_invoices',
+            type: 'select-check',
+            options: ['Invoice 1', 'Invoice 2', 'Invoice 3', 'Invoice 4', 'Invoice 5', 'Invoice 6', 'Invoice 7'],
         },
         {
-            id: 3,
-            label: 'Invoice',
-            name: 'invoice',
+            id: 4,
+            label: 'Download Invoice',
+            name: 'download_invoice',
             type: 'button',
             value:'Download PDF',
             handleButtonClick:handleButtonClick
         },
         {
-            id: 4,
-            label: 'Total Amount',
-            name: 'total_amount',
-            type: 'text',
-            behavior:'numeric',
-
-        },
-        {
             id: 5,
-            label: 'Due date',
-            name: 'due_date',
-            type: 'date',
+            label: 'Seller contact information',
+            name: 'seller_contact',
+            type: 'text',
         },
         {
             id: 6,
-            label: 'Description of goods',
-            name: 'description_of_goods',
+            label: 'Buyer contact information',
+            name: 'buyer_contact',
             type: 'text',
         },
         {
             id: 7,
-            label: 'Item Name',
-            name: 'item_name',
+            label: 'Subtotal',
+            name: 'subtotal',
             type: 'text',
+            behavior:'numeric',
         },
         {
             id: 8,
-            label: 'Cost of item',
-            name: 'cost_of_item',
+            label: 'Total Amount',
+            name: 'total_amount',
             type: 'text',
             behavior:'numeric',
         },
         {
             id: 9,
-            label: 'Purchase No.',
-            name: 'purchase_no',
+            label: 'Paid Amount',
+            name: 'paid_amount',
             type: 'text',
-            behavior: 'numeric',
+            behavior:'numeric',
         },
         {
             id: 10,
-            label: 'Procurement Order No.',
-            name: 'procurement_no',
+            label: 'Balance Amount',
+            name: 'balance_amount',
             type: 'text',
-            behavior: 'numeric',
-        },        
+            behavior:'numeric',
+        },
+        {
+            id: 11,
+            label: 'Due date',
+            name: 'due_date',
+            type: 'date',
+        },  
+        {
+            id: 12,
+            label: 'Tax',
+            name: 'tax',
+            type: 'text',
+            behavior:'numeric',
+        },   
+        {
+            id: 13,
+            label: 'Credit limit',
+            name: 'credit_limit',
+            type: 'text',
+            behavior:'numeric',
+        },
     ];
 
     
@@ -150,5 +173,7 @@ function ShowInvoices_PopupContent() {
         </ThemeProvider>
     );
 }
+
+
 
 export default ShowInvoices_PopupContent;

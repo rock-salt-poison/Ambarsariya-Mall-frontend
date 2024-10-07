@@ -3011,12 +3011,15 @@ a {
               .MuiSwitch-root {
                 background: #d16337;
                 width: max-content;
-                padding: 2px 15px 2px 5px;
+                padding: 2px 4px 2px 4px;
                 border-radius: 50px;
 
-                &.Mui-checked {
+                &.Mui-checked , .MuiSwitch-track{
                   background: $green;
-                  padding: 2px 4px 2px 10px;
+                  padding: 2px 4px 2px 4px;
+                }
+                .MuiSwitch-track{
+                  padding: 1px 3px 0px 4px;
                 }
               }
               .switch_text {
@@ -9694,6 +9697,267 @@ a {
   }
 }
 
+.merchant_campaign_wrapper{
+  position: relative;
+  min-height: 100vh;
+  @include background-center-no-repeat($merchantCampaignBgImg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+
+  &::after {
+    content: "";
+    @include full-absolute(0px, 0px, 0px, 0px);
+    z-index: 0;
+    background-color: $golden;
+    opacity: 0.3;
+  }
+
+  .row {
+    position: relative;
+    z-index: 1;
+    padding: 30px 25px;
+    @include flex-center(column, flex-start);
+    gap: 25px;
+    flex: 1;
+
+
+
+    .col{
+      @include flex-center(row, space-between);
+      align-self: stretch;
+      flex-wrap: wrap;
+
+      h2.heading {
+        @include homepage-buttons("EFCO", 40px, $yellow, "none");
+        @include hover-scale(1, 0s);
+        text-shadow: 0px 3px 6px #000000bf;
+        text-align: center;
+      }
+
+      .title_container {
+        position: relative;
+        padding: 55px 10px 10px;
+        width: 215px;
+        // max-width: 215px;
+        height: 38px;
+        @include flex-center(row, center);
+        align-items: center;
+        .hanging_board {
+          @include full-absolute(0px, 0px, 0px, 0px);
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+        }
+
+        .title {
+          @include homepage-buttons(
+            "Bobby-Jones-Soft",
+            20px,
+            $light-yellow,
+            "none"
+          );
+          @include hover-scale(1, 0s);
+          text-shadow: 0px 4px 4px $black;
+          line-height: 20px;
+          text-align: center;
+        }
+      }
+
+      &.d_lg_none {
+        display: none;
+      }
+
+      &.d_lg_none {
+        .title_container {
+          padding-top: 55px;
+          padding-bottom: 20px;
+          .hanging_board2 {
+            @include full-absolute(0px, 0px, 0px, 0px);
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+          }
+          .title {
+            color: $yellow;
+
+            .heading {
+              display: block;
+              margin-bottom: 3px;
+
+              &:last-child {
+                margin-bottom: 0px;
+              }
+            }
+            .values {
+              color: $light-yellow;
+            }
+          }
+        }
+      }
+
+
+      &:nth-child(2){
+        flex: 1;
+      }
+
+      .col-8{
+        width: 68%;
+        background: linear-gradient(4deg, rgba(240, 196, 194, 0.4), rgb(200 154 151 / 18%), rgba(240, 196, 194, 0.4));
+        margin: 0 auto;
+        align-self: flex-start;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #d6c4c766;
+
+        .container{
+          @include flex-center(row, space-between);
+          flex-wrap: wrap;
+          gap: 20px;
+          // height: 102px;
+          padding: 15px;
+
+          .sub-col-6{
+            flex: 1;
+            form{
+              @include flex-center(column, flex-start);
+              gap: 10px;
+              .btn{
+                background-color: #6b4336b3;
+                padding: 6px;
+                align-self: stretch;
+                flex: 1;
+                border-radius: 50px;
+  
+                .btn_container{
+                  border: 3px solid #ffffff66;
+                  border-radius: 50px;
+                  width: 100%;
+                  @include flex-center(row,flex-start);
+                  gap: 10px;
+                  padding-right: 10px;
+                  .icon_container{
+                    width: 25px;
+                    height: 25px;
+                    border: 3px solid #ffffffcc;
+                    border-radius: 50px;
+                    padding: 6px;
+                    .icon{
+                      width: 100%;
+                    }
+                  }
+  
+                  .btn_value{
+                    @include homepage-buttons("Bobby-Jones-Soft", 20px, $light-yellow, "none");
+                    @include hover-scale(1, 0s);
+                    white-space: nowrap;
+                    flex: 1;
+                    text-align: left;
+                  }
+                }
+              }
+
+              .btn_group{
+                @include flex-center(row, space-between);
+                gap: 10px;
+                align-self: stretch;
+              }
+            }
+          }
+
+          .sub-col-4{
+            flex: .7;
+            align-self: stretch;
+            background-color: $black;
+          }
+        }
+
+
+      }
+    }
+    @media (max-width:1240px){
+        .col{
+          .col-8{
+            width: 90%;
+          }
+        }
+    }
+    @media (max-width:990px){
+      .col{
+        .col-8{
+          width: max-content;
+          .container{
+            flex-direction: column;
+
+            .sub-col-4{
+              min-height: 160px;
+            }
+          }
+        }
+      }
+  }
+  @media (max-width:768px){
+    .col{
+
+      &.d-md-none{
+        display: none;
+      }
+
+      &.d_lg_none{
+        display: flex ;
+        justify-content: center;
+      }
+
+      .col-8{
+        width: 100%;
+        .container{
+
+          .sub-col-6{
+            form{
+              .btn{
+                .btn_container{
+                  .btn_value{
+                    white-space: wrap;
+                  }
+                }
+              }
+            }
+          }
+
+          .sub-col-4{
+            min-height: 160px;
+          }
+        }
+      }
+    }
+}
+
+}
+@media (max-width:560px){
+  display: block;
+  .col{
+    justify-content: center;
+    gap: 15px;
+
+    .col-8{
+      padding: 15px;
+
+      .container{
+        padding: 15px 0 !important;
+
+        .sub-col-6, .sub-col-4{
+          width: 100%;
+        }
+
+        .btn_group{
+          flex-direction: column !important;
+        }
+      }
+    }
+  }
+}
+}
+
 .job_apply_wrapper {
   position: relative;
   min-height: 100vh;
@@ -12883,6 +13147,8 @@ body .MuiBackdrop-root {
                 border-bottom: 2px solid $gray2;
                 padding-bottom: 6px;
                 flex: 1;
+                max-width: 100%;
+                overflow: hidden;
               }
 
               .input_field {
@@ -12894,6 +13160,13 @@ body .MuiBackdrop-root {
 
                 .MuiOutlinedInput-notchedOutline {
                   border: 0px;
+                }
+
+                .MuiSelect-select{
+                  div{
+                    width: 95%;
+                    overflow: hidden;
+                  }
                 }
               }
 
@@ -13043,6 +13316,10 @@ body .MuiBackdrop-root {
         .offerings_popup_form {
           @include flex-center(column, flex-start);
           gap: 25px;
+
+          .MuiFormControlLabel-root{
+            width: 100%;
+          }
 
           .MuiTypography-root.MuiTypography-body1 {
             padding-bottom: 0px !important;
@@ -13220,6 +13497,7 @@ body .MuiBackdrop-root {
           height: 100%;
           @include flex-center(column, center);
           gap: 25px;
+          min-width: 70%;
 
           .container {
             display: flex;
@@ -13244,11 +13522,13 @@ body .MuiBackdrop-root {
             form {
               @include flex-center(column, flex-start);
               place-items: normal;
-              width: 100%;
+              width: 90%;
+              max-width: 90%;
               gap: 15px;
               .label {
                 align-self: center;
-                flex: 0.6;
+                max-width: 40%;
+                width: 40%;
                 text-align: end;
                 @include homepage-buttons(
                   "Bobby-Jones-Soft",
@@ -13263,22 +13543,37 @@ body .MuiBackdrop-root {
                 @include flex-center(column,center);
                 gap: 10px;
                 place-items: normal;
+                max-width: 100%;
+                width: 100%;
 
                 .form-row {
                   @include flex-center(row, center);
                   gap: 15px;
+                  width: 100%;
+                  max-width: 100%;
 
                   .field_container {
                     align-self: center;
                     flex: 1;
                     @include flex-center(row,center);
+                    max-width: 60%;
+                    width: 60%;
+                    overflow: hidden;
 
                     .input_field {
-                      flex: 1;
+                      // flex: 1;
+                      width: 100%;
                       background-color: #d4983040;
                       border: none;
                       border-radius: 8px;
-      
+                      
+                      .MuiSelect-select{
+                        div{
+                          width: 95%;
+                          overflow: hidden;
+                        }
+                      }
+
                       .MuiOutlinedInput-notchedOutline {
                         border: 0px;
                       }
@@ -13411,6 +13706,10 @@ body .MuiBackdrop-root {
                     text-shadow: 0px 4px 4px #0000001a;
                     line-height: 1.2em;
                   }
+
+                  &:hover{
+                    color: #fff7e8;
+                  }
                 }
               }
 
@@ -13451,6 +13750,10 @@ body .MuiBackdrop-root {
           justify-content: flex-start;
           align-self: stretch;
           
+          .container{
+            min-width: 70%;
+          }
+
           .search_field_container{
             align-self: stretch;
             @include flex-center(row,center );
@@ -13519,6 +13822,12 @@ body .MuiBackdrop-root {
               @include flex-center(column, flex-start);
               // place-items: normal;
               gap: 15px;
+
+
+              form{
+                width: 100%;
+                max-width: 100%;
+              }
               .label{
                 @include homepage-buttons(
                   "Bobby-Jones-Soft",
@@ -13527,6 +13836,8 @@ body .MuiBackdrop-root {
                   "none"
                 );
                 @include hover-scale(1, 0s);
+                max-width: 100%;
+                width: 100%;
               }
 
               .form-row{
@@ -13541,13 +13852,18 @@ body .MuiBackdrop-root {
                 }
                 .field_container{
                   align-self: stretch !important;
+                  width: 100% !important;
+                  max-width: 100% !important;
                 }
               }
             }
             .col-7{
               width: 55%;
               align-self: stretch;
-
+              form{
+                width: 100%;
+                max-width: 100%;
+              }
               .window{
                 @include flex-center(column,space-between);
                 place-items: normal;
@@ -13688,11 +14004,114 @@ body .MuiBackdrop-root {
   }
 }
 
+.life_wrapper{
+    position: relative;
+    @include background-center-no-repeat($lifeBgImg);
+    background-size: cover;
+    min-height: 100vh;
+    background-position: 100% 10%;
+
+    &::after{
+      content: '';
+      @include full-absolute(0px,0px,0px,0px);
+      background-color: #551F53;
+      z-index: -1;
+    }
+
+    &::before{
+      content: '';
+      @include full-absolute(0px,0px,0px,0px);
+      z-index: 0;
+      background-color: $dark-yellow2;
+      opacity: .3;
+    }
+
+    .row{
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      @include flex-center(column,center);
+      gap: 30px;
+
+      .col{
+        align-self: stretch;
+        @include flex-center(row,space-between);
+        flex-wrap: wrap;
+
+        .icon_link{
+          flex: 1;
+          .icon{
+            height: 54px;
+          }
+
+          &:last-child{
+            .icon{
+              float: right;
+            }
+          }
+        }
+          
+        .title_container {
+        flex: 1;
+          .title {
+            @include homepage-buttons(
+              "EFCO",
+              2.6em,
+              $yellow,
+            );
+            @include hover-scale(1, 0s);
+            text-shadow: 0px 3px 6px #000000bf;
+            text-align: center;
+            line-height: 1em;
+            white-space: nowrap;
+          }
+        }
+
+      }
+
+      @media (max-width: 768px){
+        .col{
+          gap: 15px;
+          .icon_link{
+            order: 0;
+            .icon{
+              height: 40px;
+            }
+          }
+          .title_container{
+            order: 1;
+            flex: auto;
+            width: 100%;
+            .title{
+              font-size: 2.3em;
+            }
+          }
+        }
+      }
+
+      @media (max-width: 560px){
+        .col{
+          .icon_link{
+            .icon{
+              height: 35px;
+            }
+          }
+          .title_container{
+            .title{
+              font-size: 2em;
+            }
+          }
+        }
+      }
+    }
+}
+
+
 .MuiSwitch-root {
   .MuiSwitch-track {
     background-color: #d16337 !important;
   }
-  .Mui-checked + .MuiSwitch-track {
+  .Mui-checked.MuiSwitch-track {
     background-color: $green !important;
   }
 }
@@ -13861,6 +14280,7 @@ body .MuiBackdrop-root {
     }
   }
 }
+
 .tab_panel {
   padding: 20px 15px 0px !important;
 

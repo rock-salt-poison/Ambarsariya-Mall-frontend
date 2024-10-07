@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 import '../styles/variables.scss';
 
 const createCustomTheme = (themeProps) => {
-  const { popoverBackgroundColor, textColor, scrollbarThumb,scrollbarThumbTabs, checkboxColor, dialogBackdropColor } = themeProps;
+  const { popoverBackgroundColor, textColor, scrollbarThumb,scrollbarThumbTabs, checkboxColor, dialogBackdropColor, selectedListItemBgColor } = themeProps;
 
   return createTheme({
     components: {
@@ -41,7 +41,7 @@ const createCustomTheme = (themeProps) => {
             fontFamily: 'var(--Bobby-Jones-Soft) !important',
             color: `${textColor ? textColor : 'var(--text-color)'}`,
             '&.Mui-selected': {
-              backgroundColor: 'var(--selected-bg-color)',
+              backgroundColor: `${selectedListItemBgColor ? selectedListItemBgColor : 'var(--selected-bg-color)'}`,
               '&:hover': {
                 backgroundColor: 'var(--selected-bg-color)',
               },

@@ -21,6 +21,7 @@ import AccountsPayableLedger_PopupContent from '../../Components/Serve/Financial
 import GstTaxReporting_PopupContent from '../../Components/Serve/FinancialManagement/AccountsPayable/GstTaxReporting/GstTaxReporting_PopupContent'
 import PaymentProcessing_PopupContent from '../../Components/Serve/FinancialManagement/AccountsPayable/PaymentProcessing/PaymentProcessing_PopupContent'
 import CreditsAndAdjustments_PopupContent from '../../Components/Serve/FinancialManagement/AccountsPayable/CreditsAndAdjustments/CreditsAndAdjustments_PopupContent'
+import AgingOfPayable_PopupContent from '../../Components/Serve/FinancialManagement/AccountsPayable/AgingOfPayable/AgingOfPayable_PopupContent'
 
 function Accounts_payable() {
 
@@ -33,7 +34,7 @@ function Accounts_payable() {
     {id:6, imgSrc : approval_workflow, title:'Approval Workflow'},
     {id:7, imgSrc : payment_processing, title:'Payment Processing', popupcontent:<PaymentProcessing_PopupContent /> , texturedSheet:true, iconSrc:payment_processing },
     {id:8, imgSrc : credits_and_adjustments, title:'Credits and Adjustments',popupcontent:<CreditsAndAdjustments_PopupContent /> , texturedSheet:true, iconSrc:credits_and_adjustments },
-    {id:9, imgSrc : aging_of_payable, title:'Aging of Payable'},
+    {id:9, imgSrc : aging_of_payable, title:'Aging of Payable', popupcontent:<AgingOfPayable_PopupContent /> , texturedSheet:true, iconSrc:aging_of_payable},
   ]
 
   return (

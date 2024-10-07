@@ -25,7 +25,7 @@ const FormField = ({
   className,
   handleFocus,
   handleBlur, 
-  adornmentValue
+  adornmentValue, accept
 }) => {
 
   const marks = getSliderMarks ? getSliderMarks(name) : [];
@@ -85,7 +85,7 @@ const FormField = ({
             {icon ? <Box component="img" src={icon} alt={label} className="icon" /> : <Typography className="label">{label}</Typography>}
             <Box className="field_container">
               <input
-                accept="image/*"
+                accept={accept}
                 style={{ display: 'none' }}
                 id={name}
                 type="file"

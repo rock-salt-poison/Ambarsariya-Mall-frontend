@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Checkbox, FormControlLabel, MenuItem, Select, TextField, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, ListItemText, MenuItem, Select, TextField, ThemeProvider, Typography } from '@mui/material';
 import { DateRangePicker } from 'rsuite';
 import createCustomTheme from '../../styles/CustomSelectDropdownTheme';
 
@@ -38,9 +38,9 @@ function CheckboxGroup({ label, fields, values, onChange }) {
                                                     {field.placeholder}
                                                 </MenuItem>
                                                 {field.options.map((option) => (
-                                                    <MenuItem key={option} value={option}>
+                                                    <MenuItem key={option} value={option} className='members_list'>
                                                         <Checkbox checked={(values[field.name] || []).includes(option)} />
-                                                        <Typography>{option}</Typography>
+                                                        <ListItemText primary={option} className='members_name' />
                                                     </MenuItem>
                                                 ))}
                                             </Select>
@@ -128,7 +128,7 @@ function CustomizablePopupContent() {
                     name: "product_type",
                     placeholder: "Select Product Type",
                     type: "select",
-                    options: ["Electronics", "Clothing", "Accessories"],
+                    options: ["Electronics", "Clothing","Clothisng", "Accessories"],
                     required: true,
                 },
                 { name: "show_price", placeholder: "Show Price", type: "text", required: true, handleNumericInput: handleNumericInput },
@@ -147,9 +147,11 @@ function CustomizablePopupContent() {
     };
 
     const themeProps = {
+        popoverBackgroundColor: 'var(--lightYellow)',
         dialogBackdropColor: 'var(--brown-4)',
         textColor: 'black',
         scrollbarThumb: 'var(--brown)',
+        selectedListItemBgColor:'#b67d1c45'
       };
     
     const theme = createCustomTheme(themeProps);
