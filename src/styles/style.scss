@@ -6693,6 +6693,7 @@ a {
         .shop_details {
           @include flex-center(row, space-around);
           flex-wrap: wrap;
+          align-self: stretch;
           gap: 10px;
           .title {
             @include homepage-buttons("Bobby-Jones-Soft", 24px, $black, "none");
@@ -13945,6 +13946,52 @@ body .MuiBackdrop-root {
             transition: background-color 0.3s ease;
           }
         }
+
+        .rating_container{
+          @include flex-center(column, flex-start);
+          gap: 20px;
+          place-items: normal;
+
+          .col{
+            @include flex-center(column,flex-start);
+            gap: 6px;
+            place-items: normal;
+
+            .title {
+              @include homepage-buttons(
+                "Bobby-Jones-Soft",
+                18px,
+                $black ,
+                "none"
+              );
+              @include hover-scale(1, 0s);
+              line-height: 18px;
+            }
+
+            .MuiStack-root{
+              .MuiRating-root{
+                  color: $dark-yellow;
+                  font-size: 32px;
+              }
+            }
+            
+            .input_field{
+              height: 12px;
+              .MuiSlider-rail{
+                background:linear-gradient(90deg, rgb(164 169 93), rgb(229 183 96), rgb(243 164 76), rgb(243 106 65));
+                opacity: 1;
+              }
+              .MuiSlider-track{
+                background-color: transparent;
+                border: 0px;
+              }
+
+              .MuiSlider-thumb{
+                background-color: #fff;
+              }
+            }
+          }
+        }
       }
 
       &.financial {
@@ -14064,7 +14111,6 @@ body .MuiBackdrop-root {
           .description {
             align-self: center;
             flex: 0.6;
-            text-align: end;
             @include homepage-buttons("Bobby-Jones-Soft", 18px, $black, "none");
             @include hover-scale(1, 0s);
           }
@@ -14317,6 +14363,34 @@ body .MuiBackdrop-root {
               @include hover-scale(1, 0s);
               padding: 5px 20px;
               border-radius: 8px;
+            }
+          }
+
+          .MuiTable-root{
+            width: 85%;
+            // outline: 1px solid $black;
+            border-radius: 6px;
+            background-color: #F0C5A1;
+
+            .MuiTableHead-root{
+
+            }
+            .MuiTableRow-root{
+
+            }
+            .MuiTableCell-root{
+              border-bottom: 0;
+              @include homepage-buttons(
+                "Bobby-Jones-Soft",
+                18px,
+                $brown-4,
+                "none"
+              );
+              @include hover-scale(1, 0s);
+
+              &.MuiTableCell-head{
+                color: $black;
+              }
             }
           }
         }
@@ -16640,11 +16714,4 @@ input[readonly] {
       }
     }
   }
-}
-
-
-#gradient-vertical {
-  --color-stop-1: #00c3ff;
-  --color-stop-2: #77e190;
-  --color-stop-3: #ffff1c;
 }

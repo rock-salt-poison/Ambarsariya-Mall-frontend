@@ -1,6 +1,9 @@
 import { Box, Typography, Slider } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import cost_sensitivity_icon from '../../Utils/images/Sell/shop_details/cost_sensitivity_icon.svg'
+import CardBoardPopup from '../CardBoardPopupComponents/CardBoardPopup';
+import { Link } from 'react-router-dom';
+import ShopClassComponent from './ShopClassComponent';
 
 function ShopDetails2() {
   // Define the slider marks
@@ -18,9 +21,21 @@ function ShopDetails2() {
     { value: 3, label: 'Luxury' }
   ];
 
+  const [openPopup, setOpenPopup] = useState(false);
+  const [title, setTitle] = useState('');
+
+  const handleClose = () => {
+    setOpenPopup(false);
+  }
+
+  const handleClick = (e, id, title) => {
+    setOpenPopup((prev)=> prev===id? null : id);
+    setTitle(title);
+  }
+
   return (
     <Box className="shop_details_col2">
-      <Box className="shop_details">
+      <Link className="shop_details" onClick={(e)=>handleClick(e,1,'Class A')}>
         <Typography className="title">Class</Typography>
         <Slider
           value={1} // Default value (optional)
@@ -30,7 +45,7 @@ function ShopDetails2() {
           marks={marks} // Marks array
           className="slider"
         />
-      </Box>
+      </Link>
 
       <Box className="shop_details">
         <Box component="img" src={cost_sensitivity_icon} alt="cost_sensitivity" className='cost_sensitivity_icon'/>
@@ -43,6 +58,9 @@ function ShopDetails2() {
           className="slider"
         />
       </Box>
+
+      <CardBoardPopup open={openPopup} handleClose={handleClose} title={title} body_content={<ShopClassComponent />}/>
+
     </Box>
   );
 }
