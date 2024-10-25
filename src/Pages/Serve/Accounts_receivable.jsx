@@ -7,6 +7,7 @@ import accounts_receivable_ledger from "../../Utils/images/Serve/emotional/eshop
 import aging_of_receivable from "../../Utils/images/Serve/emotional/eshop/financial_management/accounts_payable/aging_of_payable.png";
 import credits_and_adjustments from "../../Utils/images/Serve/emotional/eshop/financial_management/accounts_payable/credits_and_adjustments.webp";
 import write_offs_and_bad_debts from "../../Utils/images/Serve/emotional/eshop/financial_management/accounts_receivable/write_offs_and_bad_debts.png";
+import approval_workflow from "../../Utils/images/Serve/emotional/eshop/financial_management/accounts_payable/approval_workflow.png";
 
 import financial_management_icon from "../../Utils/images/Serve/emotional/eshop/financial_management_icon.png";
 import financial_management_icon2 from "../../Utils/images/Serve/emotional/eshop/financial_management_icon2.webp";
@@ -58,6 +59,11 @@ function Accounts_receivable() {
       imgSrc: write_offs_and_bad_debts,
       title: "Write-offs and Bad Debts",
     },
+    {
+      id:8,
+      imgSrc: approval_workflow, 
+      title: "Approval Workflow",
+    }
   ];
 
   return (

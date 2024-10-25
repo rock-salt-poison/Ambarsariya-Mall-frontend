@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import pickup from '../../Utils/images/Sell/shop_details/pickup.svg';
-import pickup_highlighted from '../../Utils/images/Sell/shop_details/pickup_highlight.svg'; 
 import delivery from '../../Utils/images/Sell/shop_details/delivery.webp';
-import delivery_highlighted from '../../Utils/images/Sell/shop_details/delivery_highlight.svg'; 
 import home_visit from '../../Utils/images/Sell/shop_details/home_visit.svg';
-import home_visit_highlighted from '../../Utils/images/Sell/shop_details/home_visit_highlight.svg'; 
 import { Link } from 'react-router-dom'
 
 const services = [
-    {id: 1, type:'Pickup', icon:pickup, imgSrcHighlighted: pickup_highlighted},
-    {id: 2, type:'Delivery', icon:delivery, imgSrcHighlighted: delivery_highlighted},
-    {id: 3, type:'Home Visit', icon:home_visit, imgSrcHighlighted: home_visit_highlighted},
+    {id: 1, type:'Pickup', icon:pickup},
+    {id: 2, type:'Delivery', icon:delivery},
+    {id: 3, type:'Home Visit', icon:home_visit},
 ]
 
 function TypeOfServices() {
@@ -46,7 +43,7 @@ function TypeOfServices() {
                 })
             }        */}
 
-            {services.map((item) => (
+                        {services.map((item) => (
                             <Link
                                 key={item.id}
                                 onClick={(e) => handleServiceTypeClick(e, item.id)}
@@ -54,7 +51,7 @@ function TypeOfServices() {
                             >
                                 <Box
                                     component="img"
-                                    src={selectedServices.has(item.id) ? item.imgSrcHighlighted : item.icon}
+                                    src={item.icon}
                                     alt={item.type}
                                     className={`service_icon`}
                                 />

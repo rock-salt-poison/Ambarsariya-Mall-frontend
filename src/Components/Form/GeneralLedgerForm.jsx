@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Tooltip, Typography } from '@mui/material';
 import FormField from './FormField';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { DateRangePicker } from 'rsuite';
 
-function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formData, onChange, errors, handleIncrement, handleDecrement, handleAddMore, submitBtnVisibility = true }) {
+function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formData, onChange, errors, handleIncrement, handleDecrement, handleAddMore, submitBtnVisibility = true, submitButtonText, radioItems }) {
 
     const { afterToday } = DateRangePicker;
     const handleNumeric = (e, behavior) => {
@@ -25,8 +25,10 @@ function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formD
                     const placeholder = field.placeholder ? field.placeholder : field.label;
                     return (
                         <React.Fragment key={field.id}>
+                            <Tooltip key={field.id} title={field.label} className="tooltip" placement="bottom-end">
+                            
                             {/* Render the main field's input only if it doesn't have inner fields */}
-                            {!field.innerField && field.type !== 'quantity' && field.type !== 'daterange' && field.type !== 'button' && (
+                            {!field.innerField && field.type !== 'quantity' && field.type !== 'daterange' && field.type !== 'button' && field.type!== undefined &&(
                                 <React.Fragment>
                                     <FormField
                                         label={field.label}
@@ -41,8 +43,11 @@ function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formD
                                         errorMessage={errors[name]}
                                         options={field.options}
                                         readOnly={field.readOnly}
+                                        handleFocus={field.handleFocus}
                                         placeholder={placeholder}
+                                        rows={field.rows}
                                         adornmentValue={field.adornmentValue}
+                                        radioItems={field.radioItems}
                                     />
                                     {field.addMoreButton && <Button onClick={handleAddMore} className='add_more_button'>Add more</Button>}
                                 </React.Fragment>
@@ -137,6 +142,11 @@ function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formD
                                     <input type="button" onClick={field.handleButtonClick} value={field.value} className='fieldButton'/>
                                 </Box>
                             )}
+
+                            {field.type===undefined && (
+                                <Typography className="w-100 label">{field.label}</Typography>
+                            )}
+                            </Tooltip>
                         </React.Fragment>
                     );
                 })}
@@ -144,7 +154,7 @@ function GeneralLedgerForm({ cName, description, handleSubmit, formfields, formD
                 {submitBtnVisibility &&
                     <Box className="submit_button_container">
                         <Button type="submit" variant="contained" className="submit_button" >
-                            Submit
+                            {submitButtonText ? submitButtonText : 'Submit'}
                         </Button>
                     </Box>}
             </Box>

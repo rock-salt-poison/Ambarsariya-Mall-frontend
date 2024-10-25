@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import Button2 from '../../Components/Home/Button2'
 import circle_icon from '../../Utils/images/Serve/emotional/crm/circle.png'
 import { Link } from 'react-router-dom'
 import Header from '../../Components/Serve/SupplyChain/Header'
@@ -8,10 +7,10 @@ import Header from '../../Components/Serve/SupplyChain/Header'
 function CRM() {
 
   const data = [
-    {id:1, title:'Customer Records', linkTo:''},
-    {id:2, title:'Member group creation', linkTo:''},
-    {id:3, title:'Sales Pipeline', linkTo:''},
-    {id:4, title:'Marketing Campaigns', linkTo:''},
+    {id:1, title:'Customer Records', linkTo:'customer-records'},
+    {id:2, title:'Member group creation', linkTo:'member-group-creation'},
+    {id:3, title:'Sales Pipeline', linkTo:'sales-pipeline'},
+    {id:4, title:'Marketing Campaigns', linkTo:'marketing-campaigns'},
   ]
 
   return (

@@ -237,18 +237,17 @@ a {
   align-self: center;
 }
 
-.logo_wrapper{
-  .logo_container{
-    
+.logo_wrapper {
+  .logo_container {
     position: relative;
     width: 60px;
     padding: 9px 8px;
-    @include flex-center(row,center);
-    transition: all .2s linear;
+    @include flex-center(row, center);
+    transition: all 0.2s linear;
 
-    &::after{
-      content: '';
-      @include full-absolute(0px,0px,0px,0px);
+    &::after {
+      content: "";
+      @include full-absolute(0px, 0px, 0px, 0px);
       @include background-center-no-repeat($logoBgImg);
       background-position: center;
       background-size: contain;
@@ -258,17 +257,18 @@ a {
       border: 2px solid $dark-yellow2;
       // box-shadow: 0px 2px 3px 2px #00000080;
     }
-    .logo{
+    .logo {
       width: 100%;
       height: 100%;
       position: relative;
       z-index: 1;
       top: 0px;
-      filter: drop-shadow(0px 2px 1px hwb(38 69% 2% / 0.6)) drop-shadow(0px 1px 1px #000000);
-      transition: all .3s linear;
-      
-      &:hover{
-        transform:scale(1.08); 
+      filter: drop-shadow(0px 2px 1px hwb(38 69% 2% / 0.6))
+        drop-shadow(0px 1px 1px #000000);
+      transition: all 0.3s linear;
+
+      &:hover {
+        transform: scale(1.08);
       }
     }
   }
@@ -330,8 +330,6 @@ a {
     @media (max-width: 480px) {
       padding: 0 10%; // Adjust padding for screens smaller than 480px
     }
-
-   
 
     div {
       display: flex;
@@ -682,7 +680,11 @@ a {
 }
 
 .increase_scale {
-  transform: scale(1.4) !important;
+  transform: scale(1.25) !important;
+
+  .service_type {
+    filter: drop-shadow(0px 0px 9.66px $yellow);
+  }
 }
 
 .reduceSize4 {
@@ -3014,11 +3016,12 @@ a {
                 padding: 2px 4px 2px 4px;
                 border-radius: 50px;
 
-                &.Mui-checked , .MuiSwitch-track{
+                &.Mui-checked,
+                .MuiSwitch-track {
                   background: $green;
                   padding: 2px 4px 2px 4px;
                 }
-                .MuiSwitch-track{
+                .MuiSwitch-track {
                   padding: 1px 3px 0px 4px;
                 }
               }
@@ -4049,7 +4052,7 @@ a {
         flex: 1.5;
         .sub_col_1 {
           flex: auto;
-          width: 70%;
+          width: 60%;
           @include flex-center(column, center);
           place-items: normal;
           gap: 20px;
@@ -4155,7 +4158,7 @@ a {
               @include flex-center(row, center);
               .card_body {
                 @include flex-center(row, center);
-                padding: 20px;
+                padding: 20px 15px;
                 gap: 10px;
                 width: max-content;
 
@@ -4226,18 +4229,32 @@ a {
 
           .shop_details_col {
             border: none;
-          }
 
-          .player-wrapper {
+            .shop_details {
+              p {
+                color: $yellow;
+                text-shadow: 0px 4px 4px #00000040;
+              }
+            }
+          }
+          .video_container {
             position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
-          }
 
-          .react-player {
-            position: absolute;
-            top: 0;
-            left: 0;
+            .video_frame {
+              // width: 100%;
+              // height: 210px;
+              height: 280px;
+            }
+
+            .player-wrapper {
+              @include full-absolute(40px, 38px, 38px, 38px);
+            }
+
+            .react-player {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
           }
         }
       }
@@ -4304,7 +4321,7 @@ a {
   .row {
     padding: 25px;
     flex: 1;
-    @include flex-center(column,flex-start);
+    @include flex-center(column, flex-start);
     gap: 25px;
     place-items: normal;
     .col {
@@ -4312,7 +4329,7 @@ a {
       place-items: normal;
       flex-wrap: wrap;
 
-      .d-lg-none{
+      .d-lg-none {
         display: none !important;
       }
 
@@ -4341,14 +4358,12 @@ a {
           }
         }
       }
-
-      
     }
-    .container {  
+    .container {
       @include flex-center(column, center);
       gap: 12px;
       flex: 1;
-      .col{
+      .col {
         justify-content: center;
         gap: 12px;
         padding-top: 12px;
@@ -4358,18 +4373,16 @@ a {
       .growImg {
         width: 25%;
       }
-
-     
     }
 
-    .quote{
+    .quote {
       position: relative;
       gap: 15px;
-      .success_quote{
-          width: 150px;
-          @include full-absolute(auto, -8px, 0px, auto);
-          margin-left: auto;
-          // z-index: 0;
+      .success_quote {
+        width: 150px;
+        @include full-absolute(auto, -8px, 0px, auto);
+        margin-left: auto;
+        // z-index: 0;
       }
     }
 
@@ -4377,8 +4390,8 @@ a {
       .growImg {
         flex: 1;
       }
-      .quote{
-        .success_quote{
+      .quote {
+        .success_quote {
           position: relative;
           bottom: 0px;
           right: 0px;
@@ -4388,8 +4401,7 @@ a {
     }
 
     @media (max-width: 768px) {
-
-      .col{
+      .col {
         flex-wrap: wrap !important;
         .growImg {
           width: 100%;
@@ -4398,34 +4410,32 @@ a {
     }
 
     @media (max-width: 560px) {
-
-      .col{
+      .col {
         gap: 10px;
-        .logo_wrapper{
-          .logo_container{
+        .logo_wrapper {
+          .logo_container {
             width: 40px;
           }
         }
-        .heading{
+        .heading {
           font-size: 28px;
         }
-        .d-lg-none{
+        .d-lg-none {
           display: flex !important;
         }
-        .d-sm-none{
+        .d-sm-none {
           display: none !important;
         }
 
-        &.quote{
+        &.quote {
           gap: 20px;
         }
 
-        .success_quote{
+        .success_quote {
           margin-left: 0px;
           padding-top: 0px;
           width: 100%;
         }
-
       }
     }
   }
@@ -4946,6 +4956,10 @@ a {
                   @include hover-scale(1, 0s);
                   padding: 3px 10px;
                   border: 0px;
+
+                  &::placeholder {
+                    opacity: 1;
+                  }
                 }
               }
 
@@ -4973,7 +4987,7 @@ a {
 
                   .MuiButtonBase-root.MuiSwitch-switchBase.Mui-checked
                     + .MuiSwitch-track {
-                    background-color: #dfb4a8;
+                    background-color: #dfb4a8 !important;
                     opacity: 0.6;
                   }
 
@@ -5571,6 +5585,12 @@ a {
                     align-self: flex-start;
                   }
 
+                  &.parking-availability-slider {
+                    .MuiSlider-markLabel:last-child {
+                      left: 95% !important;
+                    }
+                  }
+
                   .MuiSlider-valueLabel {
                     left: calc(-50% - 4px);
                   }
@@ -5585,6 +5605,10 @@ a {
                     pointer-events: none;
                     @include hover-scale(1, 0s);
                     left: 0%;
+
+                    &:last-child {
+                      left: 94% !important;
+                    }
                   }
                 }
 
@@ -5621,6 +5645,10 @@ a {
                   @include hover-scale(1, 0s);
                   padding: 3px 10px;
                   border: 0px;
+
+                  &::placeholder {
+                    opacity: 1;
+                  }
                 }
 
                 .file_button {
@@ -6038,7 +6066,7 @@ a {
 
         .forward_backward_button_container {
           padding: 15px 0;
-          @include flex-center(row,space-between);
+          @include flex-center(row, space-between);
           @include backButton(
             $yellow,
             $dark-yellow2,
@@ -6619,17 +6647,18 @@ a {
           gap: 20px;
           .col {
             @include flex-center(column, center);
-            gap: 10px;
+            gap: 15px;
             // transition: all .4s linear;
 
             .service_icon {
               height: 57.62px;
               transition: all 0.2s linear;
             }
+
             .service_type {
               @include homepage-buttons(
                 "Bobby-Jones-Soft",
-                24px,
+                20px,
                 $white,
                 "none"
               );
@@ -6642,7 +6671,8 @@ a {
 
             &.active {
               .service_icon {
-                transform: scale(1.3) !important;
+                transform: scale(1.2) !important;
+                filter: drop-shadow(0px 0px 9.66px $yellow);
               }
 
               .service_type {
@@ -7191,23 +7221,36 @@ a {
         @include flex-center(column, center);
         gap: 20px;
         align-items: stretch;
+        width: -webkit-fill-available;
+        max-width: 80%;
+        flex: 1;
 
         .row_1 {
           padding: 0 100px;
           @include flex-center(row, center);
+          max-width: 100%;
           // gap: 20px;
-          .product_img {
-            // flex: 1.5;
-
-            img {
-              max-width: 98%;
-              width: 270px;
+          .swiper {
+            max-width: 100%;
+            flex: 1;
+            height: 100%;
+            .card img {
+              max-width: 100%;
+              // width: 320px;
               border: 3px solid $yellow;
               box-shadow: 0px 4px 4px #00000073;
+              object-fit: cover;
             }
           }
+          .swiper-pagination-bullets {
+            display: none;
+          }
+
+          .product_img {
+            // flex: 1.5;
+          }
           .product_details {
-            // flex: 1;
+            flex: 1;
             @include flex-center(column, center);
             place-items: normal;
             gap: 15px;
@@ -7540,7 +7583,7 @@ a {
                     border: 0px;
                     position: relative;
                     z-index: 1;
-                    padding: 0px 30px 0px;
+                    // padding: 0px 30px 0px;
 
                     &.product_cell {
                       @include flex-center(row, flex-start);
@@ -7746,8 +7789,15 @@ a {
           flex: 1;
           // @include full-absolute(auto,30px ,auto ,auto );
           gap: 25px;
+
           img.service_type {
+            transition: all 0.2s linear;
             height: 65px;
+
+            &:hover {
+              transform: scale(1.2) !important;
+              filter: drop-shadow(0px 0px 9.66px $yellow);
+            }
           }
         }
       }
@@ -9373,15 +9423,11 @@ a {
           @include flex-center(row, center);
           @include full-absolute(0px, 0px, 5px, 0px);
           .title {
-            @include homepage-buttons(
-              "Gladiola",
-              2.6em,
-              $yellow,
-              "none"
-            );
+            @include homepage-buttons("Gladiola", 2.6em, $yellow, "none");
             // @include hover-scale(1, 0s);
             text-align: center;
-            text-shadow: -1px 1px 10px #6B4336, 0 0 20px #b67d1c, 0 0 30px #6B4336, -1px 3px 40px #b67d1c;
+            text-shadow: -1px 1px 10px #6b4336, 0 0 20px #b67d1c,
+              0 0 30px #6b4336, -1px 3px 40px #b67d1c;
           }
         }
       }
@@ -9697,7 +9743,7 @@ a {
   }
 }
 
-.merchant_campaign_wrapper{
+.merchant_campaign_wrapper {
   position: relative;
   min-height: 100vh;
   @include background-center-no-repeat($merchantCampaignBgImg);
@@ -9721,9 +9767,7 @@ a {
     gap: 25px;
     flex: 1;
 
-
-
-    .col{
+    .col {
       @include flex-center(row, space-between);
       align-self: stretch;
       flex-wrap: wrap;
@@ -9796,68 +9840,144 @@ a {
         }
       }
 
-
-      &:nth-child(2){
+      &:nth-child(2) {
         flex: 1;
       }
 
-      .col-8{
+      .col-8 {
         width: 68%;
-        background: linear-gradient(4deg, rgba(240, 196, 194, 0.4), rgb(200 154 151 / 18%), rgba(240, 196, 194, 0.4));
+        background: linear-gradient(
+          4deg,
+          rgba(240, 196, 194, 0.4),
+          rgb(200 154 151 / 18%),
+          rgba(240, 196, 194, 0.4)
+        );
         margin: 0 auto;
         align-self: flex-start;
         padding: 20px;
         border-radius: 10px;
         border: 1px solid #d6c4c766;
 
-        .container{
+        .container {
           @include flex-center(row, space-between);
           flex-wrap: wrap;
           gap: 20px;
           // height: 102px;
           padding: 15px;
 
-          .sub-col-6{
-            flex: 1;
-            form{
+          .sub-col-6 {
+            width: 58%;
+            form {
               @include flex-center(column, flex-start);
               gap: 10px;
-              .btn{
+              .btn {
                 background-color: #6b4336b3;
                 padding: 6px;
                 align-self: stretch;
                 flex: 1;
                 border-radius: 50px;
-  
-                .btn_container{
+
+                .btn_container {
                   border: 3px solid #ffffff66;
                   border-radius: 50px;
-                  width: 100%;
-                  @include flex-center(row,flex-start);
+                  @include flex-center(row, flex-start);
                   gap: 10px;
+                  flex: 1;
                   padding-right: 10px;
-                  .icon_container{
+                  .icon_container {
                     width: 25px;
                     height: 25px;
                     border: 3px solid #ffffffcc;
                     border-radius: 50px;
                     padding: 6px;
-                    .icon{
+                    .icon {
                       width: 100%;
                     }
                   }
-  
-                  .btn_value{
-                    @include homepage-buttons("Bobby-Jones-Soft", 20px, $light-yellow, "none");
+
+                  .form-control {
+                    flex: 1;
+                    .form-row {
+                      .label {
+                        display: none;
+                      }
+                      .field_container {
+                        .input_field {
+                          width: 100%;
+                          .MuiInputBase-root {
+                            .MuiInputBase-input {
+                              height: max-content;
+                              padding: 0px;
+                              @include homepage-buttons(
+                                "Bobby-Jones-Soft",
+                                20px,
+                                $light-yellow,
+                                "none"
+                              );
+                              @include hover-scale(1, 0s);
+
+                              &::placeholder {
+                                font-size: 18px;
+                                opacity: 1;
+                              }
+                            }
+                            .MuiOutlinedInput-notchedOutline {
+                              border: 0px !important;
+                            }
+                          }
+                        }
+
+                        .file_button {
+                          background: transparent;
+                          @include homepage-buttons(
+                            "Bobby-Jones-Soft",
+                            17px,
+                            $light-yellow,
+                            "none"
+                          );
+                          @include hover-scale(1, 0s);
+                          padding: 0px;
+                          box-shadow: none;
+                        }
+                      }
+                    }
+                  }
+
+                  .btn_value {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      18px,
+                      $light-yellow,
+                      "none"
+                    );
                     @include hover-scale(1, 0s);
                     white-space: nowrap;
                     flex: 1;
+                    overflow: auto;
+                    // text-overflow: ellipsis;
+                    width: 100%;
                     text-align: left;
+                    max-width: 100%;
+
+                    &::-webkit-scrollbar {
+                      height: 0px;
+                    }
                   }
                 }
               }
 
-              .btn_group{
+              .error_message {
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  17px,
+                  $yellow,
+                  "none"
+                );
+                @include hover-scale(1, 0s);
+                margin-top: -10px;
+              }
+
+              .btn_group {
                 @include flex-center(row, space-between);
                 gap: 10px;
                 align-self: stretch;
@@ -9865,97 +9985,150 @@ a {
             }
           }
 
-          .sub-col-4{
-            flex: .7;
+          .sub-col-4 {
+            width: 35%;
             align-self: stretch;
             background-color: $black;
+            @include flex-center(column, center);
+            place-items: center;
+            padding: 15px;
+
+            .campaign_preview {
+              position: relative;
+              transition: all 0.5s linear;
+              height: 100%;
+
+              // .uploaded_post{
+              //   @include full-absolute(0px,0px,0px,0px);
+              //   width: 100%;
+              //   height: 100%;
+              //   z-index: 0;
+              //   object-fit: cover;
+              // }
+              // &::after{
+              //   content: '';
+              //   @include full-absolute(0px,0px,0px,0px);
+              //   z-index: 1;
+              //   background-color: $black;
+              //   opacity: .25;
+              //   width: 100%;
+              // }
+
+              .uploaded_post {
+                width: 100%;
+                z-index: 0;
+                height: 100%;
+                object-fit: cover;
+              }
+
+              .campaign_preview_body {
+                position: relative;
+                z-index: 2;
+                padding: 0px;
+                @include flex-center(column, center);
+                gap: 8px;
+                height: 100%;
+              }
+            }
+            .text {
+              @include homepage-buttons(
+                "Bobby-Jones-Soft",
+                18px,
+                $yellow,
+                "none"
+              );
+              @include hover-scale(1, 0s);
+
+              span {
+                color: $light-yellow;
+                margin-left: 5px;
+              }
+            }
           }
         }
-
-
       }
     }
-    @media (max-width:1240px){
-        .col{
-          .col-8{
-            width: 90%;
-          }
+    @media (max-width: 1240px) {
+      .col {
+        .col-8 {
+          width: 90%;
         }
+      }
     }
-    @media (max-width:990px){
-      .col{
-        .col-8{
+    @media (max-width: 990px) {
+      .col {
+        .col-8 {
           width: max-content;
-          .container{
+          .container {
             flex-direction: column;
-
-            .sub-col-4{
+            .sub-col-6 {
+              width: 100%;
+            }
+            .sub-col-4 {
               min-height: 160px;
             }
           }
         }
       }
-  }
-  @media (max-width:768px){
-    .col{
+    }
+    @media (max-width: 768px) {
+      .col {
+        &.d-md-none {
+          display: none;
+        }
 
-      &.d-md-none{
-        display: none;
-      }
+        &.d_lg_none {
+          display: flex;
+          justify-content: center;
+        }
 
-      &.d_lg_none{
-        display: flex ;
-        justify-content: center;
-      }
-
-      .col-8{
-        width: 100%;
-        .container{
-
-          .sub-col-6{
-            form{
-              .btn{
-                .btn_container{
-                  .btn_value{
-                    white-space: wrap;
+        .col-8 {
+          width: 100%;
+          .container {
+            .sub-col-6 {
+              form {
+                .btn {
+                  .btn_container {
+                    .btn_value {
+                      white-space: wrap;
+                    }
                   }
                 }
               }
             }
+
+            .sub-col-4 {
+              min-height: 160px;
+            }
           }
-
-          .sub-col-4{
-            min-height: 160px;
-          }
-        }
-      }
-    }
-}
-
-}
-@media (max-width:560px){
-  display: block;
-  .col{
-    justify-content: center;
-    gap: 15px;
-
-    .col-8{
-      padding: 15px;
-
-      .container{
-        padding: 15px 0 !important;
-
-        .sub-col-6, .sub-col-4{
-          width: 100%;
-        }
-
-        .btn_group{
-          flex-direction: column !important;
         }
       }
     }
   }
-}
+  @media (max-width: 560px) {
+    display: block;
+    .col {
+      justify-content: center;
+      gap: 15px;
+
+      .col-8 {
+        padding: 15px;
+
+        .container {
+          padding: 15px 0 !important;
+
+          .sub-col-6,
+          .sub-col-4 {
+            width: 100%;
+          }
+
+          .btn_group {
+            flex-direction: column !important;
+          }
+        }
+      }
+    }
+  }
 }
 
 .job_apply_wrapper {
@@ -12438,10 +12611,283 @@ a {
   }
 }
 
+.crm_sub_wrapper {
+  @extend .suppliers_for_shop_wrapper_2;
+  @extend .crm_wrapper;
+
+  background-image: url("#{$crmBgImg2}");
+
+  &::after {
+    background-color: $dark-yellow;
+  }
+  .row {
+    .col {
+      .title_container {
+        padding: 0px;
+        width: max-content;
+        height: max-content;
+
+        .heading {
+          background-color: #6b433680;
+          border-radius: 10px;
+          padding: 8px 20px;
+        }
+
+        .title {
+          line-height: normal;
+          font-family: "EFCO";
+          font-size: 2.1em;
+        }
+      }
+
+      &:last-child {
+        flex: 1;
+      }
+      .container {
+        flex: 1;
+        .col-3 {
+          width: 24%;
+          @include flex-center(column, center);
+          padding: 55px 15px 20px;
+          gap: 10px;
+          position: relative;
+          background-color: #f9deb1cc;
+          border-radius: 20px;
+          box-shadow: 3px 2px 5px #0000008c;
+          align-self: stretch;
+
+          .ribbon {
+            @include full-absolute(-8.5px, auto, auto, 20px);
+            z-index: 1;
+          }
+
+          .container {
+            width: auto !important;
+            align-self: stretch;
+            background-color: transparent;
+            place-items: normal;
+            margin: 0;
+            form {
+              @include flex-center(column, flex-start);
+              gap: 15px;
+              width: 100%;
+
+              .tooltip {
+                align-self: stretch;
+              }
+
+              .form-control {
+                align-self: stretch;
+                .form-row {
+                  .field_container {
+                    .input_field {
+                      width: 100%;
+                    }
+
+                    .MuiSelect-select {
+                      div {
+                        width: 95%;
+                        overflow: auto;
+
+                        &::-webkit-scrollbar {
+                          height: 0px;
+                        }
+                      }
+                    }
+                    .MuiInputBase-root {
+                      background-color: #b16c3e69;
+                      border-radius: 10px;
+                      width: 100%;
+                      padding: 0px;
+
+                      .MuiInputBase-input {
+                        @include homepage-buttons(
+                          "Bobby-Jones-Soft",
+                          17px,
+                          $brown-4,
+                          "none"
+                        );
+                        @include hover-scale(1, 0s);
+                        padding: 7px 15px 5px;
+                        text-align: start;
+
+                        &::placeholder {
+                          opacity: 0.9;
+                        }
+                      }
+
+                      .MuiOutlinedInput-notchedOutline {
+                        border: none;
+                      }
+
+                      .MuiSelect-select {
+                        @include homepage-buttons(
+                          "Bobby-Jones-Soft",
+                          17px,
+                          $brown-4,
+                          "none"
+                        );
+                        @include hover-scale(1, 0s);
+                        padding: 7px 15px 5px;
+                      }
+                    }
+                    .file_label {
+                      .file_button {
+                        background-color: #b16c3e69;
+                        border-radius: 10px;
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-align: start;
+                        justify-content: flex-start;
+                        @include homepage-buttons(
+                          "Bobby-Jones-Soft",
+                          17px,
+                          $brown-4,
+                          "none"
+                        );
+                        @include hover-scale(1, 0s);
+                        padding: 5px 15px 3px;
+                        box-shadow: none;
+                      }
+                    }
+
+                    .file_name {
+                      @include homepage-buttons(
+                        "Bobby-Jones-Soft",
+                        14px,
+                        $brown-2,
+                        "none"
+                      );
+                      @include hover-scale(1, 0s);
+                      padding: 5px 0 0;
+                    }
+                  }
+                }
+
+                .error_message {
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    15px,
+                    $maroon,
+                    "none"
+                  );
+                  @include hover-scale(1, 0s);
+                }
+              }
+
+              .sub_fields {
+                @include flex-center(column, flex-start);
+                place-items: normal;
+
+                .fieldButton {
+                  background-color: #b16c3e69;
+                  border-radius: 10px;
+                  width: 100%;
+                  border: 0px;
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    17px,
+                    $brown-4,
+                    "none"
+                  );
+                  @include hover-scale(1, 0s);
+                  padding: 8px 15px 7px;
+                  cursor: pointer;
+                }
+              }
+
+              .label {
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  17px,
+                  $brown-4,
+                  "none"
+                );
+                @include hover-scale(1, 0s);
+                margin-bottom: 4px;
+              }
+
+              .submit_button_container {
+                @include flex-center(row, center);
+                margin-top: 10px;
+
+                .submit_button {
+                  background: linear-gradient(#7d5234, #96593a);
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    18px,
+                    $yellow,
+                    "none"
+                  );
+                  @include hover-scale(1, 0s);
+                  margin: 0 auto 5px;
+                  padding: 2px 15px;
+                  border-radius: 8px;
+                  transition: background-color 0.3s ease;
+                }
+              }
+            }
+          }
+        }
+
+        .show_message {
+          align-self: stretch;
+        }
+
+        .campaign_result {
+          align-self: stretch;
+          flex: 1;
+          background-color: #f9deb1cc;
+          border-radius: 20px;
+          padding: 15px;
+          @include flex-center(column, center);
+          gap: 15px;
+
+          .campaign_name,
+          .title,
+          .value {
+            @include homepage-buttons(
+              "Bobby-Jones-Soft",
+              24px,
+              $brown-4,
+              "none"
+            );
+            @include hover-scale(1, 0s);
+          }
+
+          .campaign_data {
+            @include flex-center(column, center);
+            align-self: stretch;
+            padding: 10px;
+            gap: 10px;
+
+            .c_row {
+              align-self: stretch;
+              @include flex-center(row, space-between);
+              gap: 20px;
+
+              .title {
+                align-self: stretch;
+                font-size: 20px;
+              }
+              .value {
+                align-self: stretch;
+                font-size: 20px;
+                color: $black;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .unexpected_wrapper {
   @extend .emotional_wrapper;
   background-image: url("#{$unexpectedBgImg}");
-  background-position: 90%  30%;
+  background-position: 90% 30%;
 
   &::after {
     background: $brown-4;
@@ -12757,11 +13203,99 @@ body .MuiBackdrop-root {
   }
 }
 
-.MuiDialogContent-root {
-  .videoPlayer {
-    video {
-      width: 100% !important;
-      height: 60vh !important;
+// .MuiPaper-root{
+//   width: 100% !important;
+//     max-width: 50% !important;
+//     height: 65%;
+//     background-color: transparent !important;
+//     overflow: visible !important;
+//   .video_frame{
+//     width: 140%;
+//     height: 130%;
+//     // background: #a16e2c;
+//     @include full-absolute(-65px,0px,0px,-160px);
+//     z-index: 1;
+//   }
+
+//   .MuiDialogContent-root {
+//     background-color: transparent;
+//     @include flex-center(column,center);
+//     place-items: normal;
+//     position: relative;
+//     .video_container{
+//       background-color: transparent;
+//       height: 80%;
+//       @include flex-center(column, center);
+//       position: relative;
+
+//       .close_icon{
+//         position: absolute;
+//         top: 8px;
+//         right: 8px;
+//         color: $light-yellow;
+//         z-index: 1;
+//       }
+//       .videoPlayer {
+//         position: relative;
+//         z-index: 2;
+//         div{
+//           width: 100%;
+//           height: 100%;
+//           display: flex;
+
+//           iframe {
+//           width: 90% !important;
+//           // height: 60vh !important;
+//         }
+//       }
+//       }
+//     }
+//   }
+// }
+
+.video_popup .MuiPaper-root {
+  width: 100%;
+  height: 70%;
+  background-color: transparent !important;
+
+  .MuiDialogContent-root {
+    background-color: transparent;
+    @include flex-center(column, flex-start);
+    place-items: normal;
+
+    .video_container {
+      background-color: transparent;
+      height: 100%;
+      @include flex-center(column, flex-start);
+      position: relative;
+
+      .video_frame {
+        width: 100%;
+        height: 100%;
+        background: #000;
+      }
+
+      .close_icon {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: $light-yellow;
+        z-index: 1;
+      }
+      .videoPlayer {
+        @include full-absolute(90px, 110px, 80px, 110px);
+        // @include full-absolute(60px,110px,57px,115px);
+        div {
+          width: 100%;
+          height: 100%;
+          display: flex;
+
+          iframe {
+            width: 100% !important;
+            // height: 60vh !important;
+          }
+        }
+      }
     }
   }
 }
@@ -12981,7 +13515,7 @@ body .MuiBackdrop-root {
     opacity: 0.45 !important;
   }
   .MuiDialog-paper {
-    background-color: $yellow;
+    background-color: $yellow !important;
     border: 15px solid #987045;
     border-top-width: 8px;
     border-radius: 0px;
@@ -13162,8 +13696,8 @@ body .MuiBackdrop-root {
                   border: 0px;
                 }
 
-                .MuiSelect-select{
-                  div{
+                .MuiSelect-select {
+                  div {
                     width: 95%;
                     overflow: hidden;
                   }
@@ -13317,7 +13851,7 @@ body .MuiBackdrop-root {
           @include flex-center(column, flex-start);
           gap: 25px;
 
-          .MuiFormControlLabel-root{
+          .MuiFormControlLabel-root {
             width: 100%;
           }
 
@@ -13441,9 +13975,34 @@ body .MuiBackdrop-root {
     max-width: 100%;
     width: 73%;
     max-height: 90vh;
-    min-height:70vh;
+    min-height: 70vh;
     background-color: transparent;
     box-shadow: none;
+  }
+
+  &.campaign {
+    .MuiPaper-root {
+      width: 60%;
+    }
+    .content {
+      .content_header {
+        .heading {
+          h2 {
+            font-size: 24px !important;
+          }
+        }
+      }
+      .content_body {
+        .container {
+          width: 100%;
+        }
+        form {
+          .error_message {
+            color: $red2 !important;
+          }
+        }
+      }
+    }
   }
 
   .card_board_component {
@@ -13463,6 +14022,7 @@ body .MuiBackdrop-root {
       gap: 20px;
       flex: 1;
       max-height: 100%;
+      width: 100%;
       .content_header {
         .heading {
           @include flex-center(row, center);
@@ -13484,7 +14044,8 @@ body .MuiBackdrop-root {
       }
       .content_body {
         align-self: stretch;
-        @include flex-center(column, center);
+        @include flex-center(row, center);
+        place-items: normal;
         flex: 1;
         height: 100%;
         overflow: auto;
@@ -13492,102 +14053,105 @@ body .MuiBackdrop-root {
         &::-webkit-scrollbar-thumb {
           background-color: var(--brown) !important;
         }
+        .container {
+          display: flex;
+          justify-content: center;
+          place-items: center;
+          flex-direction: column;
+          gap: 20px;
+          align-self: baseline;
 
-        .assets_popup {
-          height: 100%;
-          @include flex-center(column, center);
-          gap: 25px;
-          min-width: 70%;
+          .description {
+            align-self: center;
+            flex: 0.6;
+            text-align: end;
+            @include homepage-buttons("Bobby-Jones-Soft", 18px, $black, "none");
+            @include hover-scale(1, 0s);
+          }
 
-          .container {
-            display: flex;
-            justify-content: center;
-            place-items: center;
-            flex-direction: column;
-            gap: 20px;
-            
-            .description{
-                align-self: center;
-                flex: 0.6;
-                text-align: end;
-                @include homepage-buttons(
-                  "Bobby-Jones-Soft",
-                  18px,
-                  $black,
-                  "none"
-                );
-                @include hover-scale(1, 0s);
+          form {
+            @include flex-center(column, flex-start);
+            place-items: normal;
+            width: 90%;
+            max-width: 90%;
+            gap: 15px;
+            .label {
+              align-self: center;
+              max-width: 40%;
+              width: 40%;
+              text-align: end;
+              @include homepage-buttons(
+                "Bobby-Jones-Soft",
+                18px,
+                $black,
+                "none"
+              );
+              @include hover-scale(1, 0s);
+
+              &.w-100 {
+                width: 100%;
+                max-width: 100%;
+                text-align: center;
+                color: #555555;
+              }
             }
 
-            form {
-              @include flex-center(column, flex-start);
+            .form-control {
+              @include flex-center(column, center);
+              gap: 10px;
               place-items: normal;
-              width: 90%;
-              max-width: 90%;
-              gap: 15px;
-              .label {
-                align-self: center;
-                max-width: 40%;
-                width: 40%;
-                text-align: end;
-                @include homepage-buttons(
-                  "Bobby-Jones-Soft",
-                  18px,
-                  $black,
-                  "none"
-                );
-                @include hover-scale(1, 0s);
-              }
+              max-width: 100%;
+              width: 100%;
 
-              .form-control {
-                @include flex-center(column,center);
-                gap: 10px;
-                place-items: normal;
-                max-width: 100%;
+              .form-row {
+                @include flex-center(row, center);
+                gap: 15px;
                 width: 100%;
+                max-width: 100%;
 
-                .form-row {
+                .field_container {
+                  align-self: center;
+                  flex: 1;
                   @include flex-center(row, center);
-                  gap: 15px;
-                  width: 100%;
-                  max-width: 100%;
+                  max-width: 60%;
+                  width: 60%;
+                  overflow: hidden;
 
-                  .field_container {
-                    align-self: center;
-                    flex: 1;
-                    @include flex-center(row,center);
-                    max-width: 60%;
-                    width: 60%;
-                    overflow: hidden;
+                  .input_field {
+                    // flex: 1;
+                    width: 100%;
+                    background-color: #d4983040;
+                    border: none;
+                    border-radius: 8px;
 
-                    .input_field {
-                      // flex: 1;
-                      width: 100%;
-                      background-color: #d4983040;
-                      border: none;
-                      border-radius: 8px;
-                      
-                      .MuiSelect-select{
-                        div{
-                          width: 95%;
-                          overflow: hidden;
-                        }
+                    .MuiInputBase-multiline {
+                      padding: 0;
+                      textarea[readonly] {
+                        cursor: not-allowed !important;
                       }
+                    }
 
-                      .MuiOutlinedInput-notchedOutline {
-                        border: 0px;
+                    .MuiSelect-select {
+                      div {
+                        width: 95%;
+                        overflow: hidden;
                       }
-      
-                      .MuiInputBase-root{
-                        &.MuiOutlinedInput-root{
-                          &.Mui-focused {
+                    }
+
+                    .MuiOutlinedInput-notchedOutline {
+                      border: 0px;
+                    }
+
+                    .MuiInputBase-root {
+                      &.MuiOutlinedInput-root {
+                        &.Mui-focused {
                           .MuiOutlinedInput-notchedOutline {
                             border: 0px;
                           }
                         }
                       }
                       .adornmentText {
-                        .MuiTypography-root{
+                        .MuiTypography-root {
                           @include homepage-buttons(
                             "Bobby-Jones-Soft",
                             18px,
@@ -13597,94 +14161,176 @@ body .MuiBackdrop-root {
                           @include hover-scale(1, 0s);
                         }
                       }
-
                     }
-      
-                      .MuiInputBase-input {
-                        @include homepage-buttons(
-                          "Bobby-Jones-Soft",
-                          18px,
-                          $brown-4,
-                          "none"
-                        );
-                        @include hover-scale(1, 0s);
-                        padding: 4px 10px;
-                        line-height: 1.4375em;
 
-                        &::placeholder {
-                          opacity: 0.8;
-                        }
+                    .MuiInputBase-input {
+                      @include homepage-buttons(
+                        "Bobby-Jones-Soft",
+                        18px,
+                        $brown-4,
+                        "none"
+                      );
+                      @include hover-scale(1, 0s);
+                      padding: 4px 10px;
+                      line-height: 1.4375em;
+
+                      &::placeholder {
+                        opacity: 0.8;
                       }
                     }
                   }
                 }
-                .error_message {
-                  @include homepage-buttons(
-                    "Bobby-Jones-Soft",
-                    15px,
-                    $brown-4,
-                    "none"
-                  );
-                  @include hover-scale(1, 0s);
-                  text-align: center;
-                  align-self: center;
-                }
-              }
 
-              .sub_fields{
-                flex-direction: row;
-                gap: 15px;
-
-                .rs-picker{
+                .MuiFormControlLabel-root {
                   flex: 1;
+                  width: 60%;
+                  max-width: 60%;
+                  .Mui-checked {
+                    color: $brown-4;
+                  }
 
-                  .rs-picker-input-group{
-                    background-color: #d4983040 !important;
+                  .MuiTypography-root.MuiTypography-body1 {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      18px,
+                      $brown-4,
+                      "none"
+                    );
+                    @include hover-scale(1, 0s);
                   }
                 }
-                
-                .fieldButton{
+              }
+              .error_message {
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  15px,
+                  $brown-4,
+                  "none"
+                );
+                @include hover-scale(1, 0s);
+                text-align: center;
+                align-self: center;
+              }
+            }
+
+            .sub_fields {
+              flex-direction: row;
+              gap: 15px;
+
+              .rs-picker {
+                flex: 1;
+
+                .rs-picker-input-group {
                   background-color: #d4983040 !important;
-                  flex: 1;
-                  padding: 6px 0px;
-                  @include homepage-buttons(
-                    "Bobby-Jones-Soft",
-                    18px,
-                    $brown-4,
-                    "none"
-                  );
-                  @include hover-scale(1, 0s);
-                  border-radius: 4px;
-                  border: 0px;
-
-                  &:focus-visible{
-                    outline: 0px;
-                  }
                 }
               }
 
-              .submit_button_container {
-                @include flex-center(row, center);
-                .submit_button {
-                  background: linear-gradient(#7d5234, #96593a);
-                  @include homepage-buttons(
-                    "Bobby-Jones-Soft",
-                    18px,
-                    $yellow,
-                    "none"
-                  );
-                  @include hover-scale(1, 0s);
-                  margin: 0 auto;
-                  padding: 2px 15px;
-                  border-radius: 8px;
-                  transition: background-color 0.3s ease;
+              .fieldButton {
+                background-color: #d4983040 !important;
+                flex: 1;
+                padding: 6px 0px;
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  18px,
+                  $brown-4,
+                  "none"
+                );
+                @include hover-scale(1, 0s);
+                border-radius: 4px;
+                border: 0px;
+
+                &:focus-visible {
+                  outline: 0px;
                 }
               }
             }
 
+            .submit_button_container {
+              @include flex-center(row, center);
+              .submit_button {
+                background: linear-gradient(#7d5234, #96593a);
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  18px,
+                  $yellow,
+                  "none"
+                );
+                @include hover-scale(1, 0s);
+                margin: 0 auto;
+                padding: 2px 15px;
+                border-radius: 8px;
+                transition: background-color 0.3s ease;
+              }
+            }
           }
 
+          .col {
+            @include flex-center(row, center);
+            gap: 20px;
+            width: 70%;
+            margin-bottom: 10px;
+
+            .shop_logo {
+              width: 110px;
+              height: 78px;
+              object-fit: cover;
+            }
+            .shop_detail {
+              @include flex-center(column, center);
+              gap: 10px;
+
+              .text {
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  18px,
+                  $black,
+                  "none"
+                );
+                @include hover-scale(1, 0s);
+                line-height: 1em;
+
+                span {
+                  color: $brown-4;
+                  margin-left: 5px;
+                }
+              }
+            }
+
+            .player-wrapper {
+              width: 100%;
+            }
+
+            .icon {
+              height: 65px;
+              filter: drop-shadow(0px 2px 2px #000000);
+            }
+
+            .btn {
+              // background: linear-gradient(#7d5234, #96593a);
+              background: #244d8b;
+              @include homepage-buttons(
+                "Bobby-Jones-Soft",
+                18px,
+                $light-yellow,
+                "none"
+              );
+              @include hover-scale(1, 0s);
+              padding: 5px 20px;
+              border-radius: 8px;
+            }
+          }
+        }
+
+        .assets_popup {
+          height: 100%;
+          @include flex-center(column, center);
+          gap: 25px;
+          min-width: 70%;
+          width: 100%;
+          max-width: 100%;
+
           .tabs_container {
+            width: 100%;
             .tabs {
               .MuiTabs-scroller {
                 .MuiTabs-flexContainer {
@@ -13707,7 +14353,7 @@ body .MuiBackdrop-root {
                     line-height: 1.2em;
                   }
 
-                  &:hover{
+                  &:hover {
                     color: #fff7e8;
                   }
                 }
@@ -13725,14 +14371,24 @@ body .MuiBackdrop-root {
             padding: 0px 15px 20px !important;
             align-self: stretch;
 
-            
-            .post-submit-actions{
-              @include flex-center(row,center);
+            .post-submit-actions {
+              @include flex-center(row, center);
               gap: 15px;
               padding-top: 20px;
 
-              .open_po_button, .download_po_button{
+              .post_submit_button {
                 background-color: $blue-3;
+                @include flex-center(row, center);
+                gap: 10px;
+
+                &[disabled] {
+                  background-color: gray;
+                  cursor: not-allowed;
+                }
+                .icon {
+                  height: 25px;
+                }
+
                 @include homepage-buttons(
                   "Bobby-Jones-Soft",
                   18px,
@@ -13746,34 +14402,34 @@ body .MuiBackdrop-root {
           }
         }
 
-        .payment_processing, .gst_reporting{
+        .payment_processing,
+        .gst_reporting {
           justify-content: flex-start;
           align-self: stretch;
-          
-          .container{
-            min-width: 70%;
+
+          .container {
+            min-width: 100%;
           }
 
-          .search_field_container{
+          .search_field_container {
             align-self: stretch;
-            @include flex-center(row,center );
+            @include flex-center(row, center);
             gap: 15px;
 
-            .text{
+            .text {
               @include homepage-buttons(
-                    "Bobby-Jones-Soft",
-                    18px,
-                    $brown-4,
-                    "none"
-                  );
-                  @include hover-scale(1, 0s);
+                "Bobby-Jones-Soft",
+                18px,
+                $brown-4,
+                "none"
+              );
+              @include hover-scale(1, 0s);
             }
-
           }
-          .MuiAutocomplete-root{
+          .MuiAutocomplete-root {
             width: 40%;
-            .MuiFormControl-root{
-              .MuiInputBase-root{
+            .MuiFormControl-root {
+              .MuiInputBase-root {
                 background-color: #e57d79;
                 border-radius: 50px;
                 border: 3px solid $brown-4;
@@ -13781,7 +14437,7 @@ body .MuiBackdrop-root {
                 border-top: 0px;
                 padding: 0px 10px;
 
-                .MuiInputBase-input{
+                .MuiInputBase-input {
                   @include homepage-buttons(
                     "Bobby-Jones-Soft",
                     18px,
@@ -13789,17 +14445,17 @@ body .MuiBackdrop-root {
                     "none"
                   );
                   @include hover-scale(1, 0s);
-                  
-                  &::placeholder{
+
+                  &::placeholder {
                     opacity: 1;
                   }
                 }
 
-                .MuiOutlinedInput-notchedOutline{
+                .MuiOutlinedInput-notchedOutline {
                   border: 0px;
                 }
 
-                .MuiAutocomplete-endAdornment{
+                .MuiAutocomplete-endAdornment {
                   position: relative;
                   top: 0px;
                   right: 0px;
@@ -13807,15 +14463,14 @@ body .MuiBackdrop-root {
                 }
               }
             }
-
           }
-          
-          .gst_wrapper{
-            @include flex-center(row,space-between);
+
+          .gst_wrapper {
+            @include flex-center(row, space-between);
             width: 90%;
             flex-wrap: wrap;
             gap: 20px;
-            .col-5{
+            .col-5 {
               width: 40%;
               align-self: stretch;
 
@@ -13823,12 +14478,11 @@ body .MuiBackdrop-root {
               // place-items: normal;
               gap: 15px;
 
-
-              form{
+              form {
                 width: 100%;
                 max-width: 100%;
               }
-              .label{
+              .label {
                 @include homepage-buttons(
                   "Bobby-Jones-Soft",
                   18px,
@@ -13840,43 +14494,43 @@ body .MuiBackdrop-root {
                 width: 100%;
               }
 
-              .form-row{
+              .form-row {
                 flex-direction: column !important;
                 justify-content: flex-start !important;
-                gap: 3px !important; 
+                gap: 3px !important;
 
-                .label{
+                .label {
                   text-align: start;
                   align-self: stretch;
                   font-size: 16px;
                 }
-                .field_container{
+                .field_container {
                   align-self: stretch !important;
                   width: 100% !important;
                   max-width: 100% !important;
                 }
               }
             }
-            .col-7{
+            .col-7 {
               width: 55%;
               align-self: stretch;
-              form{
+              form {
                 width: 100%;
                 max-width: 100%;
               }
-              .window{
-                @include flex-center(column,space-between);
+              .window {
+                @include flex-center(column, space-between);
                 place-items: normal;
                 // width: 100%;
                 border-radius: 10px;
                 // height: 90%;
-                
-                .window_header{
+
+                .window_header {
                   align-self: stretch;
-                  @include flex-center(column,flex-start);
-                  
+                  @include flex-center(column, flex-start);
+
                   position: relative;
-                  .menu_bar{
+                  .menu_bar {
                     align-self: stretch;
                     position: relative;
                     top: 2px;
@@ -13885,35 +14539,34 @@ body .MuiBackdrop-root {
                     padding: 6px 10px 0px;
                     border-top-right-radius: 10px;
                     z-index: 1;
-                    
-                    .MuiSvgIcon-root{
+
+                    .MuiSvgIcon-root {
                       font-size: 16px;
                     }
-                    
-                    &::before{
-                      content: '';
-                      @include full-absolute(1.6px,2px,-2px,2px);
+
+                    &::before {
+                      content: "";
+                      @include full-absolute(1.6px, 2px, -2px, 2px);
                       clip-path: polygon(53% 0, 100% 0, 100% 100%, 43% 100%);
                       background-color: $dark-yellow2;
                       z-index: 0;
                       border-top-right-radius: 8px;
                     }
 
-                    .menu_items{
+                    .menu_items {
                       position: relative;
                       z-index: 1;
                       @include flex-center(row, flex-end);
-                      gap:4px;
+                      gap: 4px;
                     }
                   }
 
-
-                  .result_bar{
-                    padding:12px 15px;
+                  .result_bar {
+                    padding: 12px 15px;
                     background-color: $dark-yellow2;
                     border-top-left-radius: 10px;
                     align-self: stretch;
-                    .result{
+                    .result {
                       background-color: $white;
                       @include flex-center(row, flex-start);
                       gap: 5px;
@@ -13921,11 +14574,11 @@ body .MuiBackdrop-root {
                       border-radius: 50px;
                       align-self: stretch;
 
-                      .MuiSvgIcon-root{
+                      .MuiSvgIcon-root {
                         font-size: 16px;
                       }
 
-                      .title{
+                      .title {
                         font-size: 14px;
                       }
                     }
@@ -13933,27 +14586,27 @@ body .MuiBackdrop-root {
                   }
                 }
 
-                .window_body{
+                .window_body {
                   background-color: #f7e0c8;
                   border: 2px solid $black;
                   border-top: 0px;
                   border-bottom: 0px;
                   padding: 20px;
-                  form{
+                  form {
                     gap: 10px;
                   }
-                  .label{
+                  .label {
                     text-align: left;
                     font-size: 16px;
-                    flex: .8;
+                    flex: 0.8;
                   }
 
-                  .sub_fields{
-                    @include flex-center(row,space-between);
+                  .sub_fields {
+                    @include flex-center(row, space-between);
                   }
                 }
-                
-                .window_footer{
+
+                .window_footer {
                   border: 2px solid $black;
                   align-self: stretch;
                   height: 30px;
@@ -13966,148 +14619,494 @@ body .MuiBackdrop-root {
             }
           }
 
-          @media (max-width:990px){
-            .search_field_container{
+          @media (max-width: 990px) {
+            .search_field_container {
               flex-direction: column !important;
               gap: 10px;
             }
-            .MuiAutocomplete-root{
+            .MuiAutocomplete-root {
               width: 100%;
             }
 
-            .gst_wrapper{
-              .col-5{
+            .gst_wrapper {
+              .col-5 {
                 width: 100%;
               }
-              .col-7{
+              .col-7 {
                 width: 100%;
 
-                .window_body{
+                .window_body {
                   padding: 10px !important;
                 }
 
-                .label, .fieldButton{
+                .label,
+                .fieldButton {
                   flex: 1;
                   align-self: stretch;
                 }
-                .form-row, .sub_fields{
+                .form-row,
+                .sub_fields {
                   flex-direction: column !important;
                   gap: 5px !important;
                 }
               }
             }
           }
-          
+        }
+        svg {
+          tspan {
+            @include homepage-buttons(
+              "Bobby-Jones-Soft",
+              18px,
+              $brown-4,
+              "none"
+            );
+            @include hover-scale(1, 0s);
+            fill: $brown-4;
+          }
         }
       }
     }
   }
 }
 
-.life_wrapper{
+.life_wrapper {
+  position: relative;
+  @include background-center-no-repeat($lifeBgImg);
+  background-size: cover;
+  min-height: 100vh;
+  background-position: 100% 10%;
+
+  &::after {
+    content: "";
+    @include full-absolute(0px, 0px, 0px, 0px);
+    background-color: #551f53;
+    z-index: -1;
+  }
+
+  &::before {
+    content: "";
+    @include full-absolute(0px, 0px, 0px, 0px);
+    z-index: 0;
+    background-color: $dark-yellow2;
+    opacity: 0.3;
+  }
+
+  .row {
     position: relative;
-    @include background-center-no-repeat($lifeBgImg);
-    background-size: cover;
-    min-height: 100vh;
-    background-position: 100% 10%;
+    z-index: 1;
+    padding: 30px;
+    @include flex-center(column, center);
+    gap: 30px;
 
-    &::after{
-      content: '';
-      @include full-absolute(0px,0px,0px,0px);
-      background-color: #551F53;
-      z-index: -1;
-    }
+    .col {
+      align-self: stretch;
+      @include flex-center(row, space-between);
+      flex-wrap: wrap;
 
-    &::before{
-      content: '';
-      @include full-absolute(0px,0px,0px,0px);
-      z-index: 0;
-      background-color: $dark-yellow2;
-      opacity: .3;
-    }
+      &:last-child {
+        gap: 30px;
+        width: 85%;
+        align-self: center;
+      }
 
-    .row{
-      position: relative;
-      z-index: 1;
-      padding: 30px;
-      @include flex-center(column,center);
-      gap: 30px;
+      .icon_link {
+        flex: 1;
+        .icon {
+          height: 54px;
+        }
 
-      .col{
+        &:last-child {
+          .icon {
+            float: right;
+          }
+        }
+      }
+
+      .title_container {
+        flex: 1;
+        .title {
+          @include homepage-buttons("EFCO", 2.6em, $yellow);
+          @include hover-scale(1, 0s);
+          text-shadow: 0px 3px 6px #000000bf;
+          text-align: center;
+          line-height: 1em;
+          white-space: nowrap;
+        }
+      }
+
+      .tabs_container {
+        align-self: flex-start;
+        min-width: 360px;
+        .tabs {
+          .MuiTabs-flexContainer {
+            gap: 20px;
+          }
+          .MuiTab-root {
+            position: relative;
+            margin: 0 !important;
+            text-align: center;
+            min-width: auto !important;
+            max-width: 100% !important;
+            align-self: stretch;
+            padding: 15px 25px 13px 20px;
+            font-size: 22px;
+            color: #683248;
+            line-height: 26px;
+            filter: drop-shadow(0px 0px 8px #00000080);
+            text-shadow: 0px 2px 4px $light-yellow;
+
+            &::before {
+              content: "";
+              @include full-absolute(0px, 0px, 0px, 0px);
+              @include background-center-no-repeat($tabBg);
+              z-index: -1;
+              background-size: cover;
+            }
+
+            &.Mui-selected {
+              &::before {
+                background-image: url("#{$activeTabBg}");
+              }
+            }
+          }
+          .MuiTabs-indicator {
+            width: 0px;
+            display: none;
+          }
+        }
+      }
+
+      .tab_panel {
+        flex: 1;
         align-self: stretch;
-        @include flex-center(row,space-between);
+        background: radial-gradient(
+          circle at 111% -12%,
+          rgba(191, 207, 169, 0.7490196078) 43%,
+          rgba(104, 50, 72, 0.7490196078) 67%
+        );
+        padding: 20px 30px !important;
+        border-radius: 20px;
+
+        .tab_content {
+          @include flex-center(column, flex-start);
+          gap: 20px;
+          align-self: stretch;
+          place-items: normal;
+
+          .title {
+            @include homepage-buttons("Gladiola", 32px, $light-yellow, none);
+            @include hover-scale(1, 0s);
+            text-shadow: 0px 2px 4px #6b433680;
+            line-height: 32px;
+            text-align: center;
+            word-break: break-all;
+          }
+
+          .content{
+            @include flex-center(column, flex-start);
+            place-items: normal;
+            gap: 20px;
+
+            .list{
+              @include flex-center(column,flex-start);
+              gap: 10px;
+              place-items: normal;
+              .heading{
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  20px,
+                  $yellow,
+                  none
+                );
+                @include hover-scale(1, 0s);
+                line-height: 20px;
+              }
+
+              &.share_level{
+                flex-direction: row;
+                place-items: center;
+                align-self: stretch;
+                justify-content: space-between;
+
+                .MuiFormControlLabel-root{
+                  margin: 0px;
+                }
+
+                
+              }
+              .MuiSlider-root{
+                height: 12px;
+
+                .MuiSlider-mark{
+                  background-color: $light-yellow;
+                }
+                .MuiSlider-markLabel{
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    15px,
+                    $light-yellow,
+                    none
+                  );
+                  @include hover-scale(1, 0s);
+                  line-height: 20px;
+                }
+              }
+              .list_container{
+                margin: 0px;
+                list-style-type: none;
+                
+                .list_item{
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    18px,
+                    $light-yellow,
+                    none
+                  );
+                  @include hover-scale(1, 0s);
+                  margin-bottom: 5px;
+                }
+              }
+            }
+
+            .MuiAutocomplete-root {
+              margin: 0 auto;
+              width: 380px;
+              background-color: #f9e0b399;
+              border-radius: 80px;
+              box-shadow: 0px 0px 8px 2px #00000080;
+      
+              .MuiInputAdornment-root {
+                svg {
+                  fill: $brown-4;
+                }
+              }
+      
+              .MuiAutocomplete-endAdornment {
+                button {
+                  svg {
+                    fill: $brown-4;
+                  }
+                }
+              }
+      
+              .MuiInputBase-root {
+                padding: 5px 12px;
+              }
+      
+              .MuiInputBase-input {
+                padding: 0px;
+                @include homepage-buttons("Bobby-Jones-Soft", 18px, $brown-4, "none");
+                @include hover-scale(1, 0s);
+      
+                &::placeholder {
+                  opacity: 1;
+                }
+              }
+              .MuiOutlinedInput-notchedOutline {
+                border: 0px;
+              }
+            }
+          }
+        }
+
+        
+      }
+    }
+    @media (max-width:990px){
+      .col{
         flex-wrap: wrap;
 
-        .icon_link{
-          flex: 1;
-          .icon{
-            height: 54px;
-          }
-
-          &:last-child{
-            .icon{
-              float: right;
+        .tabs_container{
+          min-width: 100% ;
+          .tabs{
+            .MuiTabs-scroller{
+              overflow-x: scroll;
+              .MuiTabs-flexContainer{
+                flex-direction: row;
+              }
             }
           }
         }
-          
-        .title_container {
-        flex: 1;
-          .title {
-            @include homepage-buttons(
-              "EFCO",
-              2.6em,
-              $yellow,
-            );
-            @include hover-scale(1, 0s);
-            text-shadow: 0px 3px 6px #000000bf;
-            text-align: center;
-            line-height: 1em;
-            white-space: nowrap;
-          }
-        }
 
-      }
+        .tab_panel{
+          min-width: 75%;
+          .container{
+            .form-row{
+              flex-wrap: wrap;
 
-      @media (max-width: 768px){
-        .col{
-          gap: 15px;
-          .icon_link{
-            order: 0;
-            .icon{
-              height: 40px;
-            }
-          }
-          .title_container{
-            order: 1;
-            flex: auto;
-            width: 100%;
-            .title{
-              font-size: 2.3em;
-            }
-          }
-        }
-      }
+              .label{
+                width: max-content !important;
+              }
 
-      @media (max-width: 560px){
-        .col{
-          .icon_link{
-            .icon{
-              height: 35px;
-            }
-          }
-          .title_container{
-            .title{
-              font-size: 2em;
+              .field_container{
+                width: 100% !important;
+              }
             }
           }
         }
       }
     }
+
+
+    @media (max-width: 768px) {
+      padding: 25px 20px;
+      .col {
+        gap: 15px;
+        .icon_link {
+          order: 0;
+          .icon {
+            height: 40px;
+          }
+        }
+        .title_container {
+          order: 1;
+          flex: auto;
+          width: 100%;
+          .title {
+            font-size: 2.3em;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 560px) {
+      .col {
+        .icon_link {
+          .icon {
+            height: 35px;
+          }
+        }
+        .title_container {
+          .title {
+            font-size: 2em;
+          }
+        }
+
+        .MuiAutocomplete-root{
+          width: 100% !important;
+        }
+      }
+    }
+  }
 }
 
+.member_relations_wrapper{
+  @extend .life_wrapper;
+  background-image: url('#{$memberRelationsBgImg}');
+
+  .row{
+    .col{
+      &:last-child{
+        width: 90%;
+      }
+      .tab_panel{
+        background: linear-gradient(131deg, #ead7b69a, #fffbf499, #b67d1c9a 90%);
+        border: 1px solid #f9e0b3cc;
+        box-shadow: 0px 0px 10px 1px #00000033;
+
+
+        .container{
+          form{
+            .form-row{
+              @include flex-center(row, space-between);
+              gap: 15px;
+              .label, .MuiTypography-root{
+                @include homepage-buttons("Bobby-Jones-Soft", 20px !important, $brown-4, none);
+                @include hover-scale(1, 0s);
+                align-self: center;
+                width: 32%;
+                line-height: 20px;
+              }
+
+              .field_container{
+                width: 65%;
+                .input_field, .MuiTextField-root{
+                  width: 100%;
+                  .MuiInputBase-input, .MuiSelect-select{
+                    background-color: hsla(14, 33%, 32%, 0.6);
+                    border-radius: 10px;
+                    padding: 5px 10px 3px;
+                    @include homepage-buttons("Bobby-Jones-Soft", 18px !important, $yellow, none);
+                    @include hover-scale(1, 0s);
+
+                    &::placeholder{
+                      opacity: 1;
+                    }
+                  }
+                  .MuiInputBase-root{
+                    padding: 0px;
+                  }
+                  .MuiOutlinedInput-notchedOutline{
+                    border: 0px;
+                  }
+                }
+                .radio_button{
+                  flex-direction: row;
+                  
+                  .MuiSvgIcon-root{
+                    fill: $brown-4;
+                  }
+
+                  .MuiTypography-root{
+                    width: max-content;
+                  }
+                }
+                .MuiTextField-root{
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width:990px){
+      .col{
+        flex-wrap: wrap;
+
+        .tabs_container{
+          min-width: 100% ;
+          .tabs{
+            .MuiTabs-scroller{
+              overflow-x: scroll;
+              .MuiTabs-flexContainer{
+                flex-direction: row;
+              }
+            }
+          }
+        }
+
+        .tab_panel{
+          min-width: 75%;
+          .container{
+            .form-row{
+              flex-wrap: wrap;
+
+              .label{
+                width: max-content !important;
+              }
+
+              .field_container{
+                width: 100% !important;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width:768px){
+      padding: 25px 20px;
+    }
+  }
+}
 
 .MuiSwitch-root {
+  .MuiButtonBase-root.Mui-checked + .MuiSwitch-track{
+    background-color: $green !important;
+  }
   .MuiSwitch-track {
     background-color: #d16337 !important;
   }
@@ -14366,4 +15365,1286 @@ body .MuiBackdrop-root {
 
 input[readonly] {
   cursor: not-allowed;
+}
+
+.custom {
+  position: relative;
+  // z-index: 1 !important;
+
+  .MuiBackdrop-root {
+    background-color: #af593c;
+    opacity: 0.45 !important;
+  }
+
+  .MuiDialog-container {
+    width: 100%;
+  }
+
+  .MuiPaper-root {
+    max-width: 100%;
+    width: 65%;
+    max-height: 90vh;
+    height: auto;
+    min-height: 50vh;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.special_offer_popup {
+    .card_board_component {
+      @include background-center-no-repeat($specialOfferBgImg);
+      background-size: cover;
+      padding: 30px;
+
+      .content {
+        .content_body {
+          @include flex-center(column, center);
+          gap: 20px;
+          .title_container {
+            .icon {
+              width: 150px;
+            }
+          }
+          .body_container {
+            @include flex-center(row, center);
+            gap: 20px;
+            padding: 0 20px;
+            place-items: normal;
+            flex-wrap: wrap;
+            align-self: stretch;
+
+            .tabs_container {
+              flex: auto;
+              .tabs {
+                .MuiTabs-scroller {
+                  .MuiTabs-flexContainer {
+                    @include flex-center(column, center);
+                    gap: 10px;
+                  }
+
+                  .MuiTab-root {
+                    background-color: $yellow;
+                    color: $brown-4;
+                    border-radius: 10px;
+                    padding: 8px 20px;
+                    text-shadow: 0px 4px 4px #00000040;
+                    min-width: 100% !important;
+                    max-width: 100% !important;
+
+                    &.Mui-selected {
+                      background-color: $brown-4;
+                      color: $yellow;
+                      line-height: 1.2em;
+                    }
+                    &:first-child,
+                    &:last-child {
+                      margin: 0px;
+                    }
+                  }
+                }
+
+                .MuiTabs-indicator {
+                  height: 0px;
+                  display: none;
+                }
+              }
+            }
+
+            .tab_panel {
+              height: 100%;
+              overflow: auto;
+              padding: 0px !important;
+              align-self: stretch;
+              flex: auto;
+              width: 80%;
+              @include flex-center(row, center);
+              place-items: normal;
+              gap: 20px;
+
+              .subscribe {
+                width: 100%;
+                @include flex-center(row, center);
+                gap: 15px;
+                flex-wrap: wrap;
+                .option {
+                  min-width: 43%;
+                  padding: 10px;
+                  position: relative;
+                  z-index: 0;
+                  background-color: #ad8c59d9;
+                  border-radius: 10px;
+                  @include flex-center(column, center);
+                  gap: 8px;
+                  mask: radial-gradient(
+                    circle 18px at 89.5% 12%,
+                    transparent 10.5px,
+                    black 11.5px
+                  );
+
+                  &.mask_none {
+                    mask: none;
+                  }
+
+                  .header {
+                    @include flex-center(row, space-between);
+                    gap: 10px;
+                    padding: 0 10px;
+                    position: relative;
+                    align-self: stretch;
+                    z-index: 1;
+                    .heading {
+                      @include homepage-buttons(
+                        "Bobby-Jones-Soft",
+                        20px,
+                        $light-yellow,
+                        none
+                      );
+                      @include hover-scale(1, 0s);
+                      line-height: 1.5em;
+                    }
+                    .radio_icon {
+                      position: absolute;
+                      top: 0%;
+                      left: 87%;
+                      width: 28px;
+                      z-index: 3;
+                      mask: none;
+                      filter: drop-shadow(0px 0px 1px #000);
+                    }
+
+                    .radio_button {
+                      position: relative;
+                      // top: 4%;
+                      // left: 85.5%;
+                      width: 19px;
+                      z-index: 3;
+                      border-radius: 50px;
+                      left: 0px;
+                      top: -1px;
+                      border: 2px solid skyblue;
+                    }
+                  }
+
+                  .body {
+                    background-color: $light-yellow;
+                    padding: 10px;
+                    border-radius: 10px;
+                    align-self: stretch;
+
+                    form {
+                      @include flex-center(column, flex-start);
+                      place-items: normal;
+                      width: 100%;
+                      max-width: 100%;
+                      gap: 8px;
+
+                      .form-control {
+                        @include flex-center(column, center);
+                        gap: 8px;
+                        place-items: normal;
+                        max-width: 100%;
+                        width: 100%;
+
+                        .form-row {
+                          @include flex-center(row, center);
+                          // gap: 15px;
+                          width: 100%;
+                          max-width: 100%;
+
+                          .field_container {
+                            align-self: center;
+                            flex: 1;
+                            @include flex-center(row, center);
+                            max-width: 100%;
+                            width: 100%;
+                            overflow: hidden;
+
+                            .input_field {
+                              // flex: 1;
+                              width: 100%;
+                              background-color: #d4983040;
+                              border: none;
+                              border-radius: 8px;
+
+                              .MuiInputBase-multiline {
+                                padding: 0;
+                                textarea[readonly] {
+                                  cursor: not-allowed !important;
+                                }
+                              }
+
+                              .MuiSelect-select {
+                                div {
+                                  width: 100%;
+                                  overflow: hidden;
+                                }
+                              }
+
+                              .MuiOutlinedInput-notchedOutline {
+                                border: 0px;
+                              }
+
+                              .MuiInputBase-root {
+                                &.MuiOutlinedInput-root {
+                                  &.Mui-focused {
+                                    .MuiOutlinedInput-notchedOutline {
+                                      border: 0px;
+                                    }
+                                  }
+                                }
+                                .adornmentText {
+                                  .MuiTypography-root {
+                                    @include homepage-buttons(
+                                      "Bobby-Jones-Soft",
+                                      18px,
+                                      $brown-4,
+                                      "none"
+                                    );
+                                    @include hover-scale(1, 0s);
+                                  }
+                                }
+                              }
+
+                              .MuiInputBase-input {
+                                @include homepage-buttons(
+                                  "Bobby-Jones-Soft",
+                                  18px,
+                                  $brown-4,
+                                  "none"
+                                );
+                                @include hover-scale(1, 0s);
+                                padding: 4px 10px;
+                                line-height: 1.4375em;
+
+                                &::placeholder {
+                                  opacity: 0.8;
+                                }
+                              }
+                            }
+                          }
+
+                          .MuiFormControlLabel-root {
+                            flex: 1;
+                            width: 60%;
+                            max-width: 60%;
+                            .Mui-checked {
+                              color: $brown-4;
+                            }
+
+                            .MuiTypography-root.MuiTypography-body1 {
+                              @include homepage-buttons(
+                                "Bobby-Jones-Soft",
+                                18px,
+                                $brown-4,
+                                "none"
+                              );
+                              @include hover-scale(1, 0s);
+                            }
+                          }
+                        }
+                        .error_message {
+                          @include homepage-buttons(
+                            "Bobby-Jones-Soft",
+                            15px,
+                            $brown-4,
+                            "none"
+                          );
+                          @include hover-scale(1, 0s);
+                          text-align: center;
+                          align-self: center;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.prepaid_postpaid_offer_popup {
+    .card_board_component {
+      @include background-center-no-repeat($prepaidPostpaidBgImg);
+      background-size: cover;
+      padding: 30px;
+
+      .content {
+        .content_body {
+          .body_container {
+            @include flex-center(column, flex-start);
+            .row {
+              @include flex-center(row, space-between);
+              gap: 20px;
+              align-self: stretch;
+              .col {
+                align-self: stretch;
+                flex: 1;
+                .board_img {
+                  width: 220px;
+                  margin: 0 30px;
+                }
+                .img {
+                  width: 350px;
+                  opacity: 0.8;
+                }
+
+                &:nth-child(2) {
+                  .img {
+                    float: right;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.purchase_coupon_offer_popup {
+    &.coupons {
+      .MuiBackdrop-root {
+        background-color: transparent;
+      }
+
+      .card_board_component {
+        .content {
+          .content_body {
+            .body_container {
+              gap: 0px;
+            }
+          }
+        }
+      }
+    }
+
+    .card_board_component {
+      @include background-center-no-repeat($purchaseCouponBgImg);
+      padding: 0px;
+      background-size: cover;
+      position: relative;
+      z-index: 0;
+      @include flex-center(row, flex-start);
+
+      &::after {
+        content: "";
+        @include full-absolute(20px, 20px, 20px, 20px);
+        @include background-center-no-repeat($purchaseCouponOverlay);
+        background-size: cover;
+        opacity: 0.5;
+        border: 5px dashed $black;
+        border-radius: 20px;
+
+        z-index: 1;
+      }
+
+      &::before {
+        content: "";
+        @include full-absolute(0px, 0px, 0px, 0px);
+        background-color: $brown-4;
+        opacity: 0.1;
+        z-index: 1;
+      }
+
+      .content {
+        border: 5px dashed #f0b02a;
+        align-self: stretch;
+        flex: 1;
+        position: relative;
+        z-index: 2;
+        padding: 100px 30px;
+        border-radius: 20px;
+
+        .content_body {
+          @include flex-center(column, flex-start);
+          gap: 50px;
+          height: 100%;
+          overflow: auto;
+          .title_container {
+            .title {
+              background-color: $brown-4;
+              border-radius: 10px;
+              padding: 8px 20px;
+              @include homepage-buttons("Bobby-Jones-Soft", 24px, $yellow);
+              @include hover-scale(1, 0s);
+              text-align: center;
+              text-shadow: 0px 4px 4px #00000040;
+            }
+          }
+          .body_container {
+            @include flex-center(row, center);
+            flex-wrap: wrap;
+            gap: 10px;
+            .coupon {
+              width: 190px;
+              opacity: 0.9;
+              z-index: 0;
+            }
+            .coupon_container {
+              position: relative;
+              mask: radial-gradient(
+                circle 15px at 81% 17%,
+                transparent 9px,
+                black 10px
+              );
+              z-index: 0;
+
+              &.mask_none {
+                mask: none;
+              }
+
+              .radio_icon {
+                position: absolute;
+                top: 12%;
+                left: 75%;
+                width: 24px;
+                z-index: 2;
+                filter: drop-shadow(0px 0px 1px #000);
+              }
+
+              .radio_button {
+                position: absolute;
+                top: 12.6%;
+                left: 76%;
+                width: 15px;
+                z-index: 3;
+                border-radius: 50px;
+                border: 2px solid #eac77b;
+              }
+
+              &::before {
+                content: "";
+                @include full-absolute(5px, 5px, 10px, 5px);
+                background-color: $light-yellow;
+                opacity: 0.55;
+              }
+              .discount_coupon {
+                @include full-absolute(0px, 0px, 0px, 0px);
+                @include flex-center(column, center);
+
+                .discount_percentage {
+                  @include homepage-buttons("EFCO", 60px, $black, none);
+                  @include hover-scale(1, 0s);
+                  line-height: 50px;
+                }
+                .text {
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    24px,
+                    #7afad3,
+                    none
+                  );
+                  text-shadow: 0 2.7px 2.7px $brown-4;
+                  @include hover-scale(1, 0s);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.service_type_popup {
+    .MuiPaper-root {
+      // width: 55% !important;
+      .card_board_component {
+        @include background-center-no-repeat($serviceTypeBgImg);
+        background-size: cover;
+        padding: 40px 30px 0px;
+        @include flex-center(row, center);
+        position: relative;
+
+        &::after {
+          content: "";
+          @include full-absolute(0px, 0px, 0px, 0px);
+          background-color: $brown-4;
+          opacity: 0.4;
+          z-index: 0;
+        }
+
+        .content {
+          position: relative;
+          z-index: 1;
+          @include flex-center(row, center);
+          align-self: stretch;
+          flex: 1;
+
+          .content_body {
+            align-self: stretch;
+            flex: 1;
+            @include flex-center(column, space-between);
+            gap: 15px;
+            .col {
+              align-self: stretch;
+              @include flex-center(column, center);
+
+              // flex: 1;
+
+              &:first-child,
+              &:last-child {
+                height: 150px;
+              }
+
+              form {
+                @include flex-center(column, flex-start);
+                place-items: normal;
+                gap: 15px;
+                width: 97%;
+                .label {
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    16px,
+                    $black,
+                    "none"
+                  );
+                  @include hover-scale(1, 0s);
+                }
+
+                .form-control {
+                  @include flex-center(column, center);
+                  gap: 10px;
+                  place-items: normal;
+                  max-width: 100%;
+                  width: 100%;
+
+                  .form-row {
+                    @include flex-center(column, flex-start);
+                    place-items: normal;
+                    width: 100%;
+                    max-width: 100%;
+
+                    .field_container {
+                      flex: 1;
+                      @include flex-center(row, center);
+                      overflow: hidden;
+
+                      .input_field {
+                        // flex: 1;
+                        width: 100%;
+                        background-color: #6b4336a6;
+                        border: none;
+                        border-radius: 8px;
+
+                        .MuiInputBase-multiline {
+                          padding: 0;
+                          textarea[readonly] {
+                            cursor: not-allowed !important;
+                          }
+                        }
+
+                        .MuiSelect-select {
+                          div {
+                            width: 100%;
+                            overflow: hidden;
+                          }
+                        }
+
+                        .MuiOutlinedInput-notchedOutline {
+                          border: 0px;
+                        }
+
+                        .MuiInputBase-root {
+                          &.MuiOutlinedInput-root {
+                            &.Mui-focused {
+                              .MuiOutlinedInput-notchedOutline {
+                                border: 0px;
+                              }
+                            }
+                          }
+                          .adornmentText {
+                            .MuiTypography-root {
+                              @include homepage-buttons(
+                                "Bobby-Jones-Soft",
+                                18px,
+                                $light-yellow,
+                                "none"
+                              );
+                              @include hover-scale(1, 0s);
+                            }
+                          }
+                        }
+
+                        .MuiInputBase-input {
+                          @include homepage-buttons(
+                            "Bobby-Jones-Soft",
+                            18px,
+                            $light-yellow,
+                            "none"
+                          );
+                          @include hover-scale(1, 0s);
+                          padding: 4px 10px;
+                          line-height: 1.4375em;
+
+                          &::placeholder {
+                            opacity: 1;
+                          }
+
+                          &::-webkit-calendar-picker-indicator {
+                            filter: invert(100%);
+                          }
+                        }
+                      }
+                    }
+
+                    .MuiFormControlLabel-root {
+                      flex: 1;
+                      width: 60%;
+                      max-width: 60%;
+                      .Mui-checked {
+                        color: $brown-4;
+                      }
+
+                      .MuiTypography-root.MuiTypography-body1 {
+                        @include homepage-buttons(
+                          "Bobby-Jones-Soft",
+                          18px,
+                          $brown-4,
+                          "none"
+                        );
+                        @include hover-scale(1, 0s);
+                      }
+                    }
+                  }
+                  .error_message {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      15px,
+                      $red,
+                      "none"
+                    );
+                    @include hover-scale(1, 0s);
+                  }
+                }
+
+                .submit_button_container {
+                  @include flex-center(row, center);
+                  .submit_button {
+                    background: linear-gradient(#7d5234, $brown-4);
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      18px,
+                      $light-yellow,
+                      "none"
+                    );
+                    @include hover-scale(1, 0s);
+                    margin: 0 auto;
+                    padding: 2px 15px;
+                    border-radius: 8px;
+                    transition: background-color 0.3s ease;
+                  }
+                }
+              }
+
+              .pickup_container {
+                width: 60%;
+                margin: 25px auto 0;
+                padding: 45px 20px 20px;
+                background-color: #fffbf5;
+                opacity: 0.8;
+                border: 5px solid $brown-4;
+                border-radius: 20px;
+                @include flex-center(row, center);
+                align-self: stretch;
+                position: relative;
+
+                .title_container {
+                  @include full-absolute(-30px, 0px, auto, 0px);
+                  margin: 0 auto;
+                  padding: 6px 20px;
+                  background-color: #fffbf5;
+                  border-radius: 10px;
+                  width: max-content;
+                  border: 5px solid $brown-4;
+
+                  .title {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      24px,
+                      $brown-4,
+                      none
+                    );
+                    @include hover-scale(1, 0s);
+                    text-shadow: 0px 2px 4px #00000067;
+                  }
+                }
+              }
+              .form_container {
+                padding: 20px;
+                background-color: #fffbf5;
+                border-radius: 10px;
+                border: 5px solid $brown-4;
+                align-self: stretch;
+                @include flex-center(column, flex-start);
+                overflow: hidden;
+                flex: 1;
+
+                .container {
+                  align-self: stretch;
+                  overflow: auto;
+                  &::-webkit-scrollbar-thumb {
+                    background: #6b4336a6 !important;
+                    opacity: 0.8;
+                  }
+                }
+              }
+
+              .image_container {
+                @include flex-center(row, space-between);
+                flex: 1;
+                align-self: stretch;
+                vertical-align: bottom;
+                place-items: end;
+
+                .gif {
+                  width: 120px;
+                  opacity: 0.8;
+                }
+                .icon {
+                  width: 80px;
+                  opacity: 0.8;
+                  align-self: center;
+                  filter: drop-shadow(0px 0px 5px $yellow);
+                }
+              }
+
+              .service_type_container {
+                @include flex-center(column, center);
+                gap: 20px;
+
+                h2 {
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    20px,
+                    $brown-4,
+                    none
+                  );
+                  background-color: hwb(38 96% 0% / 0.7);
+                  @include hover-scale(1, 0s);
+                  padding: 8px 15px;
+                  border-radius: 10px;
+                  text-shadow: 0px 2px 4px #00000067;
+                }
+
+                .service_types {
+                  @include flex-center(row, center);
+                  gap: 20px;
+                  .service {
+                    height: 100px;
+                    filter: drop-shadow(0px 0px 5px $yellow);
+                    transition: all 0.2s linear;
+
+                    &:hover {
+                      transform: scale(1.1);
+                    }
+                    &.active {
+                      transform: scale(0.89);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.pickup {
+      .MuiBackdrop-root {
+        background-color: transparent !important;
+      }
+
+      .card_board_component {
+        padding: 40px 30px;
+        .content {
+          .content_body {
+            .col {
+              &:first-child {
+                height: auto;
+                flex: 1;
+                overflow: hidden;
+                flex-direction: row;
+              }
+              &:last-child {
+                @include full-absolute(auto, 0px, -40px, 0px);
+                z-index: -1;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.delivery {
+      .card_board_component {
+        @include background-center-no-repeat($deliveryBgImg);
+        background-size: cover;
+        padding: 40px;
+
+        .content {
+          &.delivery {
+            .content_body {
+              flex-direction: row;
+              flex-wrap: wrap;
+              .col {
+                height: 100%;
+
+                &:first-child {
+                  width: 50%;
+                }
+                .image_container {
+                  .icon {
+                    width: 140px;
+                    align-self: end;
+
+                    &.visit {
+                      align-self: start;
+                      position: relative;
+                      right: 80px;
+                      bottom: 50px;
+                    }
+                  }
+                }
+
+                .title_container {
+                  @include flex-center(column, flex-start);
+                  place-items: end;
+                  .title {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      24px,
+                      $yellow,
+                      none
+                    );
+                    @include hover-scale(1, 0s);
+                  }
+                }
+
+                .delivery_container {
+                  height: 100%;
+                  @include flex-center(row, center);
+                  align-self: stretch;
+
+                  .form_container {
+                    background-color: hsla(15, 33%, 32%, 0.7);
+                    border: 0px;
+                    border-radius: 0px;
+
+                    .container::-webkit-scrollbar-thumb {
+                      background: #f9deb1b3 !important;
+                    }
+
+                    .label {
+                      color: $yellow;
+                    }
+
+                    .field_container .input_field {
+                      background-color: #f9deb1b3;
+
+                      .MuiInputBase-input {
+                        color: $brown-4;
+
+                        &::-webkit-calendar-picker-indicator {
+                          filter: invert(0%);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.visit {
+      .card_board_component {
+        @include background-center-no-repeat($homeVisitBgImg);
+        background-size: cover;
+      }
+    }
+  }
+
+  &.mou {
+    .MuiBackdrop-root {
+      background-color: #de8d8c80;
+    }
+
+    .MuiPaper-root {
+      width: 500px;
+      position: relative;
+      background-color: #f8ded4;
+      border-radius: 0px;
+      box-shadow: 0px 0px 4px 1px #00000040;
+
+      &::after {
+        content: "";
+        @include full-absolute(0px, 0px, 0px, 0px);
+        @include background-center-no-repeat($mouPopupBgImg);
+        background-size: cover;
+        opacity: 0.6;
+      }
+    }
+    .card_board_component {
+      box-shadow: 0px 0px 4px 1px #00000040;
+      border-radius: 0px;
+      border: 0px;
+      position: relative;
+      z-index: 1;
+      padding: 30px 0px;
+      @include flex-center(row, flex-start);
+
+      &::after {
+        content: "";
+        @include full-absolute(10px, auto, auto, 10px);
+        @include background-center-no-repeat($element);
+        background-size: cover;
+        width: 54px;
+        height: 68px;
+        z-index: 1;
+      }
+
+      &::before {
+        content: "";
+        @include full-absolute(auto, 10px, 10px, auto);
+        @include background-center-no-repeat($element);
+        background-size: cover;
+        width: 54px;
+        height: 68px;
+        z-index: 1;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        align-self: stretch;
+        @include flex-center(column, flex-start);
+        overflow: auto;
+        flex: 1;
+
+        .content_body {
+          @include flex-center(column, center);
+          align-self: stretch;
+          gap: 30px;
+          height: 100%;
+
+          .header {
+            @include flex-center(row, space-between);
+            gap: 30px;
+            padding: 0 30px;
+            align-self: stretch;
+
+            .col {
+              width: 45px;
+
+              .sno_container {
+                width: max-content;
+                position: relative;
+                .sno {
+                  margin-left: auto;
+                  width: 45px;
+                }
+
+                .number {
+                  @include homepage-buttons(
+                    "Bobby-Jones-Soft",
+                    26px,
+                    $brown-4,
+                    none
+                  );
+                  @include hover-scale(1, 0s);
+                  @include full-absolute(3px, 0px, auto, 0px);
+                  text-align: center;
+                  vertical-align: middle;
+                }
+              }
+            }
+            .title_container {
+              padding: 8px 25px 10px;
+              position: relative;
+              max-width: 220px;
+
+              .title_bg {
+                @include full-absolute(0px, 0px, 0px, 0px);
+                z-index: -1;
+                width: 100%;
+                height: 100%;
+              }
+
+              .title {
+                @include homepage-buttons("EFCO", 26px, #ffe5db, none);
+                text-shadow: 2px 2px 4px #0000004d;
+                @include hover-scale(1, 0s);
+                line-height: 28px;
+                text-align: center;
+              }
+            }
+          }
+
+          .body {
+            align-self: stretch;
+            height: 100%;
+            overflow: auto;
+
+            &::-webkit-scrollbar-thumb {
+              background: #9e7676;
+              border-radius: 10px;
+            }
+            .container {
+              // height: 100%;
+              // overflow: auto;
+
+              form {
+                @include flex-center(column, flex-start);
+                place-items: center;
+                gap: 20px;
+                height: 100%;
+                .tooltip {
+                  align-self: stretch;
+                }
+
+                .form-control {
+                  border-bottom: 2px solid #9e7676;
+                  padding: 0 30px 12px;
+                  align-self: stretch;
+
+                  .form-row {
+                    .label {
+                      display: none;
+                    }
+                    .field_container {
+                      .input_field {
+                        width: 100%;
+
+                        .MuiInputBase-root {
+                          padding: 0px;
+                        }
+                        .MuiOutlinedInput-notchedOutline {
+                          border: 0px;
+                        }
+                        .MuiInputBase-input,
+                        .MuiSelect-select {
+                          padding: 0px;
+                          @include homepage-buttons(
+                            "Bobby-Jones-Soft",
+                            18px,
+                            $brown-4,
+                            none
+                          );
+                          @include hover-scale(1, 0s);
+
+                          &::placeholder {
+                            opacity: 0.9;
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  .error_message {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      15px,
+                      $red2,
+                      "none"
+                    );
+                    @include hover-scale(1, 0s);
+                  }
+                }
+
+                .sub_fields {
+                  .label {
+                    display: none;
+                    .fieldButton {
+                    }
+                  }
+                }
+                .submit_button_container {
+                  @include flex-center(row, center);
+                  flex: 1;
+                  .submit_button {
+                    background: linear-gradient(#9e7676, #bd8787);
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      18px,
+                      $light-yellow,
+                      "none"
+                    );
+                    @include hover-scale(1, 0s);
+                    margin: 0 auto 5px;
+                    padding: 2px 15px;
+                    border-radius: 8px;
+                    transition: background-color 0.3s ease;
+                  }
+                }
+              }
+            }
+
+            .terms {
+              @include flex-center(column, flex-start);
+              padding: 50px 30px 0px;
+              place-items: normal;
+              gap: 15px;
+
+              .terms_heading {
+                @include homepage-buttons(
+                  "Bobby-Jones-Soft",
+                  17px,
+                  $black,
+                  none
+                );
+                @include hover-scale(1, 0s);
+                line-height: 17px;
+              }
+
+              .terms_container {
+                @include flex-center(column, flex-start);
+                place-items: normal;
+                gap: 10px;
+
+                .term {
+                  .title,
+                  .description {
+                    @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      16px,
+                      $brown-4,
+                      none
+                    );
+                    @include hover-scale(1, 0s);
+                    // line-height: 16px;
+                  }
+                  .description {
+                    color: $gray2;
+                    margin-left: 8px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .card_board_component {
+    background-size: cover;
+    border-radius: 20px;
+    border: 1px solid $light-yellow;
+    box-shadow: 0px 4px 4px #00000040;
+  }
+}
+
+.mou_wrapper {
+  @extend .subscribe_main_wrapper;
+  background-image: url("#{$mouBgImg}");
+  background-position: center top;
+  @include flex-center(column, center);
+  place-items: normal;
+
+  .row {
+    flex: 1;
+    .col {
+      &:last-child {
+        flex: 1;
+      }
+      .backButton,
+      .empty_next {
+        flex: 1;
+        a p {
+          padding: 4px 12px;
+        }
+      }
+
+      .heading {
+        opacity: 0.95;
+
+        .span_1 {
+          color: $light-yellow !important;
+          text-shadow: 0.24px 0.24px 4.78px $yellow;
+          padding: 4px 15px;
+        }
+      }
+
+      .subscribe_wrapper {
+        &.mou {
+          width: 65%;
+          background: repeating-linear-gradient(
+            303deg,
+            rgba(131, 77, 75, 0.5019607843) 20%,
+            rgba(255, 255, 255, 0.2019607843),
+            rgba(156, 86, 68, 0.5019607843) 100%
+          );
+        }
+      }
+      .subscribe_row.mou {
+        padding: 0px !important;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: column;
+        gap: 10px;
+        grid-template-rows: auto auto auto auto;
+        .subscribe_col {
+          justify-self: stretch;
+          .title_container {
+            padding: 6px 40px 12px !important;
+            align-self: stretch;
+            .title {
+              font-size: 26px !important;
+              line-height: 32px;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 990px) {
+      .col {
+        .subscribe_row.mou {
+          grid-template-columns: 1fr;
+          grid-auto-flow: row;
+          gap: 10px;
+          grid-template-rows: auto;
+        }
+
+        &:last-child {
+          justify-content: center;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      .col {
+        .heading {
+          order: 0 !important ;
+
+          .span_1 {
+            font-size: 24px !important;
+          }
+        }
+
+        .subscribe_wrapper.mou {
+          width: 80%;
+        }
+      }
+    }
+    @media (max-width: 560px) {
+      .col {
+        .subscribe_wrapper.mou {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+#gradient-vertical {
+  --color-stop-1: #00c3ff;
+  --color-stop-2: #77e190;
+  --color-stop-3: #ffff1c;
 }

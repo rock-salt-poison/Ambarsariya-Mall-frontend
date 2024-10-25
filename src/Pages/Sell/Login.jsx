@@ -10,7 +10,7 @@ function Login() {
     <Box className="login_wrapper">
         <Box className="container">
             <Box className="col">
-                <Button2 text="Back" redirectTo="/AmbarsariyaMall/sell" />
+                <Button2 text="Back" redirectTo={-1} />
             </Box>
             <Box className="col">
                 <LoginPageCard title="Sell" imgSrc={peacock_img} redirectTo="eshop"/>

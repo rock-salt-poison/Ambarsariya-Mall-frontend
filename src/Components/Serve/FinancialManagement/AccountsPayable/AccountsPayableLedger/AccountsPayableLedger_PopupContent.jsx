@@ -14,7 +14,7 @@ function AccountsPayableLedger_PopupContent() {
   const theme = createCustomTheme(themeProps);
 
   const tabsData = [
-    { id: 1, name: 'Show Invoices', content: <ShowInvoices_PopupContent/> },
+    { id: 1, name: 'Current Payable Ledger', content: <ShowInvoices_PopupContent/> },
   ]
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, TextField, Select, MenuItem, Checkbox, FormControlLabel, Button, Slider, ListItemText, Switch, InputAdornment } from '@mui/material';
+import { Box, Typography, TextField, Select, MenuItem, Checkbox, FormControlLabel, Button, Slider, ListItemText, Switch, InputAdornment, RadioGroup, Radio } from '@mui/material';
 import MuiPhoneNumber from 'mui-phone-number';
 
 const FormField = ({
@@ -25,7 +25,7 @@ const FormField = ({
   className,
   handleFocus,
   handleBlur, 
-  adornmentValue, accept
+  adornmentValue, accept,rows,radioItems
 }) => {
 
   const marks = getSliderMarks ? getSliderMarks(name) : [];
@@ -166,14 +166,9 @@ const FormField = ({
                   </MenuItem>
                   {options.map((option) => (
                     <MenuItem key={option} value={option} className='members_list'>
-                      {name === 'members' ? (
-                        <>
                           <Checkbox checked={value.includes(option)} />
                           <ListItemText primary={option} className='members_name' />
-                        </>
-                      ) : (
-                        option
-                      )}
+                        
                     </MenuItem>
                   ))}
                 </Select>
@@ -181,12 +176,13 @@ const FormField = ({
                 <TextField 
                   multiline 
                   variant="outlined" 
-                  rows={3} 
+                  rows={rows ? rows : 3} 
                   placeholder={placeholder} 
                   value={value} 
                   onChange={onChange} 
                   required 
                   className='input_field'
+                  inputProps={{ readOnly, maxLength }}
                   name={name} />
               ) : type === "phone_number" ? 
                     <MuiPhoneNumber defaultCountry={'in'} name={name}
@@ -195,7 +191,21 @@ const FormField = ({
                     variant="outlined"
                     error={error}
                     />
-              : (
+              : type==="radio" ? (
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                  className='radio_button'
+                >
+                  {
+                    radioItems.map((item)=>{
+                      return <FormControlLabel value={item.value} control={<Radio />} label={item.value} className='label' key={item.id}/>
+                    })
+                  }
+                </RadioGroup>
+              )
+              :(
                 <TextField
                   hiddenLabel
                   variant="outlined"

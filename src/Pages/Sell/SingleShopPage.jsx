@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import stationary_bg_img from '../../Utils/images/Sell/merchant_details/stationary.webp';
@@ -8,18 +8,21 @@ import Button2 from '../../Components/Home/Button2';
 import ShopDetails from '../../Components/Shop/ShopDetails';
 import VideoPlayer from '../../Components/MerchantWrapper/VideoPlayer';
 import ServicesTypeCard from '../../Components/MerchantWrapper/ServicesTypeCard';
+import video_frame from '../../Utils/images/frames/frame2.png';
+import CardBoardPopup from '../../Components/CardBoardPopupComponents/CardBoardPopup';
+import PurchaseCoupon from '../../Components/Cart/PurchaseCoupon/PurchaseCoupon';
 
 const SingleShopPage = ({ showBackButton = true, shopData }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const videoUrl = 'https://www.example.com/your-video.mp4';
+  const videoUrl = 'https://www.youtube.com/embed/m701WKQMeYQ?controls=0&modestbranding=1';
 
   const columns = [
     {
       shopName: 'Madhav',
       discount: '10',
       coupon: 'amall10',
-      products: 'pens, textbooks, books, pencils, charts, toffees, paint and brush',
+      products: 'pens, textbooks, books',
       domain: 'Retailer',
       sector: 'Stationary',
       supply: 'School & Office',
@@ -34,11 +37,17 @@ const SingleShopPage = ({ showBackButton = true, shopData }) => {
     navigate('../shop')
   }
 
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const handleClose = () => {
+    setOpenPopup(false);
+  }
+
   const getImageSrc = (sector) => {
     switch (sector) {
-      case 'Education & Stationary':
+      case 'stationary':
         return stationary_bg_img;
-      case 'Healthcare':
+      case 'healthcare':
         return healthcare_bg_img;
       // case 'Electronics':
       //   return electronics_bg_img; // Use the correct image for Electronics sector
@@ -51,7 +60,7 @@ const SingleShopPage = ({ showBackButton = true, shopData }) => {
     <>
       {data.map((column, index) => (
         <Box key={index} className="single_shop_wrapper">
-          <Box component="img" src={getImageSrc(column.sector)} className='sector_bg_img' />
+          <Box component="img" src={getImageSrc(id)} className='sector_bg_img' />
           <Box className="row">
             {showBackButton && (
               <Box className="col-1">
@@ -61,19 +70,19 @@ const SingleShopPage = ({ showBackButton = true, shopData }) => {
             <Box className="container">
               <Box className="col-2">
                 <Box className="sub_col_1">
-                  <Box className="shop_details" onClick={(e) => handleClick(e)}>
-                    <Box className="category">
+                  <Box className="shop_details" >
+                    <Box className="category" onClick={(e) => handleClick(e)}>
                       <Typography className='sector_type'>{column.sector}</Typography>
                       <Typography className='shop_name'>{column.shopName}</Typography>
                     </Box>
-                    <Box className="discount_percentage">
+                    <Link className="discount_percentage" onClick={(e)=>{setOpenPopup(true)}}>
                       <Typography className='percent'>{column.discount}</Typography>
                       <Box className="discount_details">
                         <Typography className='text_1'>%</Typography>
                         <Typography className='text_2'>off</Typography>
                         <Typography className='text_3'>min purchase 1000</Typography>
                       </Box>
-                    </Box>
+                    </Link>
                     <Box className="discount_coupon">
                       <Typography className='coupon'>coupon</Typography>
                       <Typography className='coupon_value'>{column.coupon}</Typography>
@@ -82,7 +91,7 @@ const SingleShopPage = ({ showBackButton = true, shopData }) => {
                   <ServicesTypeCard />
                   <Box className="product_details">
                     <Link to={`../1234/products`}>
-                      <Typography variant="h3">Products:
+                      <Typography variant="h3">Category :
                         <Typography variant="span">{column.products}</Typography>
                       </Typography>
                     </Link>
@@ -90,11 +99,15 @@ const SingleShopPage = ({ showBackButton = true, shopData }) => {
                 </Box>
                 <Box className="sub_col_2">
                   <ShopDetails column={column} />
+                  <Box className="video_container">
+                  <Box component="img" src={video_frame} className="video_frame" alt="frame" />
                   <VideoPlayer url={videoUrl} />
+                  </Box>
                 </Box>
               </Box>
             </Box>
             <Box className="col-3"></Box>
+            <CardBoardPopup customPopup={true} open={openPopup} handleClose={handleClose} body_content={<PurchaseCoupon/>} optionalCName="purchase_coupon_offer_popup"/>
           </Box>
         </Box>
       ))}

@@ -32,6 +32,10 @@ import Accounts_receivable from '../Pages/Serve/Accounts_receivable';
 import Budgeting_and_forecasting from '../Pages/Serve/Budgeting_and_forecasting';
 import MerchantCampaign from '../Pages/Serve/MerchantCampaign';
 import { useEffect, useState } from 'react';
+import CustomerRecords from '../Pages/Serve/CustomerRecords';
+import MemberGroupCreation from '../Pages/Serve/MemberGroupCreation';
+import SalesPipeline from '../Pages/Serve/SalesPipeline';
+import MarketingCampaigns from '../Pages/Serve/MarketingCampaigns';
 
 
 export default function ServeRoutes() {
@@ -84,6 +88,10 @@ export default function ServeRoutes() {
          <Route path="/emotional/eshop/stock-reports" element={<Stock_reports />} />
          <Route path="/emotional/analytics" element={<Analytics />} />
          <Route path="/emotional/crm" element={<CRM />} />
+         <Route path="/emotional/crm/customer-records" element={<CustomerRecords />} />
+         <Route path="/emotional/crm/member-group-creation" element={<MemberGroupCreation />} />
+         <Route path="/emotional/crm/sales-pipeline" element={<SalesPipeline />} />
+         <Route path="/emotional/crm/marketing-campaigns" element={<MarketingCampaigns />} />
          <Route path="/unexpected/lead_generation" element={<LeadGeneration />} />
          <Route path="/unexpected/capture" element={<Capture />} />
          <Route path="/unexpected/suggestions" element={<Suggestions />} />

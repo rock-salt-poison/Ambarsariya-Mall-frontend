@@ -22,11 +22,17 @@ const BookEshopForm = () => {
     onTime: '',
     offTime: '',
     gst: '',
+    msme: '',
+    pan_no: '',
+    cin_no: '',
     pickup: false,
     delivery: false,
     homeVisit: false,
+    paidVersion: false,
     premiumVersion: false,
     username_otp: '',
+    merchant:'',
+    member_detail:'',
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -92,6 +98,9 @@ const BookEshopForm = () => {
       'sector',
       'onTime',
       'offTime',
+      'gst',
+      'pan_no',
+      'cin_no',
     ];
 
     requiredFields.forEach((field) => {
@@ -187,7 +196,7 @@ const BookEshopForm = () => {
         if (formData.premiumVersion) {
           navigate('../login'); // Redirect to signup page if premiumVersion is true
         } else {
-          // Handle non-premium submission
+          navigate('../login');
         }
       }
     }
@@ -229,7 +238,7 @@ const BookEshopForm = () => {
           {renderFormField('Full Name :', 'title', 'select', titleOptions)}
           {renderFormField('Full Name :', 'fullName', 'text')}
         </Box>
-        {renderFormField('Address :', 'address', 'text')}
+        {renderFormField('Address :', 'address', 'text')} 
         <Box className="form-group2">
           <Box className="form-subgroup">
             {renderFormField('Phone No. 1:', 'phone1', 'phone_number', [], '', { maxLength: 10 })}
@@ -262,7 +271,28 @@ const BookEshopForm = () => {
             {renderFormField('Home Visit', 'homeVisit', 'checkbox')}
           </Box>
         </Box>
-        {renderFormField('GST / MSME (if any) :', 'gst', 'text')}
+        <Box className="form-group-switch">
+        {renderFormField('Do you want paid version', 'paidVersion', 'switch')}
+        </Box>
+        {formData.paidVersion &&  <><Box className="form-group2">
+          {renderFormField('GST :', 'gst', 'text')}
+          {renderFormField('MSME :', 'msme', 'text')}
+        </Box>
+        <Box className="form-group2">
+          {renderFormField('Pan No.', 'pan_number', 'text')}
+          {renderFormField('CIN No.', 'cin_number', 'text')}
+        </Box>
+
+        <Box className="form-group-switch">
+          {renderFormField('Be a merchant', 'merchant', 'switch')}
+        </Box>
+          {formData.merchant && renderFormField('', 'member_detail', 'text', '', 'Member username or Phone no.')}
+        </>
+        }
+        
+       
+        
+       
         <Box className="form-group-switch">
         {renderFormField('Do you want premium version', 'premiumVersion', 'switch')}
         </Box>

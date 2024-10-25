@@ -3,6 +3,12 @@ import { Box, Typography } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import Button2 from '../../Components/Home/Button2';
 import tshirt from '../../Utils/images/Sell/products/tshirt.jpg';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation'; // Import navigation styles
+
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 function ProductDetails() {
 
@@ -18,6 +24,13 @@ function ProductDetails() {
         discount: '10%',
         sample: tshirt,
     };
+
+    const cardData = [
+        {id:1, sample:row.sample},
+        {id:2, sample:row.sample},
+        {id:3, sample:row.sample},
+        {id:4, sample:row.sample},
+    ]
 
 
     const RenderComponent = ({title, bgColor}) => {
@@ -55,19 +68,37 @@ function ProductDetails() {
                             <Box className="circle"></Box>
                         </Box>
                         <Box className="row_1">
-                            <Box className="product_img">
-                                <Box component="img" src={row.sample} />
-                            </Box>
+                                <Swiper
+                                    slidesPerView={1}
+                                    spaceBetween={30}
+                                    loop={true}
+                                    autoplay={{
+                                        delay: 400,
+                                        disableOnInteraction: false,
+                                    }}
+                                    speed={2000}
+                                    pagination={{
+                                        clickable: true,
+                                    }}
+                                    navigation={true}
+                                    modules={[Autoplay, Navigation]}
+                                    className="mySwiper"
+                                    >
+                                    {cardData.map((card, index) => (
+                                        <SwiperSlide key={index} className="card">
+                                        <Box component="img" src={card.sample} />
+                                        </SwiperSlide>
+                                    ))}
+                                    </Swiper>
+                            {/* <Box className="product_img">
+                                
+                            </Box> */}
                             <Box className="product_details">
                                <RenderComponent bgColor='linear-gradient(to right, #1B98BA, #0BC8AF)' title="Brand Catalogue"/>
                                <RenderComponent bgColor='linear-gradient(to right, #6E0080, #E1008B)' title="Product Catalogue"/>
                                <RenderComponent bgColor='linear-gradient(to right, #E72D75, #FCBE0B)' title="Add item in supply"/>
                                <RenderComponent bgColor='linear-gradient(to right, #074589, #2C96C4)' title="Similar options"/>
-
-
                             </Box>
-
-
                         </Box>
                         <Box className="row_1">
                             <Box className="product_description">

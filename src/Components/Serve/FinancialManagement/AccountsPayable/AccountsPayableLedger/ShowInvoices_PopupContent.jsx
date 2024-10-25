@@ -14,7 +14,7 @@ function ShowInvoices_PopupContent() {
 
     const initialData = {
         selected_daterange:'',
-        selected_vendor:'',
+        members:'',
         selected_invoices:'',
         download_invoice:'',
         seller_contact:'',
@@ -39,7 +39,7 @@ function ShowInvoices_PopupContent() {
         {
             id: 1,
             label: 'Select Vendor(s)',
-            name: 'selected_vendor',
+            name: 'members',
             type: 'select-check',
             options: ['Vendor 1', 'Vendor 2', 'Vendor 3', 'Vendor 4', 'Vendor 5', 'Vendor 6', 'Vendor 7']
         },
@@ -68,13 +68,23 @@ function ShowInvoices_PopupContent() {
             id: 5,
             label: 'Seller contact information',
             name: 'seller_contact',
-            type: 'text',
+            type: 'textarea',
+            value:`Business Name : Apna departmental
+Address : 123 tilak nagar
+Phone : 7894561320
+Email: abc@gmail.com`,
+            rows:4,
         },
         {
             id: 6,
             label: 'Buyer contact information',
             name: 'buyer_contact',
-            type: 'text',
+            type: 'textarea',
+            value:`Business Name : Apna departmental store
+Address : 123 tilak nagar
+Phone : 7894561320
+Email: abc@gmail.com`,
+            rows:4,
         },
         {
             id: 7,

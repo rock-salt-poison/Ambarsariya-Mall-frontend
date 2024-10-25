@@ -6,47 +6,62 @@ import CartTable from '../../Components/Cart/CartTable';
 import badge_frame from '../../Utils/images/Sell/cart/badge_frame.svg';
 import Button2 from '../../Components/Home/Button2';
 import pickup from '../../Utils/images/Sell/shop_details/pickup.svg';
-import pickup_highlighted from '../../Utils/images/Sell/shop_details/pickup_highlight.svg'; 
 import delivery from '../../Utils/images/Sell/shop_details/delivery.webp';
-import delivery_highlighted from '../../Utils/images/Sell/shop_details/delivery_highlight.svg'; 
 import home_visit from '../../Utils/images/Sell/shop_details/home_visit.svg';
-import home_visit_highlighted from '../../Utils/images/Sell/shop_details/home_visit_highlight.svg'; 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CardBoardPopup from '../../Components/CardBoardPopupComponents/CardBoardPopup';
+import SpecialOffer from '../../Components/Cart/SpecialOffer/SpecialOffer';
+import PrepaidPostpaid from '../../Components/Cart/Prepaid_Postpaid/PrepaidPostpaid';
+import PurchaseCoupon from '../../Components/Cart/PurchaseCoupon/PurchaseCoupon';
+import ServiceType from '../../Components/Cart/ServiceType/ServiceType';
+import Delivery from '../../Components/Cart/ServiceType/Delivery';
+import Visit from '../../Components/Cart/ServiceType/Visit';
 
 function Cart() {
     const sampleRows = useSelector((state) => state.cart.selectedProducts);
+    const [openPopup, setOpenPopup] = useState(null);
+
+    const handleClose = () => {
+        setOpenPopup(false);
+    };
+
+    const handleClick = (e, item) => {
+        if(item.openPopup){
+            setOpenPopup((prev)=>(prev===item.id ? null : item.id))
+        }
+    };
 
     const offers = [
-        { id: 1, title: 'Special Offers' },
-        { id: 2, title: 'Co-helpers' },
-        { id: 3, title: 'Prepaid / Postpaid' },
-        { id: 4, title: 'Purchase coupons' },
-        { id: 5, title: 'Become Member' },
+        { id: 1, title: 'Special Offers', popupContent:<SpecialOffer/>, cName:'special_offer_popup', openPopup:true},
+        { id: 2, title: 'Co-helpers', openPopup:false },
+        { id: 3, title: 'Prepaid / Postpaid',  popupContent:<PrepaidPostpaid/>, cName:'prepaid_postpaid_offer_popup', openPopup:true },
+        { id: 4, title: 'Purchase coupons', popupContent:<PurchaseCoupon/>, cName:'purchase_coupon_offer_popup',openPopup:true },
+        { id: 5, title: 'Become Member', openPopup:false },
     ];
 
     const service_type = [
-        { id: 1, imgSrc: pickup, imgSrcHighlighted: pickup_highlighted, service: 'pickup' },
-        { id: 2, imgSrc: delivery, imgSrcHighlighted: delivery_highlighted, service: 'delivery' },
-        { id: 3, imgSrc: home_visit, imgSrcHighlighted: home_visit_highlighted, service: 'home visit' }
+        { id: 1, imgSrc: pickup, service: 'pickup', popupContent: <ServiceType/>, cName:'service_type_popup' },
+        { id: 2, imgSrc: delivery, service: 'delivery', popupContent: <Delivery/>, cName:'service_type_popup delivery' },
+        { id: 3, imgSrc: home_visit, service: 'home visit', popupContent: <Visit/>, cName:'service_type_popup delivery visit' }
     ];
 
     const [selectedServices, setSelectedServices] = useState(new Set());
+    const [openServicePopup, setOpenServicePopup] = useState(null);
 
-    const handleServiceTypeClick = (e, serviceId) => {
+    const handleServiceTypeClick = (e, item) => {
         const target = e.target.closest(".service");
         setSelectedServices((prevSelectedServices) => {
             const newSelectedServices = new Set(prevSelectedServices);
-            if (newSelectedServices.has(serviceId)) {
-                newSelectedServices.delete(serviceId);
+            if (newSelectedServices.has(item.id)) {
+                newSelectedServices.delete(item.id);
             } else {
-                newSelectedServices.add(serviceId);
+                newSelectedServices.add(item.id);
             }
-            console.log('Selected Services:', Array.from(newSelectedServices));
             return newSelectedServices;
         });
+        setOpenServicePopup(item.id); // Open the popup for the clicked service
         target.classList.toggle("increase_scale");
-
     };
 
     return (
@@ -78,27 +93,43 @@ function Cart() {
                     <Button2 text={"Back"} redirectTo={'../id/products'} />
                     <Box className="offers">
                         {offers.map((item) => (
-                            <Box className="offers_container" key={item.id}>
-                                <Box component="img" src={badge_frame} alt="badge_frame" className='badge_frame' />
-                                <Typography variant='h3' className='text_2'>{item.title}</Typography>
-                            </Box>
+                            <React.Fragment key={item.id}>
+                                <Link className="offers_container" onClick={(e) => handleClick(e, item)}>
+                                    <Box component="img" src={badge_frame} alt="badge_frame" className='badge_frame' />
+                                    <Typography variant='h3' className='text_2'>{item.title}</Typography>
+                                </Link>
+                                <CardBoardPopup
+                                    customPopup={true}
+                                    open={openPopup === item.id}
+                                    handleClose={handleClose}
+                                    body_content={item.popupContent}
+                                    optionalCName={item.cName}
+                                />
+                            </React.Fragment>
                         ))}
                     </Box>
                     <Box className="type_of_service">
                         {service_type.map((item) => (
                             <Box
                                 key={item.id}
-                                onClick={(e) => handleServiceTypeClick(e, item.id)}
-                                className={`service `}
+                                onClick={(e) => handleServiceTypeClick(e, item)}
+                                className={`service`}
                             >
                                 <Box
                                     component="img"
-                                    src={selectedServices.has(item.id) ? item.imgSrcHighlighted : item.imgSrc}
+                                    src={item.imgSrc}
                                     alt={item.service}
                                     className={`service_type`}
                                 />
                             </Box>
                         ))}
+                        <CardBoardPopup
+                            customPopup={true}
+                            open={openServicePopup !== null}
+                            handleClose={() => setOpenServicePopup(null)}
+                            body_content={service_type.find(s => s.id === openServicePopup)?.popupContent}
+                            optionalCName={service_type.find(s => s.id === openServicePopup)?.cName}
+                        />
                     </Box>
                 </Box>
             </Box>

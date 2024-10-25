@@ -22,6 +22,8 @@ function Sell() {
   const handleClick = (e) => {
     const btns = e.target.closest('.btn');
     const sell_buy_button = e.target.closest('.title_container');
+    // const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('access_token'));
+    const loggedIn = !!localStorage.getItem('access_token');
 
     if (sell_buy_button) {
       sell_buy_button.classList.add('reduceSize3');
@@ -42,16 +44,16 @@ function Sell() {
         btns.classList.remove('reduceSize3');
       }, 500);
 
-      let destination = 'grow';
+      let destination = '';
 
       if (btns.classList.contains('Grab')) {
-        destination = 'grab';
+        destination ='grab';
       } else if (btns.classList.contains('Grow')) {
         destination = 'grow';
       }else if (btns.classList.contains('E-shop')) {
-        destination = 'login';
+        destination =loggedIn ? 'eshop':'login';
       }else if (btns.classList.contains('E-sale')) {
-        destination = 'login';
+        destination =loggedIn ? 'esale':'login';
       }
 
       setTimeout(() => {

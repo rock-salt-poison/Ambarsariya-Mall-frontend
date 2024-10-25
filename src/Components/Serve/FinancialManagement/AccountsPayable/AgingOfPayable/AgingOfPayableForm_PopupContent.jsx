@@ -48,6 +48,10 @@ function AgingOfPayableForm_PopupContent() {
         },
         {
             id: 4,
+            label: 'Amount increases after due date by 5% per day',
+        },
+        {
+            id: 5,
             label: 'Balance Amount (Today)',
             name: 'after_due_date_balance',
             type: 'text',

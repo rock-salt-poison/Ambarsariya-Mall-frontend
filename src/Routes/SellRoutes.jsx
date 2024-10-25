@@ -17,6 +17,7 @@ import Cart from '../Pages/Sell/Cart';
 import ProductDetails from '../Pages/Sell/ProductDetails';
 import Order_Return_Review_Component from '../Pages/Sell/Order_Return_Review_Component';
 import Subscribe from '../Pages/Sell/Subscribe';
+import Mou from '../Pages/Sell/Mou';
 import Like_share from '../Pages/Sell/Like_share';
 import Esale from '../Pages/Sell/Esale';
 import ShopSearchPage from '../Pages/Sell/ShopSearchPage';
@@ -25,6 +26,7 @@ import Esale_emotional from '../Pages/Sell/Esale_emotional';
 import Esale_personal from '../Pages/Sell/Esale_personal';
 import Esale_professional from '../Pages/Sell/Esale_professional';
 import Life from '../Pages/Sell/Life';
+import MemberRelations from '../Pages/Sell/MemberRelations';
 
 function SellRoutes() {
   const ConditionalRoute = () => {
@@ -56,6 +58,7 @@ function SellRoutes() {
       <Route path=":owner/products/:id" element={<ProductDetails />} />
       <Route path=":owner/cart" element={<Cart />} />
       <Route path=":owner/subscribe" element={<Subscribe />} />
+      <Route path=":owner/mou" element={<Mou />} />
       <Route path=":owner/:action" element={<ConditionalRoute />} />
       <Route path=":owner/like-and-share" element={<Like_share />} />
       <Route path="esale" element={<Esale />} />
@@ -65,6 +68,7 @@ function SellRoutes() {
       <Route path="shops" element={<ShopSearchPage />} />
       <Route path=":owner/:action/budget" element={<Budget />} />
       <Route path="esale/life" element={<Life />} />
+      <Route path="esale/relations" element={<MemberRelations />} />
     </Routes>
   );
 }

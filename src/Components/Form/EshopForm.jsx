@@ -16,6 +16,7 @@ const EshopForm = () => {
     category: '',
     products: '',
     advt_video:'', 
+    key_players:'',
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -103,7 +104,7 @@ const EshopForm = () => {
     if (validate()) {
       console.log('Form Data:', formData);
       setTimeout(()=>{
-        navigate('../login');
+        navigate('../shop');
       },1000)
     }
   };
@@ -184,8 +185,13 @@ const EshopForm = () => {
         {renderFormField('Name of the business :', 'business_name', 'text')}
         {renderFormField('Date of establishment :', 'date_of_establishment', 'date')}
         {renderFormField('USP Values (PDF) :', 'usp_values', 'file')}
-        {renderFormField('Product Sample :', 'product_samples', 'url')}
-        {renderFormField('Similar Options :', 'similar_options', 'select', categoryOptions, 'Select')}
+        {renderFormField('Product Sample :', 'product_samples', 'url', '', 'Live camera link')}
+        <Box className="form-group2">
+        {renderFormField('Similar Options :', 'similar_options', 'select-check', categoryOptions, 'Select')}
+        {renderFormField('Key players :', 'key_players', 'select-check', categoryOptions, 'Select')}
+
+
+        </Box>
         {renderFormField('Cost sensitivity :', 'cost_sensitivity', 'range')}
         
         <Box className="form-group2">
@@ -205,6 +211,9 @@ const EshopForm = () => {
       <Box className="submit_button_container">
         <Button type="submit" variant="contained" className="submit_button">
           Submit
+        </Button>
+        <Button variant="contained" className="submit_button">
+          Form Preview
         </Button>
       </Box>
     </Box>

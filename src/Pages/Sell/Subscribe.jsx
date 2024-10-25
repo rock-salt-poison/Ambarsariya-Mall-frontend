@@ -21,7 +21,7 @@ function Subscribe() {
                             <Typography variant='span' className='span_2'>123</Typography>
                         </Typography>
                     </Typography>
-                    <Box></Box>
+                <Button2 text={"Next"} redirectTo={`../${owner}/mou`}/>
                 </Box>
                 <Box className="col">
                     <Box className="sub_col"></Box>

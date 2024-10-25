@@ -29,7 +29,7 @@ function CreditAndAdjustmentsForm_PopupContent() {
     const formFields = [
         {
             id: 1,
-            label: 'Select Vendor',
+            label: 'Select Vendor/Merchant',
             name: 'vendor',
             type: 'select',
             options:['Vendor A', 'Vendor B', 'Vendor C', 'Vendor D']
@@ -44,7 +44,7 @@ function CreditAndAdjustmentsForm_PopupContent() {
         },
         {
             id: 3,
-            label: 'Debits',
+            label: 'Debit Memos',
             name: 'debits',
             type: 'text',
             behavior:'numeric',
@@ -57,7 +57,32 @@ function CreditAndAdjustmentsForm_PopupContent() {
             type: 'text',
             behavior:'numeric',
             readOnly:true
-        },     
+        },  
+        {
+            id: 5,
+            label: 'Last 5 payments',
+            name: 'last_payments',
+            type: 'textarea',
+            readOnly:true
+        }, 
+        {
+            id: 6,
+            label: 'Balance',
+            name: 'balance',
+            type: 'text',
+            behavior:'numeric',
+            readOnly:true
+        },
+        {
+            id: 7,
+            label: 'Pay by credits',
+            name: 'credits',
+            type: 'text',
+            behavior:'numeric',
+            readOnly:true
+        },
+         
+
     ];
 
     
@@ -103,7 +128,6 @@ function CreditAndAdjustmentsForm_PopupContent() {
             formData={formData}
             onChange={handleChange}
             errors={errors}
-            submitBtnVisibility={false}
         />
         </ThemeProvider>
     );

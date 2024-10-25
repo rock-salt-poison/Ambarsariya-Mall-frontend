@@ -32,10 +32,12 @@ export default function Home() {
 
     const handleClick = (e, popupType) => {
         e.preventDefault();
+        const loggedIn = !!localStorage.getItem('access_token');
         const timeTableOrAqiElement = e.target.closest('.timeTable, .aqi');
         const logoParentElement = e.target.closest('.logoParent');
         const btnsParentElement = e.target.closest('.sell, .serve, .socialize');
         const clockParentElement = e.target.closest('.sub-wrapper');
+
 
         if (timeTableOrAqiElement) {
             e.target.parentElement.parentElement.classList.add('reduceSize');
@@ -69,7 +71,7 @@ export default function Home() {
                     navigate('/AmbarsariyaMall/sell');
                 }
                 else if (btnsParentElement.classList.contains('serve')) {
-                    navigate('/AmbarsariyaMall/serve');
+                    navigate(loggedIn ? '/AmbarsariyaMall/serve':'/AmbarsariyaMall/sell/login');
                 }
             }, 1000);
         } else if (clockParentElement) {

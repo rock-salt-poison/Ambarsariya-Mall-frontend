@@ -23,8 +23,9 @@ function InvoiceDetail_PopupContent() {
         cost_of_item:'',
         cost_of_items:'',
         no_of_items:'',
-        purchase_no:'',
-        procurement_no:'',
+        total_tax:'',
+        amount:'',
+        sku_id_no:'',
     };
 
     const [formData, setFormData] = useState(initialData);
@@ -32,6 +33,11 @@ function InvoiceDetail_PopupContent() {
 
     const handleButtonClick = () =>{
         console.log('clicked')
+    }
+
+    const handleSkuFocus = (e) => {
+        console.log('hi')
+        e.target.style.cursor='pointer'
     }
 
     const formFields = [
@@ -58,7 +64,7 @@ function InvoiceDetail_PopupContent() {
         },
         {
             id: 4,
-            label: 'Total Amount',
+            label: 'Total Balance',
             name: 'total_amount',
             type: 'text',
             behavior:'numeric',
@@ -105,17 +111,25 @@ function InvoiceDetail_PopupContent() {
         },
         {
             id: 11,
-            label: 'Purchase No.',
-            name: 'purchase_no',
+            label: 'Total Tax',
+            name: 'total_tax', 
             type: 'text',
             behavior: 'numeric',
         },
         {
             id: 12,
-            label: 'Procurement Order No.',
-            name: 'procurement_no',
+            label: 'Total Amount',
+            name: 'amount', 
             type: 'text',
             behavior: 'numeric',
+        },
+        {
+            id: 13,
+            label: 'SKU Id No.',
+            name: 'sku_id_no',
+            type: 'text',
+            behavior: 'numeric',
+            handleFocus:handleSkuFocus,
         },        
     ];
 
@@ -162,6 +176,8 @@ function InvoiceDetail_PopupContent() {
             formData={formData}
             onChange={handleChange}
             errors={errors}
+            submitButtonText="Payment Detail"
+            // submit button text payment detail
         />
         </ThemeProvider>
     );

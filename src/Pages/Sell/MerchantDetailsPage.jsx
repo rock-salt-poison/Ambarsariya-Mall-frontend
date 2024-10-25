@@ -107,7 +107,7 @@ const MerchantDetailsPage = () => {
                   </Box>
                 </Box>
                 <Box className="product_details">
-                  <Typography variant="h3">Products: 
+                  <Typography variant="h3">Category: 
                     <Typography variant="span">{column.products}</Typography>
                   </Typography>
                 </Box>

@@ -3,8 +3,8 @@ import { Box, ThemeProvider } from '@mui/material'
 import ScrollableTabsButton from '../../../../ScrollableTabsButton'
 import createCustomTheme from '../../../../../styles/CustomSelectDropdownTheme'
 import InvoiceDetail_PopupContent from './InvoiceDetail_PopupContent';
-import DescriptionOfGoods_PopupContent from './DescriptionOfGoods_PopupContent';
-import PurchaseOrder_PopupContent from './PurchaseOrder_PopupContent';
+// import DescriptionOfGoods_PopupContent from './DescriptionOfGoods_PopupContent';
+// import PurchaseOrder_PopupContent from './PurchaseOrder_PopupContent';
 
 function Invoices_PopupContent(props) {
 

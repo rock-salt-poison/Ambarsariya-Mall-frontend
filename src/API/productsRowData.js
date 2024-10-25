@@ -21,7 +21,6 @@ const rows = [
         product: 'Jeans',
         brand: 'Brand B',
         price: '2999',
-        discount: '15%',
         sample: tshirt,
         quantity: 1, 
         model: 'Model 2',

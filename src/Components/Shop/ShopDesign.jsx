@@ -10,10 +10,10 @@ function ShopDesign() {
       <Typography className="shop_name" variant="h2" data-content="Apna Departmental Store">Apna Departmental Store </Typography>
 
       <Box className="domain_container">
-        <Typography className="domain" variant="h3">Domain</Typography>
+        <Typography className="domain" variant="h3">Retailer</Typography>
       </Box>
       <Box className="sector_container">
-        <Typography className="sector" variant="h3">Office Supplies</Typography>
+        <Typography className="sector" variant="h3">General Store</Typography>
       </Box>
       <Typography className="shop_no" variant="h3">Shop No. 0125</Typography>
     </Link>

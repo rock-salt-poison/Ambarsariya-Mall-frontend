@@ -16,9 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, removeProduct } from '../../store/cartSlice';
 
 const columns = [
-  { id: 'variations', label_1: 'Variation', label_2: 'Specification' },
   { id: 'product', label_1: 'Product', label_2: 'Brand' },
-  { id: 'price', label_1: 'Price', label_2: 'Discount' },
+  { id: 'variations', label_1: 'Variation', label_2: 'Specification' },
+  { id: 'price', label_1: 'Price' },
   { id: 'sample', label_1: 'Sample' },
 ];
 
@@ -146,7 +146,7 @@ export default function CustomPaginationTable({ rows }) {
                               <Typography className="text_2">
                                 {column.id === 'variations' ? row.specifications : ''}
                                 {column.id === 'product' ? row.brand : ''}
-                                {column.id === 'price' ? `${row.discount} off coupon` : ''}
+                                {/* {column.id === 'price' ? (row.discount ? `${row.discount} off coupon` : ''):''} */}
                               </Typography>
                             </>
                           )}

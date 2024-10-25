@@ -4,6 +4,7 @@ import ReactPlayer from 'react-player';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Dialog, DialogContent, IconButton, ThemeProvider, useMediaQuery } from '@mui/material';
 import createCustomTheme from '../../styles/CustomSelectDropdownTheme';
+import video_frame from '../../Utils/images/frames/frame2.png';
 
 export default function VideoPopup({ open, handleClose }, props) {
   const theme = useTheme();
@@ -21,29 +22,22 @@ const theme2 = createCustomTheme(themeProps);
       open={open}
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
+      className='video_popup'
     >
       <DialogContent>
-        <Box position="relative">
+        <Box position="relative" className="video_container">
+          <Box component="img" src={video_frame} alt="video_frame" className="video_frame"/>
           <IconButton
             onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              top: 8,
-              right: 8,
-              color: (theme) => theme.palette.grey[500],
-              zIndex: 1
-            }}
+            className='close_icon'
           >
             <CloseIcon />
           </IconButton>
-          <ReactPlayer url="https://www.youtube.com/" playing controls width="100%" height="100%" className="videoPlayer" />
+          <ReactPlayer url="https://www.youtube.com/embed/m701WKQMeYQ" playing controls width="auto" height="auto" className="videoPlayer">
+
+          </ReactPlayer>
         </Box>
       </DialogContent>
-      {/* <DialogActions>
-        <Button autoFocus onClick={handleClose}>
-          Close
-        </Button>
-      </DialogActions> */}
     </Dialog>
     </ThemeProvider>
   );

@@ -119,10 +119,10 @@ function PoNumber_PopupContent() {
             {/* Conditionally render buttons after form submission */}
             {isFormSubmitted && (
                 <Box className="post-submit-actions">
-                    <Button variant="contained" onClick={handleOpenPO} className="open_po_button">
+                    <Button variant="contained" onClick={handleOpenPO} className="post_submit_button">
                         Open P.O
                     </Button>
-                    <Button variant="contained" onClick={handleDownloadPO} className="download_po_button" >
+                    <Button variant="contained" onClick={handleDownloadPO} className="post_submit_button" >
                         Download P.O
                     </Button>
                 </Box>

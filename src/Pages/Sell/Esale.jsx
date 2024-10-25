@@ -20,6 +20,13 @@ const data = [
     { id: 3, title: "Professional", imgSrc: professional_gif, linkTo:'professional' },
 ]
 
+const imgData = [
+    { id: 1, imgSrc: life_img, linkTo:'life' },
+    { id: 2, imgSrc: relationship_img, linkTo:'relations' },
+    { id: 3, imgSrc: location_img, linkTo:'' },
+]
+
+
 function Esale() {
     return (
         <Box className="border">
@@ -61,11 +68,12 @@ function Esale() {
                         <Box className="col">
                             <Box className="sub_col">
                                 <Box className="life">
-                                    <Link to='./life'>
-                                        <Box component="img" alt="img" src={life_img} className='img' />
+                                    {imgData.map((item)=>{
+                                        return <Link to={item.linkTo} key={item.id}>
+                                        <Box component="img" alt="img" src={item.imgSrc} className='img' />
                                     </Link>
-                                    <Box component="img" alt="img" src={relationship_img} className='img' />
-                                    <Box component="img" alt="img" src={location_img} className='img' />
+                                    })}
+                                    
                                 </Box>
                             </Box>
                             <Box className="sub_col">

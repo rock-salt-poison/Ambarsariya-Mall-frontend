@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button, TableFooter, Typography, Box, TableHead, TableCell, TableContainer, TableBody, TableRow, Table, Paper } from '@mui/material';
-import thead_vector from '../../Utils/images/Sell/products/thead_vector.png';
 import tbody_vector from '../../Utils/images/Sell/products/tbody_vector.webp';
 import plus from '../../Utils/images/Sell/cart/plus.svg';
 import minus from '../../Utils/images/Sell/cart/minus.svg';
@@ -14,7 +13,8 @@ const columns = [
   { id: '2', label_1: 'Product' },
   { id: '3', label_1: 'Quantity' },
   { id: '4', label_1: 'Model' },
-  { id: '5', label_1: 'Price' },
+  { id: '5', label_1: 'Unit Price' }, // Updated label for unit price
+  { id: '6', label_1: 'Total Price' }, // Updated label for total price
 ];
 
 export default function CartTable({ rows }) {
@@ -26,44 +26,40 @@ export default function CartTable({ rows }) {
     const newData = data.map((item, i) => {
       if (i === index) {
         const newQuantity = item.quantity + 1;
-        const unitPrice = Number(item.price) / item.quantity;
-        const newPrice = unitPrice * newQuantity;
-        return { ...item, quantity: newQuantity, price: newPrice };
+        return { ...item, quantity: newQuantity }; // No change to price
       }
       return item;
     });
     setData(newData);
   };
-
+  
   const handleDecrement = (index) => {
     const newData = data.map((item, i) => {
       if (i === index) {
         const newQuantity = item.quantity - 1;
         if (newQuantity <= 0) {
-          // Remove product from Redux store
-          dispatch(removeProduct(item.id));
-          // Remove product from local state
+          dispatch(removeProduct(item.id)); // Remove from Redux if quantity is zero
           return null;
         }
-        const unitPrice = Number(item.price) / item.quantity;
-        const newPrice = unitPrice * newQuantity;
-        return { ...item, quantity: newQuantity, price: newPrice };
+        return { ...item, quantity: newQuantity }; // No change to price
       }
       return item;
-    }).filter(item => item !== null); // Filter out removed items
-
+    }).filter(item => item !== null);
+  
     setData(newData);
   };
-
-  // Calculate total and discount
+  
+  // Calculate total price based on quantity and unit price
   const calculateTotal = () => {
-    return data.reduce((acc, item) => acc + Number(item.price), 0);
+    return data.reduce((acc, item) => acc + Number(item.price * item.quantity), 0); // Total Price = unitPrice * quantity
   };
-
+  
+  // Calculate discount based on the total price
   const calculateDiscount = () => {
-    // Example: 10% discount on total
     return calculateTotal() * 0.10;
   };
+  
+
 
   return (
     <Box className="cart_table_wrapper">
@@ -72,7 +68,7 @@ export default function CartTable({ rows }) {
           <Box className="circle"></Box>
           <Box className="circle"></Box>
         </Box>
-        <TableContainer>
+         <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
@@ -100,9 +96,7 @@ export default function CartTable({ rows }) {
                   <TableCell>
                     <Box className="quantity">
                       <Button onClick={() => handleDecrement(index)} className='operator'><Box component="img" src={minus} alt="minus" /></Button>
-                      <Typography className='text_3'>
-                        {row.quantity}
-                      </Typography>
+                      <Typography className='text_3'>{row.quantity}</Typography>
                       <Button onClick={() => handleIncrement(index)} className='operator'><Box component="img" src={plus} alt="plus" /></Button>
                     </Box>
                   </TableCell>
@@ -113,34 +107,34 @@ export default function CartTable({ rows }) {
                       <Typography className='text_2'>{row.category}</Typography>
                     </Box>
                   </TableCell>
-                  <TableCell className='text_3 product_price' align='right'>&#8377;{Number(row.price)}</TableCell>
-                </TableRow>)
-
-              )) : (<TableRow>
-                <TableCell colSpan="5" className='empty_cart'>
+                  <TableCell className='text_3' align='right'>&#8377;{Number(row.price).toFixed(2)}</TableCell> {/* Unit price constant */}
+                  <TableCell className='text_3 product_price' align='right'>&#8377;{(row.price * row.quantity).toFixed(2)}</TableCell> {/* Total price = unitPrice * quantity */}
+                </TableRow>
+              ))) : (
+                <TableRow>
+                  <TableCell colSpan="6" className='empty_cart'>
                     <Typography className='label'>0 items added</Typography>
                     <Button2 text="Add Products" redirectTo={`../${owner}/products`} />
-                </TableCell>
-              </TableRow>)}
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
-            {
-              data.length>0 && <TableFooter>
-              <TableRow>
-                <TableCell colSpan={4} align="right">
-                  <Typography className='text_1'>Discount Applied:</Typography>
-                </TableCell>
-                <TableCell className='text_2'>- &#8377;{calculateDiscount().toFixed(0)}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell colSpan={4} align="right">
-                  <Typography className='text_1'>Total:</Typography>
-                </TableCell>
-                <TableCell className='text_2'>&#8377;{(calculateTotal() - calculateDiscount()).toFixed()}</TableCell>
-              </TableRow>
-            </TableFooter>
-
-            }
-            
+            {data.length > 0 && (
+              <TableFooter>
+                {/* <TableRow>
+                  <TableCell colSpan={5} align="right">
+                    <Typography className='text_1'>Discount Applied:</Typography>
+                  </TableCell>
+                  <TableCell className='text_2'>- &#8377;{calculateDiscount().toFixed(0)}</TableCell>
+                </TableRow> */}
+                <TableRow>
+                  <TableCell colSpan={5} align="right">
+                    <Typography className='text_1'>Total:</Typography>
+                  </TableCell>
+                  <TableCell className='text_2'>&#8377;{(calculateTotal() - calculateDiscount()).toFixed(2)}</TableCell>
+                </TableRow>
+              </TableFooter>
+            )}
           </Table>
         </TableContainer>
         <Box className="board_pins">
