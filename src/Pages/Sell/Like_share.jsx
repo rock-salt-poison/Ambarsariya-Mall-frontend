@@ -69,9 +69,9 @@ function Like_share() {
     };
 
     const share_type_data = [
-        {id:1, type:'Contacts', alt:"contacts", imgSrc:contacts_img},
-        {id:2, type:'Social Media', alt:"social-media", imgSrc:social_media_img},
-        {id:3, type:'Budget', alt:"budget", imgSrc:budget_img}
+        {id:1, type:'Contacts', alt:"contacts", imgSrc:contacts_img, linkTo:'https://contacts.google.com/', openInNewTab:true},
+        {id:2, type:'Social Media', alt:"social-media", imgSrc:social_media_img, linkTo:'../user'},
+        {id:3, type:'Budget', alt:"budget", imgSrc:budget_img, linkTo:`../${owner}/budget`}
     ]
 
     return (
@@ -180,7 +180,7 @@ function Like_share() {
                                 <Box className="card_img">
                                     <Box component="img" src={item.imgSrc} alt={item.alt} className='img'/>
                                 </Box>
-                                    <Link ><Typography className='title' variant='h3'>{item.type}
+                                    <Link to={item.linkTo} target={item.openInNewTab? '_blank':'_self'}><Typography className='title' variant='h3'>{item.type}
                                             <Box component="img" src={arrow_icon} alt="arrow"className='arrow_icon'/>
                                         </Typography></Link>
                             </Box>

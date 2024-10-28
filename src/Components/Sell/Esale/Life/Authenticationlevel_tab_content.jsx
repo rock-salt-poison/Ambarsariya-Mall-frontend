@@ -1,12 +1,18 @@
 import React from 'react'
 import { Box, Slider, Typography } from '@mui/material'
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
 function Authenticationlevel_tab_content({ title, communityData }) {
 
-    const marks = [
-        { value: 0, label: 'Start' },
-        { value: 1, label: 'Mid' },
-        { value: 2, label: 'End' }
+    const levels = [
+        { id: 0, label: 'Phone', icon:<TaskAltIcon className='radio checked'/> },
+        { id: 1, label: 'Name', icon:<TaskAltIcon className='radio checked'/> },
+        { id: 2, label: 'Aadhaar', icon:<RadioButtonUncheckedIcon className='radio'/> },
+        { id: 3, label: 'Location', icon:<RadioButtonUncheckedIcon className='radio'/> },
+        { id: 4, label: 'Bank Details', icon:<RadioButtonUncheckedIcon className='radio'/> },
+        { id: 5, label: 'Personal Video / Pic', icon:<TaskAltIcon className='radio checked'/> },
+        { id: 6, label: 'GST / MSME / PAN', icon:<RadioButtonUncheckedIcon className='radio'/> },
     ];
       
     const onSliderChange = (e, newValue, name) => {
@@ -18,19 +24,12 @@ function Authenticationlevel_tab_content({ title, communityData }) {
         <Box className="tab_content">
             <Typography className="title">{title}</Typography>
             <Box className="content">
-                <Box className="list">
-                    <Typography className='heading'>Authentication level</Typography>
-
-                    <Slider
-                        onChange={(e, newValue) => onSliderChange(e, newValue)}
-                        min={0}
-                        max={marks.length - 1}
-                        step={0.1}
-                        marks={marks}
-                        size={"large"}
-                        className='input_field' // Apply the custom className
-                    />
-                </Box>
+                {levels.map((level)=>{
+                    return  <Box className="list authentication_level" key={level.id}>
+                        <Typography className='heading'>{level.label}</Typography>
+                        {level.icon}                    
+                    </Box>
+                })}
             </Box>
         </Box>
     )

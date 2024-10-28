@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import stationary_bg_img from '../../Utils/images/Sell/merchant_details/stationary.webp';
@@ -9,6 +9,7 @@ import nehru_shoppping_complex_amritsar from '../../Utils/images/Sell/support/ne
 import trilium_mall_amritsar from '../../Utils/images/Sell/support/trilium_mall_amritsar.webp';
 import mall_road_amritsar from '../../Utils/images/Sell/support/mall_road_amritsar.webp';
 import hall_gate_amritsar from '../../Utils/images/Sell/support/hall_gate_amritsar.webp';
+import AutoCompleteSearchField from '../../Components/Products/AutoCompleteSearchField';
 
 const MerchantDetailsPage = () => {
   const { id } = useParams();
@@ -72,6 +73,16 @@ const MerchantDetailsPage = () => {
     }
   }
 
+  const [filteredData , setFilteredData] = useState(columns);
+
+  const handleFilter = (data) =>{
+    setFilteredData(data);
+  }
+
+  const data = filteredData ? filteredData : columns;
+
+  const suggestions=['Stationary','Textbook', 'Healthcare'];
+
   return (
     <Box 
       className="merchant_wrapper" 
@@ -85,7 +96,9 @@ const MerchantDetailsPage = () => {
           <Button2 text="Back" redirectTo="../support" />
         </Box>
         <Box className="container">
-          {columns.map((column, index) => (
+          <AutoCompleteSearchField data={columns} onFilter={handleFilter} placeholder="Products, Shops, Nearby Me..." suggestions={suggestions}/>
+
+          {data.map((column, index) => (
             <Link key={index} className="col-2" to={`../support/stationary`}>
               <Box className="sub_col_1">
                 <Box className="shop_details" >

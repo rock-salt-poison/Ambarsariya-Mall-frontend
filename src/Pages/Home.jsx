@@ -71,7 +71,7 @@ export default function Home() {
                     navigate('/AmbarsariyaMall/sell');
                 }
                 else if (btnsParentElement.classList.contains('serve')) {
-                    navigate(loggedIn ? '/AmbarsariyaMall/serve':'/AmbarsariyaMall/sell/login');
+                    navigate(loggedIn ? '/AmbarsariyaMall/serve':'/AmbarsariyaMall/serve/login');
                 }
             }, 1000);
         } else if (clockParentElement) {

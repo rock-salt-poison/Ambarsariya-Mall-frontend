@@ -66,7 +66,8 @@ function SellRoutes() {
       <Route path="esale/personal" element={<Esale_personal />} />
       <Route path="esale/professional" element={<Esale_professional />} /> 
       <Route path="shops" element={<ShopSearchPage />} />
-      <Route path=":owner/:action/budget" element={<Budget />} />
+      {/* <Route path=":owner/:action/budget" element={<Budget />} /> */}
+      <Route path=":owner/budget" element={<Budget />} />
       <Route path="esale/life" element={<Life />} />
       <Route path="esale/relations" element={<MemberRelations />} />
     </Routes>

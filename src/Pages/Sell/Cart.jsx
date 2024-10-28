@@ -8,7 +8,7 @@ import Button2 from '../../Components/Home/Button2';
 import pickup from '../../Utils/images/Sell/shop_details/pickup.svg';
 import delivery from '../../Utils/images/Sell/shop_details/delivery.webp';
 import home_visit from '../../Utils/images/Sell/shop_details/home_visit.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CardBoardPopup from '../../Components/CardBoardPopupComponents/CardBoardPopup';
 import SpecialOffer from '../../Components/Cart/SpecialOffer/SpecialOffer';
@@ -17,10 +17,12 @@ import PurchaseCoupon from '../../Components/Cart/PurchaseCoupon/PurchaseCoupon'
 import ServiceType from '../../Components/Cart/ServiceType/ServiceType';
 import Delivery from '../../Components/Cart/ServiceType/Delivery';
 import Visit from '../../Components/Cart/ServiceType/Visit';
+import CoHelper from '../../Components/Cart/CoHelper/CoHelper';
 
 function Cart() {
     const sampleRows = useSelector((state) => state.cart.selectedProducts);
     const [openPopup, setOpenPopup] = useState(null);
+    const navigate = useNavigate();
 
     const handleClose = () => {
         setOpenPopup(false);
@@ -29,12 +31,14 @@ function Cart() {
     const handleClick = (e, item) => {
         if(item.openPopup){
             setOpenPopup((prev)=>(prev===item.id ? null : item.id))
+        }else if(item.title === 'Become Member'){
+            setTimeout(()=>navigate('../grab'), 100);
         }
     };
 
     const offers = [
         { id: 1, title: 'Special Offers', popupContent:<SpecialOffer/>, cName:'special_offer_popup', openPopup:true},
-        { id: 2, title: 'Co-helpers', openPopup:false },
+        { id: 2, title: 'Co-helpers',popupContent:<CoHelper/>, cName:'co_helper_popup', openPopup:true },
         { id: 3, title: 'Prepaid / Postpaid',  popupContent:<PrepaidPostpaid/>, cName:'prepaid_postpaid_offer_popup', openPopup:true },
         { id: 4, title: 'Purchase coupons', popupContent:<PurchaseCoupon/>, cName:'purchase_coupon_offer_popup',openPopup:true },
         { id: 5, title: 'Become Member', openPopup:false },

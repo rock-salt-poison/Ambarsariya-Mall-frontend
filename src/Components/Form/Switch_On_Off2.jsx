@@ -70,7 +70,7 @@ export default function Switch_On_Off2() {
   return (
     <FormGroup>
       <FormControlLabel
-        control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+        control={<IOSSwitch sx={{ m: 1 }} defaultChecked={false} />}
       />
       
     </FormGroup>

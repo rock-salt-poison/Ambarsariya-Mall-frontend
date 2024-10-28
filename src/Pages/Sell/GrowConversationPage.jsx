@@ -9,6 +9,7 @@ import conversation_5 from '../../Utils/images/Sell/grow/conversation_5.svg'
 import conversation_6 from '../../Utils/images/Sell/grow/conversation_6.svg'
 import success_quote from '../../Utils/images/Sell/grow/success_quote.webp'
 import Logo from '../../Components/Logo';
+import { Link, useNavigate } from 'react-router-dom';
 
 function GrowConversationPage() {
 
@@ -21,12 +22,24 @@ function GrowConversationPage() {
         {id:6,src:conversation_6, alt:"Ambarsariya Mall" },
     ];
 
+    const navigate = useNavigate();
+
+    const handleClick = (e) => {
+        const target = e.target.closest('.heading');
+        if(target){
+            target.parentElement.classList.add('reduceSize3');
+
+            setTimeout(()=>{target.parentElement.classList.remove('reduceSize3')}, 300);
+            setTimeout(()=>{navigate('../')}, 600);
+        }
+    }
+
     return (
     <Box className="grow_conversation_wrapper" >
         <Box className="row">
             <Box className="col">
-                {<Logo/>}
-                    <Typography variant='h2' className='heading'> Book Your E-shop</Typography>
+                <Button2 text="Back" redirectTo="../" optionalcName='d-sm-none'/>
+                <Link onClick={(e)=>handleClick(e)}><Typography variant='h2' className='heading'> Book Your E-shop</Typography></Link>
                 <Button2 text="Next" redirectTo="../coupon-offering" optionalcName='d-sm-none'/>
             </Box>
 

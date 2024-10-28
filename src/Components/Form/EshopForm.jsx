@@ -185,7 +185,7 @@ const EshopForm = () => {
         {renderFormField('Name of the business :', 'business_name', 'text')}
         {renderFormField('Date of establishment :', 'date_of_establishment', 'date')}
         {renderFormField('USP Values (PDF) :', 'usp_values', 'file')}
-        {renderFormField('Product Sample :', 'product_samples', 'url', '', 'Live camera link')}
+        {renderFormField('Product Sample :', 'product_samples', 'url', '', 'Add gmeet link')}
         <Box className="form-group2">
         {renderFormField('Similar Options :', 'similar_options', 'select-check', categoryOptions, 'Select')}
         {renderFormField('Key players :', 'key_players', 'select-check', categoryOptions, 'Select')}

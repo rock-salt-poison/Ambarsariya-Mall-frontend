@@ -3840,7 +3840,63 @@ a {
     }
     .container {
       flex: 1;
-      align-self: center;
+      // align-self: center;
+
+      .MuiAutocomplete-root {
+        margin: 0 auto 20px;
+        width: 380px;
+        background-color: #81573de6;
+        border-radius: 80px;
+        box-shadow: 0px 0px 8px 2px #00000080;
+        border: 4px solid #81573de6;
+        position: relative;
+
+        &::after {
+          content: "";
+          border-radius: 80px;
+          @include full-absolute(0px, 0px, 0px, 0px);
+          box-shadow: inset 0px 0px 8px 2px rgba(0, 0, 0, 0.5019607843);
+          z-index: 0;
+        }
+
+        .MuiInputAdornment-root {
+          position: relative;
+          z-index: 1;
+          svg {
+            fill: $yellow;
+          }
+        }
+
+        .MuiAutocomplete-endAdornment {
+          // position: relative;
+          z-index: 1;
+          button {
+            svg {
+              fill: $light-yellow;
+            }
+          }
+        }
+
+        .MuiInputBase-root {
+          padding: 5px 12px;
+        }
+
+        .MuiInputBase-input {
+          padding: 0px;
+          @include homepage-buttons("Bobby-Jones-Soft", 20px, $yellow, "none");
+          @include hover-scale(1, 0s);
+          position: relative;
+          z-index: 1;
+
+          &::placeholder {
+            opacity: 1;
+          }
+        }
+        .MuiOutlinedInput-notchedOutline {
+          border: 0px;
+        }
+      }
+
 
       .col-2 {
         @include flex-center(row, flex-start);
@@ -4035,6 +4091,16 @@ a {
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width:560px){
+    .row{
+      .container{
+        .MuiAutocomplete-root{
+          width: 100%
         }
       }
     }
@@ -4241,13 +4307,14 @@ a {
             position: relative;
 
             .video_frame {
-              // width: 100%;
-              // height: 210px;
-              height: 280px;
+              height: 250px;
+              width: 310px;
+              filter: saturate(0.5);
             }
 
             .player-wrapper {
-              @include full-absolute(40px, 38px, 38px, 38px);
+              @include full-absolute(40px, 43px, 40px, 43px);
+              box-shadow: 0 0 4px 3px #000000d4;
             }
 
             .react-player {
@@ -4343,11 +4410,15 @@ a {
         18px
       );
 
-      .heading {
-        @include homepage-buttons("EFCO", 34px, $dark-yellow2, "none");
-        @include hover-scale(1, 0s);
-        -webkit-text-stroke: 0.8px solid $dark-yellow;
-        align-self: center;
+      a{
+        .heading {
+          @include homepage-buttons("EFCO", 34px, $dark-yellow2, "none");
+          // @include hover-scale(1, 0s);
+          -webkit-text-stroke: 0.8px solid $dark-yellow;
+          align-self: center;
+          transition: all .2s linear;
+        }
+        transition: all .2s linear;
       }
 
       &:first-child {
@@ -4987,7 +5058,7 @@ a {
 
                   .MuiButtonBase-root.MuiSwitch-switchBase.Mui-checked
                     + .MuiSwitch-track {
-                    background-color: #dfb4a8 !important;
+                    // background-color: #dfb4a8 ;
                     opacity: 0.6;
                   }
 
@@ -5865,9 +5936,25 @@ a {
           place-items: normal;
           flex-wrap: wrap;
           .avatar_container {
+            position: relative;
             flex: 0.9;
             .avatar {
               width: 100%;
+            }
+
+            .speedDialLink{
+              position: absolute;
+              top: -10px;
+              right: 7px;
+              button{
+                width: 35px;
+                height: 35px;
+                background-color: $dark-yellow2;
+                svg{
+                  width: 20px;
+                  fill: $light-yellow;
+                }
+              }
             }
           }
           .form_container {
@@ -5878,6 +5965,22 @@ a {
                 @include flex-center(column, flex-start);
                 gap: 10px;
                 place-items: normal;
+
+                #display-picture-upload, #background-picture-upload{
+                  display: none;
+                  & + label{
+                    display: none;
+                    & + .MuiTypography-body2{
+                      @include homepage-buttons(
+                      "Bobby-Jones-Soft",
+                      15px,
+                      $dark-yellow2,
+                      "none"
+                    );
+                    @include hover-scale(1, 0s);
+                    }
+                  }
+                }
 
                 .form-group-2 {
                   @include flex-center(row, center);
@@ -7949,12 +8052,16 @@ a {
         align-items: stretch;
 
         .subscribe_row {
-          @include flex-center(row, space-between);
-          flex-wrap: wrap;
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-template-rows:  auto auto;
           padding: 0 20px;
+          justify-content: space-between;
+          gap: 20px 30px;
 
           .subscribe_col {
             @include flex-center(column, center);
+          
             .text {
               @include homepage-buttons(
                 "Gladiola",
@@ -8003,7 +8110,7 @@ a {
           .subscribe_row {
             padding: 0px;
             justify-content: center;
-            flex-direction: column;
+            grid-template-columns: auto;
           }
         }
       }
@@ -14897,7 +15004,7 @@ body .MuiBackdrop-root {
                 line-height: 20px;
               }
 
-              &.share_level{
+              &.share_level, &.authentication_level{
                 flex-direction: row;
                 place-items: center;
                 align-self: stretch;
@@ -14905,6 +15012,17 @@ body .MuiBackdrop-root {
 
                 .MuiFormControlLabel-root{
                   margin: 0px;
+                }
+
+                .radio{
+                  // width: 50px;
+                  font-size: 30px;
+                  fill: $black;
+
+                  &.checked{
+                    fill: $green-3;
+                    filter: drop-shadow(0px 0px 3px hsla(336, 35%, 30%, 0.749));
+                  }
                 }
 
                 
@@ -16341,6 +16459,83 @@ input[readonly] {
         background-size: cover;
       }
     }
+  }
+
+  &.co_helper_popup{
+    .card_board_component{
+      @include background-center-no-repeat($coHelperBgImg);
+      background-size: cover;
+      background-position: bottom;
+      padding: 30px;
+      position: relative;
+    }
+
+    .content{
+      position: relative;
+      z-index: 1;
+      .content_body{
+        @include flex-center(column, space-between);
+        gap: 20px;
+
+        .title_container {
+          background-color: #5E9E8B;
+          border-radius: 10px;
+          padding: 8px 20px;
+
+          .title {
+            // background-color: $brown-4;
+            @include homepage-buttons("Bobby-Jones-Soft", 24px, $yellow, none);
+            @include hover-scale(1, 0s);
+            text-align: center;
+            text-shadow: 0px 4px 4px #00000040;
+          }
+        }
+
+        .body_container{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto auto auto auto auto;
+          gap: 15px 50px;
+          padding: 0 30px;
+
+          .list{
+            position: relative;
+            display: flex;
+            padding: 15px 25px;
+            transition: all .2s linear;
+            .list_bg{
+              @include full-absolute(0px,0px,0px,0px);
+              width: 100%;
+              height: 100%;
+              z-index: 0;
+            }
+            .list_title{
+              @include homepage-buttons("Bobby-Jones-Soft", 22px, $light-yellow, none);
+              // @include hover-scale(1, 0s);
+              line-height: 24px;
+              transition: all .2s linear;
+              text-align: center;
+              position: relative;
+              margin: 0 auto;
+              z-index: 1;
+              align-self: center;
+            }
+          }
+        }
+
+        @media (max-width: 990px){
+          .body_container{
+            grid-template-columns: 1fr;
+          }
+        }
+        @media (max-width:768px){
+          .body_container{
+            padding: 0px;
+          }
+        }
+      }
+    }
+
   }
 
   &.mou {

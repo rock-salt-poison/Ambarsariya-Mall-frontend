@@ -31,8 +31,9 @@ const BookEshopForm = () => {
     paidVersion: false,
     premiumVersion: false,
     username_otp: '',
-    merchant:'',
+    merchant:false,
     member_detail:'',
+    member_otp: '',
   };
 
   const [formData, setFormData] = useState(initialFormData);
@@ -40,12 +41,14 @@ const BookEshopForm = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const [showUsernameOtp, setShowUsernameOtp] = useState(false);
   const [showPhoneOtp, setShowPhoneOtp] = useState(false);
+  const [showMemberOtp, setShowMemberOtp] = useState(false);
 
   const navigate = useNavigate();
 
   // Simulated OTP for demonstration purposes
   const validUsernameOtp = '123456';
   const validPhoneOtp = '123456';
+  const validMemberOtp = '123456';
 
   const handleChange = (e) => {
     if (!e.target) return;
@@ -67,18 +70,19 @@ const BookEshopForm = () => {
     // }
   
     // Validate OTP fields
-    if ((name === 'phone1_otp' || name === 'phone2_otp' || name === 'username_otp') && !/^\d{0,6}$/.test(value)) {
+    if ((name === 'phone1_otp' || name === 'phone2_otp' || name === 'username_otp' || name === 'member_otp') && !/^\d{0,6}$/.test(value)) {
       return;
     }
 
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'checkbox' ? !!checked : value,
     });
 
     // Reset errors and error messages
     setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
     setErrorMessages((prevMessages) => ({ ...prevMessages, [name]: '' }));
+
   };
 
   const validateInitialForm = () => {
@@ -98,10 +102,14 @@ const BookEshopForm = () => {
       'sector',
       'onTime',
       'offTime',
-      'gst',
-      'pan_no',
-      'cin_no',
     ];
+
+    if (formData.paidVersion) {
+      requiredFields.push('gst', 'pan_no', 'cin_no');
+      if (formData.merchant) {
+        requiredFields.push('member_detail');
+      }
+    }
 
     requiredFields.forEach((field) => {
       if (!formData[field]) {
@@ -173,6 +181,15 @@ const BookEshopForm = () => {
       valid = false;
     }
 
+
+    if(formData.merchant){
+      if (formData.member_otp !== validMemberOtp) {
+        newErrors.member_otp = true;
+        newErrorMessages.member_otp = 'Invalid OTP';
+        valid = false;
+      }
+    }
+
     setErrors(newErrors);
     setErrorMessages(newErrorMessages);
     return valid;
@@ -180,6 +197,7 @@ const BookEshopForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const loggedIn = !!localStorage.getItem('access_token');
 
     if (!showUsernameOtp) {
       // Validate initial form fields
@@ -187,16 +205,19 @@ const BookEshopForm = () => {
         // Show OTP fields if initial validation is successful
         setShowUsernameOtp(true);
         setShowPhoneOtp(true);
+        setShowMemberOtp(true);
       }
     } else {
       // Validate OTP fields
       if (validateOtp()) {
-        // Submit form data if OTP is correct
-        console.log('Form Data:', formData);
-        if (formData.premiumVersion) {
-          navigate('../login'); // Redirect to signup page if premiumVersion is true
-        } else {
-          navigate('../login');
+        if(validateInitialForm()){
+          // Submit form data if OTP is correct
+          console.log('Form Data:', formData);
+          if (formData.premiumVersion) {
+            setTimeout(()=>{loggedIn? navigate('../eshop') : navigate('../login')},100); 
+          } else {
+            setTimeout(()=>{loggedIn? navigate('../eshop') : navigate('../login')},100); 
+          }
         }
       }
     }
@@ -279,14 +300,16 @@ const BookEshopForm = () => {
           {renderFormField('MSME :', 'msme', 'text')}
         </Box>
         <Box className="form-group2">
-          {renderFormField('Pan No.', 'pan_number', 'text')}
-          {renderFormField('CIN No.', 'cin_number', 'text')}
+          {renderFormField('Pan No.', 'pan_no', 'text')}
+          {renderFormField('CIN No.', 'cin_no', 'text')}
         </Box>
 
         <Box className="form-group-switch">
           {renderFormField('Be a merchant', 'merchant', 'switch')}
         </Box>
-          {formData.merchant && renderFormField('', 'member_detail', 'text', '', 'Member username or Phone no.')}
+          {formData.merchant && 
+          renderFormField('', 'member_detail', 'text', '', 'Member username or Phone no.')}
+          {formData.merchant && showMemberOtp && renderFormField('Member OTP:', 'member_otp', 'text')}
         </>
         }
         

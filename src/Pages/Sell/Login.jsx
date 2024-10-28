@@ -13,10 +13,10 @@ function Login() {
                 <Button2 text="Back" redirectTo={-1} />
             </Box>
             <Box className="col">
-                <LoginPageCard title="Sell" imgSrc={peacock_img} redirectTo="eshop"/>
+                <LoginPageCard title="Sell" imgSrc={peacock_img} redirectTo="../AmbarsariyaMall/sell/eshop"/>
             </Box>
             <Box className="col">
-                <LoginPageCard title="Buy" imgSrc={lion_img} redirectTo="esale"/>
+                <LoginPageCard title="Buy" imgSrc={lion_img} redirectTo="../AmbarsariyaMall/sell/esale"/>
             </Box>
         </Box>
     </Box>

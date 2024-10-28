@@ -36,6 +36,7 @@ import CustomerRecords from '../Pages/Serve/CustomerRecords';
 import MemberGroupCreation from '../Pages/Serve/MemberGroupCreation';
 import SalesPipeline from '../Pages/Serve/SalesPipeline';
 import MarketingCampaigns from '../Pages/Serve/MarketingCampaigns';
+import Login from '../Pages/Sell/Login';
 
 
 export default function ServeRoutes() {
@@ -63,6 +64,7 @@ export default function ServeRoutes() {
    return (
       <Routes>
          <Route path="/" element={<Serve />} />
+         <Route path="login" element={<Login />} />
          <Route path="/emotional" element={<Emotional />} />
          <Route path="/unexpected" element={<Unexpected />} />
          <Route path="/emotional/campaign" element={checkUser === 'merchant' ? <MerchantCampaign /> : <Campaign />} />

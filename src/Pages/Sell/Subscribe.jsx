@@ -6,6 +6,13 @@ import { Link, useParams } from 'react-router-dom';
 
 function Subscribe() {
     const { owner } = useParams();
+
+    const data = [
+        {id:1, title:'Monthly', linkTo: `../${owner}/mou`},
+        {id:2, title:'Daily', linkTo: `../${owner}/mou`},
+        {id:3, title:'Weekly', linkTo: `../${owner}/mou`},
+        {id:4, title:'Edit', linkTo: `../${owner}/mou`},
+    ]
     
     return (
         <Box className="subscribe_main_wrapper">
@@ -32,38 +39,15 @@ function Subscribe() {
                         </Box>
                         
                         <Box className="subscribe_row">
-                            <Link className="subscribe_col" to={`../${owner}/monthly/budget`}>
+                            {data.map((data)=>{
+                                return  <Link className="subscribe_col" key={data.id} to={data.linkTo}>
                                 <Typography className="text">open</Typography>
                                 <Box className="title_container">
                                     <Box component="img" src={tbody_vector}/>
-                                    <Typography className="title">Monthly</Typography>
+                                    <Typography className="title">{data.title}</Typography>
                                 </Box>
                             </Link>
-
-                            <Link className="subscribe_col" to={`../${owner}/daily/budget`}>
-                                <Typography className="text">open</Typography>
-                                <Box className="title_container">
-                                    <Box component="img" src={tbody_vector}/>
-                                    <Typography className="title">Daily</Typography>
-                                </Box>
-                            </Link>
-                        </Box>
-                        <Box className="subscribe_row" >
-                            <Link className="subscribe_col" to={`../${owner}/weekly/budget`}>
-                                <Typography className="text">open</Typography>
-                                <Box className="title_container">
-                                    <Box component="img" src={tbody_vector}/>
-                                    <Typography className="title">Weekly</Typography>
-                                </Box>
-                            </Link>
-
-                            <Link className="subscribe_col" to={`../${owner}/edit/budget`}>
-                                <Typography className="text">open</Typography>
-                                <Box className="title_container">
-                                    <Box component="img" src={tbody_vector}/>
-                                    <Typography className="title">Edit</Typography>
-                                </Box>
-                            </Link>
+                            })}
                         </Box>
 
                         <Box className="board_pins">

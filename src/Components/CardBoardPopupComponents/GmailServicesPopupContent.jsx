@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import Switch_On_Off from '../Form/Switch_On_Off';
 import Switch_On_Off2 from '../Form/Switch_On_Off2';
 
 function GmailServicesPopupContent(props) {
-  const [switchChecked, setSwitchChecked] = useState(false);
+  const [switchChecked, setSwitchChecked] = useState(true);
 
   const handleSwitchChange = (e) => {
     setSwitchChecked(e.target.checked);  // Update the state based on the switch change

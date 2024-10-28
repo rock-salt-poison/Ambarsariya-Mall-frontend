@@ -12,7 +12,7 @@ function Community_tab_content({ title, communityData }) {
                             {data.heading}
                         </Typography>
                         <ul className='list_container'>
-                            {data.topics.map((topic) => (<li className='list_item'>{topic}</li>))}
+                            {data.topics.map((topic, index) => (<li className='list_item' key={index}>{topic}</li>))}
                         </ul>
                     </Box>
                 })}

@@ -12,7 +12,7 @@ import personal_care_img from '../../Utils/images/Sell/esale/personal_care.svg'
 import emotional_care_img from '../../Utils/images/Sell/esale/emotional.svg'
 import professional_gif from '../../Utils/gifs/professional.gif'
 import bg_img from '../../Utils/images/Sell/esale/bg_img.png'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const data = [
     { id: 1, title: "Emotional", imgSrc: emotional_care_img, linkTo:'emotional' },
@@ -27,7 +27,10 @@ const imgData = [
 ]
 
 
+
+
 function Esale() {
+    const { owner } = useParams();
     return (
         <Box className="border">
             <Box className="esale_wrapper">
@@ -77,7 +80,7 @@ function Esale() {
                                 </Box>
                             </Box>
                             <Box className="sub_col">
-                                <Link to='../shops'>
+                                <Link to={`../${owner}/budget`}>
                                     <Box component="img" src={gif_1} className='shopping_gif' alt='shopping' />
                                 </Link>
                             </Box>

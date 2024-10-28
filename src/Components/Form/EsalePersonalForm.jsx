@@ -6,8 +6,7 @@ import form_field_bg_dark from '../../Utils/images/Sell/esale/personal/form_fiel
 import { Link } from 'react-router-dom';
 
 function EsalePersonalForm({
-    id, label, type, name, value, onChange, placeholder, readOnly, maxLength, dialogErrors,error, tooltip, onFileUpload, 
-    fileName, showSpeedDial, showTooltip, showDialog, dialogFields, onDialogSubmit, handleDialogChange, addmoreButton, handleAddMoreButton
+    id, label, type, name, value, onChange, placeholder, readOnly, maxLength, dialogErrors,error, tooltip, onFileUpload, fileName, showSpeedDial, showTooltip, showDialog, dialogFields, onDialogSubmit, handleDialogChange, addmoreButton, handleAddMoreButton
 }) {
     const [isSpeedDialVisible, setIsSpeedDialVisible] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
