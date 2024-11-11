@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Box } from '@mui/material';
 import FormField from './FormField'; 
 import { useNavigate } from 'react-router-dom';
+import { updateEshopData } from '../../API/fetchExpressAPI'
 
 const EshopForm = () => {
   const initialFormData = {
@@ -11,9 +12,9 @@ const EshopForm = () => {
     product_samples: '',
     similar_options: '',
     cost_sensitivity: 0,
-    daily_walkin: '',
-    parking_availability: '',
-    category: '',
+    daily_walkin: 0,
+    parking_availability: 0,
+    category: 0,
     products: '',
     advt_video:'', 
     key_players:'',
@@ -99,15 +100,51 @@ const EshopForm = () => {
     return valid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate the form
     if (validate()) {
-      console.log('Form Data:', formData);
-      setTimeout(()=>{
-        navigate('../shop');
-      },1000)
+      
+      // Prepare the updated post data
+      const updatedPostData = {
+        business_name: formData.business_name,
+        date_of_establishment: formData.date_of_establishment,
+        usp_values: "link", // Placeholder link, make sure to replace with actual URL if needed
+        product_samples: formData.product_samples,
+        similar_options: formData.similar_options,
+        cost_sensitivity: formData.cost_sensitivity,
+        daily_walkin: formData.daily_walkin,
+        parking_availability: formData.parking_availability,
+        category: 1, // Hardcoded category, make sure to replace if needed
+        advt_video: "link", // Placeholder, replace as needed
+        key_players: formData.key_players
+      };
+  
+      console.log(updatedPostData)
+      // Get the shopAccessToken (either from localStorage or wherever it's stored)
+      const shopAccessToken = localStorage.getItem('shopAccessToken');
+      
+      if (shopAccessToken) {
+        try {
+          // Call the function to update e-shop data
+         const response = await updateEshopData(updatedPostData, shopAccessToken);
+          console.log("response : ", response.data);
+          console.log('Form Data:', formData);
+  
+          // Navigate to the shop page after a successful submission
+          setTimeout(() => {
+            navigate('../shop');
+          }, 1000);
+        } catch (error) {
+          console.error("Error updating e-shop data:", error);
+        }
+      } else {
+        console.error("Shop access token not found.");
+      }
     }
   };
+  
 
   const categoryOptions = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 

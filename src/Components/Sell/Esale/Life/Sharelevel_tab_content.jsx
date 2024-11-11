@@ -8,6 +8,9 @@ function Sharelevel_tab_content({ title, communityData }) {
         {id:1, title:'Emotional'},
         {id:2, title:'Personal'},
         {id:3, title:'Professional'},
+        {id:4, title:'Community'},
+        {id:5, title:'Relations'},
+        {id:6, title:'Locations'},
     ];
 
     const [checked, setChecked] = useState(false);

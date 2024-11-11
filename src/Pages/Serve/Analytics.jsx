@@ -8,17 +8,26 @@ import overheads from '../../Utils/images/Serve/emotional/analytics/overheads.we
 import stock_alarms from '../../Utils/images/Serve/emotional/analytics/stock-alarms.webp';
 import market_price from '../../Utils/images/Serve/emotional/analytics/market_price.webp';
 import Header from '../../Components/Serve/SupplyChain/Header';
+import { useNavigate } from 'react-router-dom';
 
 function Analytics() {
 
+    const navigate = useNavigate();
+
     const buttonData=[
-        {id:1, title:'Return on investment', imgSrc:return_on_investment, alt:'return on investment'},
-        {id:2, title:'Forecast', imgSrc:forecast, alt:'forecast'},
-        {id:3, title:'Overheads', imgSrc:overheads, alt:'overheads'},
-        {id:4, title:'Forecast market price ', imgSrc:forecast, alt:'forecast market price'},
-        {id:5, title:'Stock Alarms', imgSrc:stock_alarms, alt:'stock alarms'},
-        {id:6, title:'Market Price', imgSrc:market_price, alt:'market price'},
-    ]
+        {id:1, title:'Return on investment', imgSrc:return_on_investment, alt:'return on investment', linkTo:''},
+        {id:2, title:'Forecast', imgSrc:forecast, alt:'forecast', linkTo:''},
+        {id:3, title:'Overheads', imgSrc:overheads, alt:'overheads', linkTo:'overheads'},
+        {id:4, title:'Forecast market price ', imgSrc:forecast, alt:'forecast market price', linkTo:'forecast-market-price'},
+        {id:5, title:'Stock Alarms', imgSrc:stock_alarms, alt:'stock alarms', linkTo:'stock-alarm'},
+        {id:6, title:'Market Price', imgSrc:market_price, alt:'market price', linkTo:'market-price'},
+    ];
+
+    const handleClick = (e,  redirectTo) => {
+        if(e.target){
+            setTimeout(()=> {navigate(redirectTo)}, 100)
+        }
+    }
 
   return (
     <Box className="analytics_wrapper">
@@ -30,7 +39,7 @@ function Analytics() {
                         return <Box className="card" key={item.id}>
                             <Box className="card_img" component="img" src={item.imgSrc} alt={item.alt}></Box>
                             <Box className="card_button">
-                                <Button className="btn">{item.title}</Button>
+                                <Button className="btn" onClick={(e)=> handleClick(e, item.linkTo)}>{item.title}</Button>
                             </Box>
                         </Box>
                     })}

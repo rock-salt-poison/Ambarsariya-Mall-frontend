@@ -18,7 +18,8 @@ import Button2 from "../../Components/Home/Button2";
 import CustomerInformation_Popup from "../../Components/Serve/FinancialManagement/AccountsReceivable/CustomerInformation/CustomerInformation_Popup";
 import Invoices_Popup from "../../Components/Serve/FinancialManagement/AccountsReceivable/Invoices/Invoices_Popup";
 import Sales_Popup from "../../Components/Serve/FinancialManagement/AccountsReceivable/SalesOrderPayment/Sales_Popup";
-import AccountsReceivableLedger_Popup from "../../Components/Serve/FinancialManagement/AccountsReceivable/AccountsReceivableLedger/AccountsReceivableLedger_Popup";
+import AgingOfReceivableLedger_Popup from "../../Components/Serve/FinancialManagement/AccountsReceivable/AgingOfReceivableLedger/AgingOfReceivableLedger_Popup";
+import AccountsReceivableLedger_PopupContent from "../../Components/Serve/FinancialManagement/AccountsReceivable/AccountsReceivableLedger/AccountsReceivableLedger_PopupContent";
 
 function Accounts_receivable() {
   const cards_data = [
@@ -48,14 +49,16 @@ function Accounts_receivable() {
       id: 4,
       imgSrc: accounts_receivable_ledger,
       title: "Accounts Receivable Ledger",
-      popupcontent: <AccountsReceivableLedger_Popup />,
+      popupcontent: <AccountsReceivableLedger_PopupContent />,
       texturedSheet: true,
       iconSrc: accounts_receivable_ledger,
     },
     { id: 5, 
       imgSrc: aging_of_receivable, 
       title: "Aging of Receivable", 
-      
+      popupcontent: <AgingOfReceivableLedger_Popup />,
+      texturedSheet: true,
+      iconSrc: aging_of_receivable,
     },
     {
       id: 6,

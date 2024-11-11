@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Box, Typography } from '@mui/material';
 import FormField from '../Form/FormField'; 
 import { useNavigate } from 'react-router-dom';
+import {postEshop, fetchDomains, fetchDomainSectors, fetchSectors, getShopUserData} from '../../API/fetchExpressAPI'
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken, setTokenValid } from '../../store/authSlice';
+
 
 const BookEshopForm = () => {
   const initialFormData = {
@@ -15,9 +19,9 @@ const BookEshopForm = () => {
     phone1_otp: '',
     phone2: '',
     phone2_otp: '',
-    domain: '',
+    domain:0,
     domain_create: '',
-    sector: '',
+    sector:0,
     sector_create: '',
     onTime: '',
     offTime: '',
@@ -42,6 +46,9 @@ const BookEshopForm = () => {
   const [showUsernameOtp, setShowUsernameOtp] = useState(false);
   const [showPhoneOtp, setShowPhoneOtp] = useState(false);
   const [showMemberOtp, setShowMemberOtp] = useState(false);
+  const [user_type, set_user_type] = useState('shop');
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.shopAccessToken);
 
   const navigate = useNavigate();
 
@@ -50,46 +57,123 @@ const BookEshopForm = () => {
   const validPhoneOtp = '123456';
   const validMemberOtp = '123456';
 
-  const handleChange = (e) => {
+  const fetchUserAndShopData = async (shop_access_token) => {
+    const response = await getShopUserData(shop_access_token);
+    if(response){
+      const data = response[0];
+      
+      setFormData({
+        ...formData,
+        username: data.username || '',
+        password: data.password || '',
+        confirm_password: data.password || '',
+        title: data.title || '',
+        fullName: data.full_name || '',
+        phone1: data.phone_no_1 || '',
+        phone2: data.phone_no_2 || '',
+        address: data.address || '',
+        domain: data.domain_name || 0,
+        sector: data.sector_name || 0,
+        onTime: data.ontime || 0,
+        offTime: data.offtime || 0,
+        pickup: data.type_of_service.includes("Pickup") || false,
+        delivery: data.type_of_service.includes("Delivery") || false,
+        homeVisit: data.type_of_service.includes("Home Visit") || false,
+        gst: data.gst || '',
+        msme: data.msme || '',
+        pan_no: data.pan_no || '',
+        cin_no: data.cin_no || '',
+        paidVersion: data.paid_version || false,
+        premiumVersion: data.premium_service || false,
+        merchant: data.is_merchant || false,
+        member_detail: data.member_username_or_phone_no || ''
+      });
+    }
+  }
+
+  useEffect(()=>{
+    const getDomains = async () => {
+      try {
+        const resp = await fetchDomains();
+        const domains = resp.map((data)=>data.domain_name);
+        setDomains(['Create', ...domains]);
+      } catch (error) {
+        console.error('Error fetching domains:', error);
+      }
+    }
+    getDomains()
+    if(token){
+      fetchUserAndShopData(token);
+    }
+  },[token]);
+
+  const handleChange = async (e) => {
     if (!e.target) return;
     const { name, value, type, checked } = e.target;
-
-    // if (name === 'phone1' || name === 'phone2') {
-    //   // Remove all non-numeric characters except '+'
-    //   const cleanValue = value.replace(/[^0-9]/g, '');
-    //   // Format as +91 followed by 10 digits
-    //   let formattedValue = '+91';
-    //   if (cleanValue.length > 0) {
-    //     formattedValue += cleanValue.substring(0, 10); // Only show first 10 digits
-    //   }
-    //   setFormData({
-    //     ...formData,
-    //     [name]: formattedValue,
-    //   });
-    //   return;
-    // }
+  
+    if (name === 'domain') {
+      try {
+        // Fetch domains and find the selected domain
+        const domains = await fetchDomains();
+        const selectedDomain = domains.find((val) => val.domain_name === value);
+  
+        // Prepare the sectors list based on the selected domain
+        let sectors = [];
+        if (selectedDomain) {
+          sectors = (await fetchDomainSectors(selectedDomain.domain_id)).map((data) => data.sector_name);
+          setFormData((prevData) => ({
+            ...prevData,
+            domain: selectedDomain.domain_id, // Set domain_id
+            sector: 0, // Reset sector field to default value
+          }));
+        }
+  
+        // Add 'Create' to the list of sectors and update the formData state
+        setSectors(['Create', ...sectors]);
+  
+      } catch (error) {
+        console.error('Error fetching sectors:', error);
+      }
+    }
+  
+    // Handle sector change
+    if (name === 'sector') {
+      try {
+        const selectedSector = (await fetchSectors()).find((val) => val.sector_name === value);
+  
+        if (selectedSector) {
+          setFormData((prevData) => ({
+            ...prevData,
+            sector: selectedSector.sector_id, // Update sector_id in form data
+          }));
+        }
+      } catch (error) {
+        console.error('Error fetching sectors:', error);
+      }
+    }
   
     // Validate OTP fields
     if ((name === 'phone1_otp' || name === 'phone2_otp' || name === 'username_otp' || name === 'member_otp') && !/^\d{0,6}$/.test(value)) {
       return;
     }
-
+  
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? !!checked : value,
     });
-
+  
     // Reset errors and error messages
     setErrors((prevErrors) => ({ ...prevErrors, [name]: false }));
     setErrorMessages((prevMessages) => ({ ...prevMessages, [name]: '' }));
-
   };
+  
+  
+  // console.log((formData.phone2).length)
 
   const validateInitialForm = () => {
     let valid = true;
     const newErrors = {};
     const newErrorMessages = {};
-
     const requiredFields = [
       'username',
       'password',
@@ -97,7 +181,6 @@ const BookEshopForm = () => {
       'fullName',
       'address',
       'phone1',
-      'phone2',
       'domain',
       'sector',
       'onTime',
@@ -126,17 +209,34 @@ const BookEshopForm = () => {
       valid = false;
     }
 
-    // const phonePattern = /^\+91 \d{10}$/;
-    // if (!phonePattern.test(formData.phone1)) {
-    //   newErrors.phone1 = true;
-    //   newErrorMessages.phone1 = 'Phone No. 1 must be +91 followed by 10 digits';
-    //   valid = false;
-    // }
-  
-    if (formData.phone1 === formData.phone2) {
-      newErrors.phone2 = true;
-      newErrorMessages.phone2 = 'Phone No. 2 must be unique';
+    const passwordPattern = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    if (!passwordPattern.test(formData.password)) {
+      newErrors.password = true;
+      newErrorMessages.password = 'Password must be at least 8 characters long and include a special character';
       valid = false;
+    }
+
+
+    const phonePattern = /^\+91\s\d{5}-\d{5}$/;
+    if (!phonePattern.test(formData.phone1)) {
+      newErrors.phone1 = true;
+      newErrorMessages.phone1 = 'Phone No. 1 must be +91 followed by 10 digits';
+      valid = false;
+    }
+
+    // Only validate phone2 if it's filled out
+    if (formData.phone2 && !phonePattern.test(formData.phone2)) {
+      newErrors.phone2 = true;
+      newErrorMessages.phone2 = 'Phone No. 2 must be +91 followed by 10 digits';
+      valid = false;
+    }
+
+    if((formData.phone2).length>3){
+      if (formData.phone1 === formData.phone2) {
+        newErrors.phone2 = true;
+        newErrorMessages.phone2 = 'Phone No. 2 must be unique';
+        valid = false;
+      }
     }
   
     // if (!phonePattern.test(formData.phone2)) {
@@ -175,10 +275,12 @@ const BookEshopForm = () => {
       valid = false;
     }
 
-    if (formData.phone2_otp !== validPhoneOtp) {
-      newErrors.phone2_otp = true;
-      newErrorMessages.phone2_otp = 'Invalid OTP for Phone No. 2';
-      valid = false;
+    if(formData.phone2){
+      if (formData.phone2_otp !== validPhoneOtp) {
+        newErrors.phone2_otp = true;
+        newErrorMessages.phone2_otp = 'Invalid OTP for Phone No. 2';
+        valid = false;
+      }
     }
 
 
@@ -188,6 +290,9 @@ const BookEshopForm = () => {
         newErrorMessages.member_otp = 'Invalid OTP';
         valid = false;
       }
+      if(formData.member_otp == validMemberOtp){
+        set_user_type('shop');
+      }
     }
 
     setErrors(newErrors);
@@ -195,10 +300,10 @@ const BookEshopForm = () => {
     return valid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const loggedIn = !!localStorage.getItem('access_token');
-
+  
     if (!showUsernameOtp) {
       // Validate initial form fields
       if (validateInitialForm()) {
@@ -210,22 +315,83 @@ const BookEshopForm = () => {
     } else {
       // Validate OTP fields
       if (validateOtp()) {
-        if(validateInitialForm()){
-          // Submit form data if OTP is correct
-          console.log('Form Data:', formData);
-          if (formData.premiumVersion) {
-            setTimeout(()=>{loggedIn? navigate('../eshop') : navigate('../login')},100); 
-          } else {
-            setTimeout(()=>{loggedIn? navigate('../eshop') : navigate('../login')},100); 
+        if (validateInitialForm()) {
+          try {
+            const selectedDomain = (await fetchDomains()).find(domain => domain.domain_name === formData.domain);
+            const selectedSector = (await fetchSectors()).find(sector => sector.sector_name === formData.sector);
+  
+            const postData = {
+              title: formData.title,
+              fullName: formData.fullName,
+              username: formData.username,
+              password: formData.password,
+              address: formData.address,
+              phone1: formData.phone1,
+              domain: selectedDomain?.domain_id,
+              sector: selectedSector?.sector_id,
+              created_domain: formData.domain_create,
+              created_sector: formData.sector_create,
+              onTime: formData.onTime,
+              offTime: formData.offTime,
+              paidVersion: formData.paidVersion,
+              merchant: formData.merchant,
+              pickup: formData.pickup,
+              homeVisit: formData.homeVisit,
+              delivery: formData.delivery,
+              user_type: user_type,
+              premiumVersion: formData.premiumVersion,
+  
+              // Add phone2 if present
+              ...(formData.phone2 && { phone2: formData.phone2 }),
+  
+              // Add paid version details if applicable
+              ...(formData.paidVersion && {
+                gst: formData.gst,
+                pan_no: formData.pan_no,
+                cin_no: formData.cin_no,
+                ...(formData.msme && { msme: formData.msme }),
+              }),
+  
+              // Add member detail if paid version and merchant are true
+              ...(formData.paidVersion && formData.merchant && {
+                member_detail: formData.member_detail,
+              }),
+            };
+  
+            const response = await postEshop(postData);
+  
+            // Store the shopAccessToken in localStorage
+            if (response) {
+              const shop_access_token = response.shop_access_token;
+              dispatch(setToken(shop_access_token));
+
+              localStorage.setItem('shopAccessToken', shop_access_token);
+              
+
+            }
+  
+            console.log('Form Data:', formData);
+            if (formData.premiumVersion) {
+              setTimeout(() => {
+                loggedIn ? navigate('../eshop') : navigate('../login');
+              }, 100);
+            } else {
+              setTimeout(() => {
+                loggedIn ? navigate('../eshop') : navigate('../login');
+              }, 100);
+            }
+          } catch (error) {
+            console.error("Error submitting form:", error);
           }
         }
       }
     }
   };
+  
 
-  const domainOptions = ['Create', 'Education', 'Healthcare', 'Finance'];
-  const sectorOptions = ['Create', 'Education', 'Healthcare', 'Finance'];
-  const titleOptions = ['Mr.', 'Ms.', 'Mrs.', 'Dr.', 'Prof.'];
+  const [domains, setDomains] = useState([]); 
+  const [sectors, setSectors] = useState([]);
+  const titleOptions = ['Mr.', 'Ms.', 'Mrs.'];
 
   const renderFormField = (label, name, type, options = [], placeholder = '', additionalProps = {}) => (
     <FormField
@@ -267,16 +433,16 @@ const BookEshopForm = () => {
           </Box>
           <Box className="form-subgroup">
             {renderFormField('Phone No. 2:', 'phone2', 'phone_number', [], '', { maxLength: 10 })}
-            {showPhoneOtp && renderFormField('OTP for Phone No. 2:', 'phone2_otp', 'text')}
+            {formData.phone2 && showPhoneOtp && renderFormField('OTP for Phone No. 2:', 'phone2_otp', 'text')}
           </Box>
         </Box>
         <Box className="form-group2">
           <Box className="form-subgroup">
-            {renderFormField('Domain :', 'domain', 'select', domainOptions, 'Choose or create')}
+            {renderFormField('Domain :', 'domain', 'select', domains, 'Choose or create')}
             {formData.domain === 'Create' && renderFormField('Custom Domain:', 'domain_create', 'text')}
           </Box>
           <Box className="form-subgroup">
-            {renderFormField('Sector :', 'sector', 'select', sectorOptions, 'Choose or create')}
+            {renderFormField('Sector :', 'sector', 'select', sectors, 'Choose or create')}
             {formData.sector === 'Create' && renderFormField('Custom Sector:', 'sector_create', 'text')}
           </Box>
         </Box>

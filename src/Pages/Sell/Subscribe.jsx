@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import tbody_vector from '../../Utils/images/Sell/products/tbody_vector.webp';
 import Button2 from '../../Components/Home/Button2';
 import { Link, useParams } from 'react-router-dom';
+import CardBoardPopup from '../../Components/CardBoardPopupComponents/CardBoardPopup';
+import SubscriptionPopupContent from '../../Components/CouponOffering/SubscriptionPopupContent';
+import SpecialOffer from '../../Components/Cart/SpecialOffer/SpecialOffer';
 
 function Subscribe() {
     const { owner } = useParams();
+    
+    const [ openPopup, setOpenPopup]= useState(null);
+
+    const handleClose = () => {
+        setOpenPopup(false);
+    }
+
+    const handleClick = (e, id) => {
+        setOpenPopup((prev)=>prev === id ? null : id);
+    }
 
     const data = [
-        {id:1, title:'Monthly', linkTo: `../${owner}/mou`},
-        {id:2, title:'Daily', linkTo: `../${owner}/mou`},
-        {id:3, title:'Weekly', linkTo: `../${owner}/mou`},
-        {id:4, title:'Edit', linkTo: `../${owner}/mou`},
+        {id:1, title:'Monthly', },
+        {id:2, title:'Daily',},
+        {id:3, title:'Weekly',},
+        {id:4, title:'Edit',},
     ]
-    
+    // linkTo: `../${owner}/monthly/budget`
     return (
         <Box className="subscribe_main_wrapper">
             <Box className="row">
@@ -40,13 +53,20 @@ function Subscribe() {
                         
                         <Box className="subscribe_row">
                             {data.map((data)=>{
-                                return  <Link className="subscribe_col" key={data.id} to={data.linkTo}>
+                                return  <React.Fragment key={data.id}><Link className="subscribe_col" onClick={(e)=>{handleClick(e, data.id)}}>
                                 <Typography className="text">open</Typography>
                                 <Box className="title_container">
                                     <Box component="img" src={tbody_vector}/>
                                     <Typography className="title">{data.title}</Typography>
                                 </Box>
                             </Link>
+                                <CardBoardPopup open={openPopup === data.id} handleClose={handleClose} body_content={<SpecialOffer/>}
+                                
+                                customPopup={true}
+                                optionalCName='special_offer_popup'
+                                />
+
+                            </React.Fragment>
                             })}
                         </Box>
 

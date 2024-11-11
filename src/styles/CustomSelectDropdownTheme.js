@@ -40,6 +40,7 @@ const createCustomTheme = (themeProps) => {
           root: {
             fontFamily: 'var(--Bobby-Jones-Soft) !important',
             color: `${textColor ? textColor : 'var(--text-color)'}`,
+            whiteSpace:'normal',
             '&.Mui-selected': {
               backgroundColor: `${selectedListItemBgColor ? selectedListItemBgColor : 'var(--selected-bg-color)'}`,
               '&:hover': {

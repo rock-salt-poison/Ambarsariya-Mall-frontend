@@ -3,7 +3,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button2 from '../../Home/Button2'
 
-function Header({ icon_1, icon_2, title, span_value, icon_1_link, icon_2_link, back_btn_link, next_btn_link, title_container, heading_with_bg, redirectTo }) {
+function Header({ icon_1, icon_2, title, span_value, icon_1_link, icon_2_link, back_btn_link, next_btn_link, title_container, heading_with_bg, redirectTo, iconWithHeading }) {
 
   const navigate = useNavigate();
   
@@ -25,6 +25,7 @@ function Header({ icon_1, icon_2, title, span_value, icon_1_link, icon_2_link, b
       {title_container ?
         <Box className="title_container">
             <Link onClick={handleRedirect}>
+            {iconWithHeading && <Box component="img" src={iconWithHeading} className='icon' alt="icon"/>}
               <Typography className="title">{title}</Typography>
             </Link>
         </Box>

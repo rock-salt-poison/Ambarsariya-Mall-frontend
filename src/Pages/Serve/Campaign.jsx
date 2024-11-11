@@ -10,8 +10,8 @@ import icon_1 from '../../Utils/images/Serve/emotional/campaign/icon_1.svg';
 import icon_2 from '../../Utils/images/Serve/emotional/campaign/icon_2.svg';
 
 const more_options_data = [
-    { id: 1, iconSrc: job_icon, redirect_to: 'job', alt: 'Job' },
-    { id: 2, iconSrc: community_network_icon, redirect_to: 'community', alt: 'community network' },
+    { id: 1, iconSrc: job_icon, redirect_to: '../emotional/campaign/job', alt: 'Job' },
+    { id: 2, iconSrc: community_network_icon, redirect_to: '../emotional/analytics', alt: 'community network' },
     { id: 3, iconSrc: social_media_icon, redirect_to: '', alt: 'social media' },
 ];
 

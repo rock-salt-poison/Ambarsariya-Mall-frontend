@@ -37,7 +37,7 @@ function Esale() {
                 <Box className="row">
                     <Box className="col">
                         <Box className="container">
-                            <Button2 text="Back" redirectTo='../login' />
+                            <Button2 text="Back" redirectTo='../' />
                         </Box>
                         <Box className="container">
                             <Box className="header_board">

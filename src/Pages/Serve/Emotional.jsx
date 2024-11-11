@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import Button2 from '../../Components/Home/Button2'
 import online_shopping from '../../Utils/images/Serve/emotional/online_shopping.webp';
@@ -18,18 +18,26 @@ function Emotional() {
         { id: 3, imgSrc: crm, alt: 'crm', linkTo: 'crm' },
         { id: 4, imgSrc: campaign, alt: 'campaign', linkTo: 'campaign' },
     ];
-
-    const handleClick = (e) => {
-        const target = e.target.closest(".title_container");
+    
+    const handleClick = (e, linkTo) => {
+        const target = e.target.closest(".title_container") || e.target.closest(".img_link");
+        
         if (target) {
             target.classList.add('reduceSize3');
             audio.play();
+            
             setTimeout(() => {
                 target.classList.remove('reduceSize3');
-                navigate('../');
-            }, 500)
+            }, 300);
+            setTimeout(() => {
+                if (linkTo) {
+                    navigate(linkTo);
+                }else{
+                    navigate('../')
+                }
+            }, 600);
         }
-    }
+    };
 
     return (
         <Box className="emotional_wrapper">
@@ -38,7 +46,7 @@ function Emotional() {
                     <Button2 text="Back" redirectTo="../" />
                     <Box className="title_container d-lg-none">
                         <Box component="img" src={frame} alt="frame" className='frame' />
-                        <Link className="heading" onClick={handleClick}>
+                        <Link className="heading" onClick={(e)=>handleClick(e)}>
                             <Typography className="title">Emotional</Typography>
                         </Link>
                     </Box>
@@ -47,7 +55,7 @@ function Emotional() {
                 <Box className="container">
                     <Box className="col">
                         {data.slice(0, 2).map((item) => {
-                            return <Link key={item.id} className="img_link" to={item.linkTo}>
+                            return <Link key={item.id} className="img_link" onClick={(e)=>handleClick(e, item.linkTo)}>
                                 <Box component="img" src={item.imgSrc} alt={item.alt} className='img' />
                             </Link>
                         })}
@@ -55,14 +63,14 @@ function Emotional() {
                     <Box className="col title_col">
                         <Box className="title_container d-sm-none">
                             <Box component="img" src={frame} alt="frame" className='frame' />
-                            <Link className="heading" onClick={handleClick}>
+                            <Link className="heading" onClick={(e)=>handleClick(e)}>
                                 <Typography className="title">Emotional</Typography>
                             </Link>
                         </Box>
                     </Box>
                     <Box className="col">
                         {data.slice(2, 5).map((item) => {
-                            return <Link key={item.id} className="img_link" to={item.linkTo}>
+                            return <Link key={item.id} className="img_link" onClick={(e)=>handleClick(e, item.linkTo)}>
                                 <Box component="img" src={item.imgSrc} alt={item.alt} className='img' />
                             </Link>
                         })}

@@ -4,6 +4,7 @@ import createCustomTheme from '../../../styles/CustomSelectDropdownTheme';
 import special_offer_icon from '../../../Utils/images/Sell/cart/special_offers/special_offer.webp';
 import Subscribe_popupContent from './Subscribe_popupContent';
 import ScrollableTabsButton from '../../ScrollableTabsButton';
+import { useParams } from 'react-router-dom';
 
 function SpecialOffer() {
 
@@ -15,9 +16,11 @@ function SpecialOffer() {
   
     const theme = createCustomTheme(themeProps);
 
+    const { owner } = useParams();
+
     const tabsData = [
       { id: 1, name: 'Subscribe', content: <Subscribe_popupContent/> },
-      { id: 2, name: 'MOU', redirectTo:'../' },
+      { id: 2, name: 'MOU', redirectTo:`../${owner}/mou` },
     ]
 
   return (

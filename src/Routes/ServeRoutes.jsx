@@ -37,6 +37,15 @@ import MemberGroupCreation from '../Pages/Serve/MemberGroupCreation';
 import SalesPipeline from '../Pages/Serve/SalesPipeline';
 import MarketingCampaigns from '../Pages/Serve/MarketingCampaigns';
 import Login from '../Pages/Sell/Login';
+import Overheads from '../Pages/Serve/Analytics_Merchant/Overheads';
+import MarketPrice from '../Pages/Serve/Analytics_Merchant/MarketPrice';
+import StockAlarm from '../Pages/Serve/Analytics_Merchant/StockAlarm';
+import ForecastMarketPrice from '../Pages/Serve/Analytics_Merchant/ForecastMarketPrice';
+import EmotionalMember from '../Pages/Serve/Member/EmotionalMember';
+import EshopMember from '../Pages/Serve/Member/EshopMember';
+import Budget from '../Pages/Sell/Budget';
+import MemberRelations from '../Pages/Sell/MemberRelations';
+import DietPlan from '../Pages/Serve/Member/DietPlan';
 
 
 export default function ServeRoutes() {
@@ -65,14 +74,14 @@ export default function ServeRoutes() {
       <Routes>
          <Route path="/" element={<Serve />} />
          <Route path="login" element={<Login />} />
-         <Route path="/emotional" element={<Emotional />} />
+         <Route path="/emotional" element={checkUser === 'merchant' ? <Emotional /> : <EmotionalMember/>} />
          <Route path="/unexpected" element={<Unexpected />} />
          <Route path="/emotional/campaign" element={checkUser === 'merchant' ? <MerchantCampaign /> : <Campaign />} />
          <Route path="/emotional/campaign/job" element={<Job />} />
-         <Route path="/emotional/campaign/community" element={<Community />} />
-         <Route path="/emotional/campaign/community/discussion" element={<Discussion />} />
-         <Route path="/emotional/campaign/community/votes" element={<Votes />} />
-         <Route path="/emotional/eshop" element={<Eshop />} />
+         <Route path="/emotional/eshop/soul" element={<Community />} />
+         <Route path="/emotional/eshop/soul/discussion" element={<Discussion />} />
+         <Route path="/emotional/eshop/soul/votes" element={<Votes />} />
+         <Route path="/emotional/eshop" element={checkUser === 'merchant' ? <Eshop /> : <EshopMember />} />
          <Route path="/emotional/eshop/financial-management" element={<Financial_management />} />
          <Route path="/emotional/eshop/financial-management/general-ledger" element={<General_ledger />} />
          <Route path="/emotional/eshop/financial-management/accounts-payable" element={<Accounts_payable />} />
@@ -88,8 +97,12 @@ export default function ServeRoutes() {
          <Route path="/emotional/eshop/stock-management" element={<Stock_management />} />
          <Route path="/emotional/eshop/stock-level" element={<Stock_level />} />
          <Route path="/emotional/eshop/stock-reports" element={<Stock_reports />} />
-         <Route path="/emotional/analytics" element={<Analytics />} />
-         <Route path="/emotional/crm" element={<CRM />} />
+         <Route path="/emotional/analytics" element={checkUser === 'merchant' ? <Analytics /> : <Budget />} />
+         <Route path="/emotional/analytics/overheads" element={<Overheads/>} />
+         <Route path="/emotional/analytics/market-price" element={<MarketPrice/>} />
+         <Route path="/emotional/analytics/stock-alarm" element={<StockAlarm/>} />
+         <Route path="/emotional/analytics/forecast-market-price" element={<ForecastMarketPrice/>} />
+         <Route path="/emotional/crm" element={checkUser === 'merchant' ? <CRM /> : <MemberRelations />} />
          <Route path="/emotional/crm/customer-records" element={<CustomerRecords />} />
          <Route path="/emotional/crm/member-group-creation" element={<MemberGroupCreation />} />
          <Route path="/emotional/crm/sales-pipeline" element={<SalesPipeline />} />
@@ -98,7 +111,9 @@ export default function ServeRoutes() {
          <Route path="/unexpected/capture" element={<Capture />} />
          <Route path="/unexpected/suggestions" element={<Suggestions />} />
          <Route path="/unexpected/confirmation" element={<Confirmation />} />
-         <Route path="/emotional/campaign/job/jobs-offered" element={<Jobs_offered />} />
+         {/* <Route path="/emotional/campaign/job/jobs-offered" element={<Jobs_offered />} /> */}
+         <Route path="/emotional/eshop/jobs-offered" element={<Jobs_offered />} />
+         <Route path="/emotional/eshop/diet-plan" element={<DietPlan />} />
       </Routes>
    );
 }

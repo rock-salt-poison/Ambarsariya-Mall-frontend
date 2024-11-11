@@ -62,7 +62,7 @@ const theme = createCustomTheme(themeProps);
     <Box className="job_apply_wrapper">
       <Box className="row">
         <Box className="col">
-          <Button2 text="Back" redirectTo="../emotional/campaign" />
+          <Button2 text="Back" redirectTo={-1} />
           <Link className="icon_container" to='../emotional'>
             <Box component="img" src={jobs_icon} alt="job" className="job_icon" />
           </Link>

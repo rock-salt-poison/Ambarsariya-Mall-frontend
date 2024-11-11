@@ -6,7 +6,7 @@ import ShowUnclearedDues from './ShowUnclearedDues';
 import OverdueReceivables from './OverdueReceivables';
 import DSO from './DSO';
 
-function AccountsReceivableLedger_Popup() {
+function AgingOfReceivableLedger_Popup() {
 
   const themeProps = {
     popoverBackgroundColor: '#f8e3cc',
@@ -30,4 +30,4 @@ function AccountsReceivableLedger_Popup() {
   )
 }
 
-export default AccountsReceivableLedger_Popup
+export default AgingOfReceivableLedger_Popup

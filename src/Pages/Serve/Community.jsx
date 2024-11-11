@@ -38,7 +38,7 @@ function Community() {
     <Box className="community_main_wrapper">
       <Box className="row">
         <Box className="col">
-          <Button2 text="Back" redirectTo={'../emotional/campaign/job'} />
+          <Button2 text="Back" redirectTo={-1} />
           <Link className="title_container" to="../emotional">
             <Box component="img" src={community_icon} alt="community" className="community_icon" />
             <Typography className="community_title" variant="h2">community</Typography>

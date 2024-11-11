@@ -23,7 +23,7 @@ function MemberRelations() {
   return (
     <Box className='member_relations_wrapper'>
         <Box className="row">
-            <Header icon_1={relationship_img} icon_2={member_icon} icon_1_link='../esale' icon_2_link='../user' title="Relations" title_container={true} redirectTo='../esale'/>
+            <Header icon_1={relationship_img} icon_2={member_icon} icon_1_link='../../AmbarsariyaMall/sell/user' icon_2_link='../../AmbarsariyaMall/sell/user' title="Relations" title_container={true} redirectTo='../../AmbarsariyaMall/sell/esale'/>
 
             <Box className="col">
               <ScrollableTabsButton data={tabsData} scrollbarThumb2='var(--brown)' verticalTabs={true} hideScrollBtn={true}/>

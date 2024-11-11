@@ -132,17 +132,17 @@ const FormField = ({
               {type === 'select' ? (
                 <Select
                   name={name}
-                  value={value}
+                  value={value || ''}
                   onChange={handleSelectChange2}
                   displayEmpty
                   className="input_field"
                   {...(error && { error: true })}
                 >
-                  <MenuItem value="" disabled>
+                  <MenuItem value="" disabled key={0}>
                     {placeholder}
                   </MenuItem>
-                  {options.map((option) => (
-                    <MenuItem key={option} value={option}>
+                  {options.map((option, index) => (
+                    <MenuItem key={index+1} value={option}>
                       {option}
                     </MenuItem>
                   ))}

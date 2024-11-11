@@ -10,7 +10,7 @@ const VisitorFormBox = ({userName}) => {
 
   const handleFormSubmitSuccess = (domain, sector) => {
     setFormSubmitted(true);
-    setValue((prevData)=>({...prevData, domain,sector}))
+    setValue((prevData)=>({...prevData, domain, sector}))
   };
 
   const handleClick = (e, id) => {
